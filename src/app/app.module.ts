@@ -16,6 +16,7 @@ import { SubgalleryComponent } from './subgallery/subgallery.component';
 import { ContactformComponent } from './contactform/contactform.component';
 import { NewspreviewComponent } from './newspreview/newspreview.component';
 import { AboutpreviewComponent } from './aboutpreview/aboutpreview.component';
+import { GallerypreviewComponent } from './gallerypreview/gallerypreview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AboutpreviewComponent } from './aboutpreview/aboutpreview.component';
     SubgalleryComponent,
     ContactformComponent,
     NewspreviewComponent,
-    AboutpreviewComponent
+    AboutpreviewComponent,
+    GallerypreviewComponent
   ],
   imports: [
     BrowserModule,
