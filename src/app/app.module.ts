@@ -15,7 +15,6 @@ import { EventComponent } from './event/event.component';
 import { SubgalleryComponent } from './subgallery/subgallery.component';
 import { ContactformComponent } from './contactform/contactform.component';
 import { NewspreviewComponent } from './newspreview/newspreview.component';
-import { SubgallerypreviewComponent } from './subgallerypreview/subgallerypreview.component';
 import { AboutpreviewComponent } from './aboutpreview/aboutpreview.component';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { AboutpreviewComponent } from './aboutpreview/aboutpreview.component';
     SubgalleryComponent,
     ContactformComponent,
     NewspreviewComponent,
-    SubgallerypreviewComponent,
     AboutpreviewComponent
   ],
   imports: [
