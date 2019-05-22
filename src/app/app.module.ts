@@ -14,6 +14,8 @@ import { PeopleComponent } from './people/people.component';
 import { EventComponent } from './event/event.component';
 import { SubgalleryComponent } from './subgallery/subgallery.component';
 import { ContactformComponent } from './contactform/contactform.component';
+import { NewspreviewComponent } from './newspreview/newspreview.component';
+import { SubgallerypreviewComponent } from './subgallerypreview/subgallerypreview.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ContactformComponent } from './contactform/contactform.component';
     PeopleComponent,
     EventComponent,
     SubgalleryComponent,
-    ContactformComponent
+    ContactformComponent,
+    NewspreviewComponent,
+    SubgallerypreviewComponent
   ],
   imports: [
     BrowserModule,
