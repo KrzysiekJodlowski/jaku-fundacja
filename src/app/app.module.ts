@@ -22,6 +22,7 @@ import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
 import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
+import { WebstorageService } from "./services/webstorage/webstorage.service";
 import { environment } from "src/environments/environment";
 
 @NgModule({
@@ -49,7 +50,7 @@ import { environment } from "src/environments/environment";
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
-  providers: [TimeService, NewsService],
+  providers: [TimeService, NewsService, WebstorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
