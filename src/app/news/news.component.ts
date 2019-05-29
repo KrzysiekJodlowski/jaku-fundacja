@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
-import { loadInternal } from "@angular/core/src/render3/util";
 
 @Component({
   selector: "app-news",
@@ -9,28 +8,49 @@ import { loadInternal } from "@angular/core/src/render3/util";
 })
 export class NewsComponent implements OnInit {
   private news: any[];
-  private dbTitles: any[];
-  private titles: string[];
   constructor(private fireDb: AngularFireDatabase) {
-    this.titles = [];
-    this.dbTitles = [];
+    this.news = [];
   }
 
   ngOnInit() {
     this.fireDb
-      .list("/news")
+      .list("news")
       .snapshotChanges()
-      .subscribe(dbTitles => {
-        this.dbTitles = dbTitles;
-        this.dbTitles.forEach(title => {
-          this.titles.push(title.key);
-        });
-      });
-    this.fireDb
-      .list("/news")
-      .valueChanges()
-      .subscribe(news => {
-        this.news = news;
-      });
+      .subscribe(dates =>
+        dates.forEach(date =>
+          date.payload.forEach(info => {
+            this.news.push({
+              date: this.formatDate(date.key),
+              title: info.key,
+              content: info.val()
+            });
+            return false;
+          })
+        )
+      );
+  }
+
+  formatDate(longDate: string) {
+    var monthNames = [
+      "Styczeń",
+      "Luty",
+      "Marzec",
+      "Kwiecień",
+      "Maj",
+      "Czerwiec",
+      "Lipiec",
+      "Sierpień",
+      "Wrzesień",
+      "Październik",
+      "Listopad",
+      "Grudzień"
+    ];
+
+    const date = new Date(Number(longDate));
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+
+    return day + " " + monthNames[monthIndex] + " " + year;
   }
 }

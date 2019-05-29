@@ -1,8 +1,7 @@
-<ul *ngFor="let title of titles; let i = index">
+<ul *ngFor="let info of news">
   <li>
-    <section>
-      <h4>{{ title }}</h4>
-    </section>
-    <p>{{ news[i] }}</p>
+    <span>{{ info.date }}</span>
+    <h3>{{ info.title }}</h3>
+    <p>{{ info.content }}</p>
   </li>
 </ul>
