@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AngularFireDatabase } from "@angular/fire/database";
+import { NewsService } from "../services/news/news.service";
 
 @Component({
   selector: "app-news",
@@ -8,26 +8,12 @@ import { AngularFireDatabase } from "@angular/fire/database";
 })
 export class NewsComponent implements OnInit {
   private news: any[];
-  constructor(private fireDb: AngularFireDatabase) {
+  constructor(private newsService: NewsService) {
     this.news = [];
   }
 
   ngOnInit() {
-    this.fireDb
-      .list("news")
-      .snapshotChanges()
-      .subscribe(dates =>
-        dates.forEach(date =>
-          date.payload.forEach(info => {
-            this.news.push({
-              date: this.formatDate(date.key),
-              title: info.key,
-              content: info.val()
-            });
-            return false;
-          })
-        )
-      );
+    this.news = this.newsService.getNews();
   }
 
   formatDate(longDate: string) {
