@@ -19,6 +19,8 @@ import { ContactformComponent } from "./contactform/contactform.component";
 import { NewspreviewComponent } from "./newspreview/newspreview.component";
 import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
+import { NewsService } from "./services/news/news.service";
+import { TimeService } from "../app/services/time/time.service";
 import { environment } from "src/environments/environment";
 
 @NgModule({
@@ -45,7 +47,7 @@ import { environment } from "src/environments/environment";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [TimeService, NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

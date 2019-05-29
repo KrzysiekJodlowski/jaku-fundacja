@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { TimeService } from "../time/time.service";
 import { AngularFireDatabase } from "@angular/fire/database";
 
 @Injectable({
@@ -6,7 +7,10 @@ import { AngularFireDatabase } from "@angular/fire/database";
 })
 export class NewsService {
   private news: any[];
-  constructor(private fireDb: AngularFireDatabase) {
+  constructor(
+    private timeService: TimeService,
+    private fireDb: AngularFireDatabase
+  ) {
     this.news = [];
     this.loadNewsFromDb();
   }
@@ -27,7 +31,7 @@ export class NewsService {
 
   private addInfo(date: any, info: any) {
     this.news.push({
-      date: date.key,
+      date: this.timeService.formatDate(date.key),
       title: info.key,
       content: info.val()
     });

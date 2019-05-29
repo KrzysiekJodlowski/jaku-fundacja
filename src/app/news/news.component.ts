@@ -4,7 +4,8 @@ import { NewsService } from "../services/news/news.service";
 @Component({
   selector: "app-news",
   templateUrl: "./news.component.html",
-  styleUrls: ["./news.component.css"]
+  styleUrls: ["./news.component.css"],
+  providers: [NewsService]
 })
 export class NewsComponent implements OnInit {
   private news: any[];
@@ -14,29 +15,5 @@ export class NewsComponent implements OnInit {
 
   ngOnInit() {
     this.news = this.newsService.getNews();
-  }
-
-  formatDate(longDate: string) {
-    var monthNames = [
-      "Styczeń",
-      "Luty",
-      "Marzec",
-      "Kwiecień",
-      "Maj",
-      "Czerwiec",
-      "Lipiec",
-      "Sierpień",
-      "Wrzesień",
-      "Październik",
-      "Listopad",
-      "Grudzień"
-    ];
-
-    const date = new Date(Number(longDate));
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    return day + " " + monthNames[monthIndex] + " " + year;
   }
 }
