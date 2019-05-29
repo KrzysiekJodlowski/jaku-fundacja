@@ -1,3 +1,14 @@
-<p>
-  gallery works!
-</p>
+<div clas = "gallery">
+  <ul *ngFor = 'let subgallery of galleries'>
+
+    <li> 
+    <p> {{ subgallery.title }} </p>
+
+    <ul *ngFor = 'let picture of subgallery.photos'>
+      <li><img src="{{ picture }}" alt= 'picture' ></li>
+    </ul>
+    </li>
+
+  </ul>
+  
+</div>
