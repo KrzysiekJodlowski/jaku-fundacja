@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { SubgalleryComponent } from 'src/app/subgallery/subgallery.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,25 +21,29 @@ export class GalleryService {
   private getImagesFromFirebase() {
     this.fb.list("gallery").snapshotChanges().subscribe(galleries => {
       galleries.forEach(subgallery => {
-        let subgalleryObject = this.createSubgalleryObject(subgallery);
+        let subgalleryObject:Object = this.createSubgalleryObject(subgallery);
         this.addSubgalleryToList(subgalleryObject);
       });
     });
   }
 
-  private addSubgalleryToList(subgalleryObject: { title: any; photos: any[]; }) {
-    this._galleries.push(subgalleryObject);
+  private addSubgalleryToList(subgallery: Object) {
+    this._galleries.push(subgallery);
   }
 
-  private createSubgalleryObject(subgallery) {
+  private createSubgalleryObject(subgallery): Object {
     let subgalleryObject = {
-      title: subgallery.key,
-      photos: []
+      title : subgallery.key,
+      imagesUrls : []
     };
+    this.addAllImagesToObject(subgallery, subgalleryObject);
+    return subgalleryObject;
+  }
+
+  private addAllImagesToObject(subgallery: any, subgalleryObject: { title: any; imagesUrls: any[]; }) {
     subgallery.payload.forEach(picture => {
-      subgalleryObject.photos.push(picture.val());
+      subgalleryObject.imagesUrls.push(picture.val());
       return false;
     });
-    return subgalleryObject;
   }
 }
