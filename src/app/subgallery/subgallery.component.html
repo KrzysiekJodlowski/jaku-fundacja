@@ -1,3 +1,4 @@
-<p>
-  subgallery works!
-</p>
+<p> {{ _title }} </p>
+<ul *ngFor = 'let picture of imagesUrls'>
+  <li><img src="{{ picture }}" alt= 'picture' ></li>
+</ul>

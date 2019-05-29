@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from '../services/gallery/gallery.service';
+import { SubgalleryComponent } from '../subgallery/subgallery.component';
 
 
 @Component({
