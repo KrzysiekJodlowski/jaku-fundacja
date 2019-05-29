@@ -20,7 +20,7 @@ import { GallerypreviewComponent } from './gallerypreview/gallerypreview.compone
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { AngularFireDatabaseModule } from '@angular/fire/database'
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
