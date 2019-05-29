@@ -17,6 +17,10 @@ import { ContactformComponent } from './contactform/contactform.component';
 import { NewspreviewComponent } from './newspreview/newspreview.component';
 import { AboutpreviewComponent } from './aboutpreview/aboutpreview.component';
 import { GallerypreviewComponent } from './gallerypreview/gallerypreview.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireDatabaseModule } from '@angular/fire/database'
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,10 @@ import { GallerypreviewComponent } from './gallerypreview/gallerypreview.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
