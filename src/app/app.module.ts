@@ -23,6 +23,7 @@ import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.compone
 import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
 import { environment } from "src/environments/environment";
+import { FormsModule } from "@angular/forms"
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { environment } from "src/environments/environment";
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FormsModule
   ],
   providers: [TimeService, NewsService],
   bootstrap: [AppComponent]
