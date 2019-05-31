@@ -1,17 +1,32 @@
 <form class="contactForm">
   <div>
-    <label for="emailAddress">Email: </label>
-    <input type="email" name="emailAddress" id="emailAddress" required>
+    <label for="email">Email: </label>
+    <input ngModel #email="ngModel" name="email" id="email" type="email" email required minlength="5">
+    <div *ngIf="email.touched && !email.valid">
+      <div *ngIf="email.errors.required">Adres e-mail jest wymagany!</div>
+      <div *ngIf="email.errors.minlength">Wprowadzony adres e-mail jest zbyt krótki!</div>
+      <div *ngIf="email.errors.email">Wprowadzony adres email nie jest prawidłowy!</div>
+    </div>
   </div>
   <div>
     <label for="subject">Temat: </label>
-    <input type="text" name="subject" id="subject" required>
+    <input ngModel #subject="ngModel" name="subject" id="subject" type="text" required minlength="5" maxlength="30">
+    <div *ngIf="subject.touched && !subject.valid">
+        <div *ngIf="subject.errors.required">Temat jest wymagany!</div>
+        <div *ngIf="subject.errors.minlength">Wprowadzony temat jest zbyt krótki!</div>
+        <div *ngIf="subject.errors.maxlength">Wprowadzony temat jest zbyt długi!</div>
+    </div>
   </div>
 
   <div>
     <label for="message">Wiadomość: </label>
-    <textarea name="message" id="message" cols="30" rows="10" placeholder="Tutaj wpisz wiadomość..."></textarea>
+    <textarea ngModel #message="ngModel" name="message" id="message" 
+          cols="30" rows="10" placeholder="Tutaj wpisz treść wiadomości" required minlength="15"></textarea>
+    <div *ngIf="message.touched && !message.valid">
+      <div *ngIf="message.errors.required">Treść wiadomości jest wymagana!</div>
+      <div *ngIf="message.errors.minlength">Wprowadzona wiadomość jest zbyt krótka!</div>
+    </div>
   </div>
-  
-  <button>Wyślij</button>
-</form>
+
+  <button type="submit" [disabled]="!email.valid || !subject.valid || !message.valid">Wyślij</button>
+</form> 
