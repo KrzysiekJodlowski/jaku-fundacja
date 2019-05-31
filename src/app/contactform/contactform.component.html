@@ -1,3 +1,14 @@
-<p>
-  contactform works!
-</p>
+<form class="contactForm">
+  <div>
+    <label for="emailAddress">Email: </label>
+    <input type="email" name="emailAddress" id="emailAddress" required>
+    <label for="subject">Temat: </label>
+    <input type="text" name="subject" id="subject" required>
+  </div>
+  
+  <div>
+    <label for="message">Wiadomość: </label>
+    <textarea name="message" id="message" cols="30" rows="10" placeholder="Tutaj wpisz wiadomość..."></textarea>
+    <button>Wyślij</button>
+  </div>
+</form>
