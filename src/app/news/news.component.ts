@@ -10,7 +10,6 @@ import { TimeService } from "../services/time/time.service";
 })
 export class NewsComponent implements OnInit {
   private news: Object[];
-  private readonly NESTED_OBJECT_VALUE_INDEX: number = 1;
 
   constructor(
     private newsService: NewsService,
@@ -21,8 +20,8 @@ export class NewsComponent implements OnInit {
 
   ngOnInit() {
     this.newsService.getNewsObjectsFromDb().then(news => {
-      Object.entries(news).forEach(info => {
-        this.addInfo(info[this.NESTED_OBJECT_VALUE_INDEX]);
+      Object.values(news).forEach(info => {
+        this.addInfo(info);
       });
     });
   }

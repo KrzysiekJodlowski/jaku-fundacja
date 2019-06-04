@@ -5,10 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class NewsService {
-  private news: Object;
-  constructor(private http: HttpClient) {
-    this.news = [];
-  }
+  constructor(private http: HttpClient) {}
 
   public getNewsObjectsFromDb() {
     return new Promise((resolve, reject) => {
