@@ -1,8 +1,11 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+
+// imports below will be used in admin panel
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { environment } from "src/environments/environment";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -22,8 +25,8 @@ import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
 import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
-import { environment } from "src/environments/environment";
-import { FormsModule } from "@angular/forms"
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { FormsModule } from "@angular/forms"
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [TimeService, NewsService],
   bootstrap: [AppComponent]
