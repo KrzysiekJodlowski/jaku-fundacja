@@ -9,7 +9,8 @@ import { TimeService } from "../services/time/time.service";
   providers: [NewsService]
 })
 export class NewsComponent implements OnInit {
-  private news: any[];
+  private news: Object[];
+  private readonly NESTED_OBJECT_VALUE_INDEX: number = 1;
 
   constructor(
     private newsService: NewsService,
@@ -19,20 +20,18 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newsService.loadNewsFromDb().then(news => {
-      Object.entries(news).forEach(date => {
-        let time,
-          content = [...date];
-        this.addInfo(time, content);
+    this.newsService.getNewsObjectsFromDb().then(news => {
+      Object.entries(news).forEach(info => {
+        this.addInfo(info[this.NESTED_OBJECT_VALUE_INDEX]);
       });
     });
-    console.log(this.news);
   }
 
-  private addInfo(date: any, content: any) {
+  private addInfo(info: any) {
     this.news.push({
-      date: date,
-      content: content
+      date: this.timeService.formatDate(info.date),
+      title: info.title,
+      content: info.content
     });
   }
 }

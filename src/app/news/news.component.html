@@ -1,11 +1,7 @@
 <ul *ngFor="let info of news">
   <li>
-    <ul *ngFor="let dupa of Object.entries(info)">
-      <li>
-        <span>{{ dupa.date }}</span>
-        <span>{{ dupa.title }}</span>
-        <span>{{ dupa.content }}</span>
-      </li>
-    </ul>
+    <h4>{{ info.date }}</h4>
+    <h3>{{ info.title }}</h3>
+    <p>{{ info.content }}</p>
   </li>
 </ul>
