@@ -11,7 +11,7 @@ export class ContactformComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit(templateForm: any) {
+  onSubmit(templateForm: any, form: any) {
     const templateParams = {
       from_email: templateForm.email,
       subject: templateForm.subject,
@@ -27,6 +27,7 @@ export class ContactformComponent implements OnInit {
       )
       .then(response => {
         console.log("SUCCESS!", response.status, response.text);
+        form.reset();
       })
       .catch(error => {
         console.log(error);
