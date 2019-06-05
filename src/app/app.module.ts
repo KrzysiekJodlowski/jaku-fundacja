@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 // imports below will be used in admin panel
 import { AngularFireModule } from "@angular/fire";
@@ -53,7 +54,8 @@ import { HttpClientModule } from "@angular/common/http";
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [TimeService, NewsService],
   bootstrap: [AppComponent]
