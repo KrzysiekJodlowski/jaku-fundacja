@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { GalleryService } from '../services/gallery/gallery.service';
+import { Component, OnInit } from "@angular/core";
+import { GalleryService } from "../services/gallery/gallery.service";
 
 @Component({
-  selector: 'app-gallerypreview',
-  templateUrl: './gallerypreview.component.html',
-  styleUrls: ['./gallerypreview.component.css']
+  selector: "app-gallerypreview",
+  templateUrl: "./gallerypreview.component.html",
+  styleUrls: ["./gallerypreview.component.css"]
 })
 export class GallerypreviewComponent implements OnInit {
   private galleries: Object[];
@@ -14,7 +14,10 @@ export class GallerypreviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.galleries = this.galleryService.galleries;
+    this.galleryService.getImageObjectsFromDb().then(galleries => {
+      Object.entries(galleries).forEach(gallery => {
+        this.galleries.push(gallery);
+      });
+    });
   }
-
 }
