@@ -11,10 +11,11 @@ export class ContactformComponent implements OnInit {
 
   ngOnInit() {}
 
-  sendMail() {
+  onSubmit(templateForm: any) {
     const templateParams = {
-      from_name: "Jasio",
-      message_html: "Jasio"
+      from_email: templateForm.email,
+      subject: templateForm.subject,
+      message: templateForm.message
     };
 
     emailjs

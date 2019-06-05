@@ -1,4 +1,4 @@
-<form id="myForm" class="contactForm">
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
   <div>
     <label for="email">Email: </label>
     <input
@@ -68,7 +68,6 @@
   <button
     type="submit"
     [disabled]="!email.valid || !subject.valid || !message.valid"
-    (click)="sendMail()"
   >
     Wyślij
   </button>
