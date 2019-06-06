@@ -1,4 +1,10 @@
-<h3>{{ galleryTitle }}</h3>
-<ul *ngFor="let picture of imageUrls">
-  <li><img src="{{ picture }}" alt="picture" /></li>
-</ul>
+<carousel>
+  <h3>{{ galleryTitle }}</h3>
+  <slide *ngFor="let picture of imageUrls">
+    <img
+      src="{{ picture }}"
+      alt="picture"
+      style="display: block; width: 100%;"
+    />
+  </slide>
+</carousel>

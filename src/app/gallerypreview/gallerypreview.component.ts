@@ -4,7 +4,7 @@ import { GalleryService } from "../services/gallery/gallery.service";
 @Component({
   selector: "app-gallerypreview",
   templateUrl: "./gallerypreview.component.html",
-  styleUrls: ["./gallerypreview.component.css"]
+  styleUrls: ["./gallerypreview.component.scss"]
 })
 export class GallerypreviewComponent implements OnInit {
   private galleries: Object[];

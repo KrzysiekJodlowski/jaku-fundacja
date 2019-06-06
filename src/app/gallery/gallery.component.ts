@@ -4,7 +4,7 @@ import { GalleryService } from "../services/gallery/gallery.service";
 @Component({
   selector: "app-gallery",
   templateUrl: "./gallery.component.html",
-  styleUrls: ["./gallery.component.css"],
+  styleUrls: ["./gallery.component.scss"],
   providers: [GalleryService]
 })
 export class GalleryComponent implements OnInit {

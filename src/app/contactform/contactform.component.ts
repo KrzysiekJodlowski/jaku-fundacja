@@ -4,7 +4,7 @@ import * as emailjs from "emailjs-com";
 @Component({
   selector: "app-contactform",
   templateUrl: "./contactform.component.html",
-  styleUrls: ["./contactform.component.css"]
+  styleUrls: ["./contactform.component.scss"]
 })
 export class ContactformComponent implements OnInit {
   constructor() {}

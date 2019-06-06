@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { CarouselModule } from "ngx-bootstrap/carousel";
 
 // imports below will be used in admin panel
 import { AngularFireModule } from "@angular/fire";
@@ -55,7 +55,7 @@ import { HttpClientModule } from "@angular/common/http";
     AngularFireStorageModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    CarouselModule.forRoot()
   ],
   providers: [TimeService, NewsService],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@ import { TimeService } from "../services/time/time.service";
 @Component({
   selector: "app-news",
   templateUrl: "./news.component.html",
-  styleUrls: ["./news.component.css"],
+  styleUrls: ["./news.component.scss"],
   providers: [NewsService]
 })
 export class NewsComponent implements OnInit {

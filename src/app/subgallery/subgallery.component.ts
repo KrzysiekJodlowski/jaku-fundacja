@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from "@angular/core";
 @Component({
   selector: "app-subgallery",
   templateUrl: "./subgallery.component.html",
-  styleUrls: ["./subgallery.component.css"]
+  styleUrls: ["./subgallery.component.scss"]
 })
 export class SubgalleryComponent implements OnInit {
   @Input() gallery: Object;
