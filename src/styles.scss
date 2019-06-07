@@ -2,17 +2,25 @@
 @import "variables";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-body {
-  nav {
-    img {
-      height: 10em;
-      width: 10em;
-    }
+html {
+  background-color: green;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 100%;
 
-    .btn {
-      margin: 1%;
-      height: 3em;
-      width: 15em;
+  body {
+    background-color: rgba(200, 240, 220, 0.4);
+    min-height: 100%;
+    nav {
+      img {
+        height: 10em;
+        width: 10em;
+      }
+      .btn {
+        margin: 1%;
+        height: 3em;
+        width: 15em;
+      }
     }
   }
 }
