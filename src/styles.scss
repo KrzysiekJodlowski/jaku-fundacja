@@ -12,15 +12,21 @@ html {
     background-color: rgba(200, 240, 220, 0.4);
     min-height: 100%;
     nav {
-      img {
-        height: 10em;
-        width: 10em;
+      span {
+        min-width: 15%;
       }
-      .btn {
-        margin: 1%;
-        height: 3em;
-        width: 15em;
-      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  nav {
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    .btn {
+      min-width: 100%;
+      font-size: 1.5em;
     }
   }
 }
