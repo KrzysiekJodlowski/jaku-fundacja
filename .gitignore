@@ -49,3 +49,4 @@ package-lock.json
 
 # Environment 
 src/environments/*
+.vscode/settings.json
