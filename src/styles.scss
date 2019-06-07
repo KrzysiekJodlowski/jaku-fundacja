@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+html {
+  background-color: green;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 100%;
+
+  body {
+    background-color: rgba(200, 240, 220, 0.4);
+    min-height: 100%;
+    nav {
+      span {
+        min-width: 15%;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  nav {
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    .btn {
+      min-width: 100%;
+      font-size: 1.5em;
+    }
+  }
+}

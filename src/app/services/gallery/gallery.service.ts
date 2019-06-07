@@ -1,44 +1,19 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class GalleryService {
-  private _galleries: Object[];
+  constructor(private http: HttpClient) {}
 
-  constructor(private fb: AngularFireDatabase) {
-    this._galleries = [];
-   }
-
-  public get galleries(): Object[] {
-    this.getImagesFromFirebase();
-    return this._galleries;
-  }
-  
-
-  private getImagesFromFirebase() {
-    this.fb.list("gallery").snapshotChanges().subscribe(galleries => {
-      galleries.forEach(subgallery => {
-        let subgalleryObject = this.createSubgalleryObject(subgallery);
-        this.addSubgalleryToList(subgalleryObject);
-      });
+  public getImageObjectsFromDb() {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get("https://us-central1-fir-7d0a4.cloudfunctions.net/getPictures")
+        .subscribe(galleries => {
+          resolve(galleries);
+        });
     });
-  }
-
-  private addSubgalleryToList(subgalleryObject: { title: any; photos: any[]; }) {
-    this._galleries.push(subgalleryObject);
-  }
-
-  private createSubgalleryObject(subgallery) {
-    let subgalleryObject = {
-      title: subgallery.key,
-      photos: []
-    };
-    subgallery.payload.forEach(picture => {
-      subgalleryObject.photos.push(picture.val());
-      return false;
-    });
-    return subgalleryObject;
   }
 }
