@@ -1,6 +1,12 @@
 <carousel class="container my-5 d-flex justify-content-center">
   <h2 class="mb-3">{{ galleryTitle }}</h2>
-  <slide class="row" *ngFor="let picture of imageUrls">
-    <img class="col align-self-center" src="{{ picture }}" alt="picture" />
+  <slide
+    class="col align-self-center"
+    *ngFor="let picture of imageUrls; let i = index"
+  >
+    <img src="{{ picture }}" alt="picture" />
+    <div class="carousel-caption d-none d-block">
+      <h3>{{ imageTitles[i] }}</h3>
+    </div>
   </slide>
 </carousel>
