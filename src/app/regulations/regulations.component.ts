@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-regulations',
-  templateUrl: './regulations.component.html',
-  styleUrls: ['./regulations.component.scss']
+  selector: "app-regulations",
+  templateUrl: "./regulations.component.html",
+  styleUrls: ["./regulations.component.scss"]
 })
-export class RegulationsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class RegulationsComponent {}
