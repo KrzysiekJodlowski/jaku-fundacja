@@ -13,9 +13,16 @@ html {
     padding-bottom: 60px;
     background-color: rgba(200, 240, 220, 0.4);
     min-height: 100%;
+    padding-top: 180px;
     nav {
+      height: 170px;
+      background-color: rgb(12, 138, 12);
+
+      .logo-link {
+        width: 200px;
+      }
       span {
-        min-width: 15%;
+        min-width: 5%;
       }
     }
 
@@ -24,18 +31,6 @@ html {
       height: 60px;
       line-height: 60px;
       background-color: greenyellow;
-    }
-  }
-}
-
-@include media-breakpoint-down(md) {
-  nav {
-    justify-content: center;
-    flex-direction: column;
-    width: 90%;
-    .btn {
-      min-width: 100%;
-      font-size: 1.5em;
     }
   }
 }
