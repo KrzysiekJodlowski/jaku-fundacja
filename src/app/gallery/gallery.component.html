@@ -1,14 +1,2 @@
-<div clas = "gallery">
-  <ul *ngFor = 'let subgallery of galleries'>
-
-    <li> 
-    <p> {{ subgallery.title }} </p>
-
-    <ul *ngFor = 'let picture of subgallery.photos'>
-      <li><img src="{{ picture }}" alt= 'picture' ></li>
-    </ul>
-    </li>
-
-  </ul>
-  
-</div>
+<app-subgallery *ngFor="let gallery of galleries" [gallery]="gallery">
+</app-subgallery>

@@ -1,3 +1,10 @@
-<p>
-  subgallery works!
-</p>
+<carousel>
+  <h3>{{ galleryTitle }}</h3>
+  <slide *ngFor="let picture of imageUrls">
+    <img
+      src="{{ picture }}"
+      alt="picture"
+      style="display: block; width: 100%;"
+    />
+  </slide>
+</carousel>
