@@ -1,10 +1,6 @@
 <carousel class="container d-flex justify-content-center">
   <h3>{{ galleryTitle }}</h3>
   <slide class="row" *ngFor="let picture of imageUrls">
-    <img
-      class="w-100 col align-self-center"
-      src="{{ picture }}"
-      alt="picture"
-    />
+    <img class="col align-self-center" src="{{ picture }}" alt="picture" />
   </slide>
 </carousel>
