@@ -1,7 +1,15 @@
-<ul *ngFor="let info of news">
-  <li>
-    <h4>{{ info.date }}</h4>
-    <h3>{{ info.title }}</h3>
-    <p>{{ info.content }}</p>
-  </li>
-</ul>
+<div class="p-5">
+  <div class="content-wrapper p5">
+    <div class="content-item mb-5" *ngFor="let info of currentNews">
+      <h5 class="text-secondary">{{ info.date }}</h5>
+      <h2>{{ info.title }}</h2>
+      <p class="my-4">{{ info.content }}</p>
+      <hr />
+    </div>
+  </div>
+  <pagination
+    class="justify-content-center"
+    [totalItems]="news.length"
+    (pageChanged)="pageChanged($event)"
+  ></pagination>
+</div>
