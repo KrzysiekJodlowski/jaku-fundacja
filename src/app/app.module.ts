@@ -28,6 +28,7 @@ import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { RegulationsComponent } from "./regulations/regulations.component";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HttpClientModule } from "@angular/common/http";
     ContactformComponent,
     NewspreviewComponent,
     AboutpreviewComponent,
-    GallerypreviewComponent
+    GallerypreviewComponent,
+    RegulationsComponent
   ],
   imports: [
     BrowserModule,
