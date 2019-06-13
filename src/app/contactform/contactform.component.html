@@ -1,5 +1,9 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value, form)">
-  <div>
+<form
+  class="w-50 container justify-content-center"
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form.value, form)"
+>
+  <div class="mb-2">
     <label for="email">Email: </label>
     <input
       ngModel
@@ -21,7 +25,8 @@
       </div>
     </alert>
   </div>
-  <div>
+
+  <div class="mb-2">
     <label for="subject">Temat: </label>
     <input
       ngModel
@@ -44,7 +49,7 @@
     </alert>
   </div>
 
-  <div>
+  <div class="mb-2">
     <label for="message">Wiadomość: </label>
     <textarea
       ngModel
@@ -65,10 +70,13 @@
     </alert>
   </div>
 
-  <button
-    type="submit"
-    [disabled]="!email.valid || !subject.valid || !message.valid"
-  >
-    Wyślij
-  </button>
+  <div class="justify-content-end">
+    <button
+      class="btn-primary"
+      type="submit"
+      [disabled]="!email.valid || !subject.valid || !message.valid"
+    >
+      Wyślij
+    </button>
+  </div>
 </form>
