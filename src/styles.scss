@@ -11,22 +11,17 @@ html {
   body {
     background-color: rgba(200, 240, 220, 0.4);
     min-height: 100%;
+    padding-top: 180px;
     nav {
-      span {
-        min-width: 15%;
-      }
-    }
-  }
-}
+      height: 170px;
+      background-color: rgb(12, 138, 12);
 
-@include media-breakpoint-down(md) {
-  nav {
-    justify-content: center;
-    flex-direction: column;
-    width: 90%;
-    .btn {
-      min-width: 100%;
-      font-size: 1.5em;
+      .logo-link {
+        width: 200px;
+      }
+      span {
+        min-width: 5%;
+      }
     }
   }
 }
