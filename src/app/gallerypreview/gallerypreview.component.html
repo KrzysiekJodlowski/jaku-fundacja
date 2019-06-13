@@ -1,3 +1,14 @@
-<p>
-  gallerypreview works!
-</p>
+<div class = "gallery_preview">
+  <h3> Galerie </h3>
+
+  <ul *ngFor = 'let gallery of galleries'>
+    <p> {{ gallery.title }} </p>
+    <ul *ngFor = 'let image of gallery.imagesUrls; let i=index'>
+      <a routerLink="gallery" >
+        <img *ngIf = 'i<1' src='{{ image }}'>
+      </a>
+
+    </ul>
+  </ul>
+
+</div>

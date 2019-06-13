@@ -1,11 +1,53 @@
+<nav class="justify-content-center d-none d-lg-flex navbar fixed-top">
+  <a class="logo-link" routerLink="/">
+    <img class="w-100" src="../../assets/img/jaku_logo.svg" alt="logo" />
+  </a>
 
-<nav>
-  <a routerLink="/"><img src="" alt="logo"></a>
-  <ul>
-    <li><a routerLink="/">Strona główna</a></li>
-    <li><a routerLink="/news">Aktualności</a></li>
-    <li><a routerLink="/about">O nas</a></li>
-    <li><a routerLink="/gallery">Galeria</a></li>
-    <li><a routerLink="/contact">Kontakt</a></li>
-  </ul>
+  <span class="btn btn-primary m-1" routerLink="/">Główna</span>
+  <span class="btn btn-primary m-1" routerLink="/news">Aktualności</span>
+  <span class="btn btn-primary m-1" routerLink="/about">O nas</span>
+  <span class="btn btn-primary m-1" routerLink="/gallery">Galeria</span>
+  <span class="btn btn-primary m-1" routerLink="/contact">Kontakt</span>
+</nav>
+
+<nav class="navbar fixed-top d-flex d-lg-none">
+  <a class="logo-link" routerLink="/">
+    <img class="w-100" src="../../assets/img/jaku_logo.svg" alt="logo" />
+  </a>
+
+  <div class="btn-group" dropdown placement="bottom right">
+    <button
+      id="button-alignment"
+      dropdownToggle
+      type="button"
+      class="btn btn-primary dropdown-toggle"
+      aria-controls="dropdown-alignment"
+    >
+      Menu <span class="caret"></span>
+    </button>
+
+    <ul
+      id="dropdown-alignment"
+      *dropdownMenu
+      class="dropdown-menu dropdown-menu-right"
+      role="menu"
+      aria-labelledby="button-alignment"
+    >
+      <li role="menuitem">
+        <a class="dropdown-item" routerLink="/">Główna</a>
+      </li>
+      <li role="menuitem">
+        <a class="dropdown-item" routerLink="/news">Aktualności</a>
+      </li>
+      <li role="menuitem">
+        <a class="dropdown-item" routerLink="/about">O nas</a>
+      </li>
+      <li role="menuitem">
+        <a class="dropdown-item" routerLink="/gallery">Galeria</a>
+      </li>
+      <li role="menuitem">
+        <a class="dropdown-item" routerLink="/contact">Kontakt</a>
+      </li>
+    </ul>
+  </div>
 </nav>
