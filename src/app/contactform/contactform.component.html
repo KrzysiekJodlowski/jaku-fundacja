@@ -11,7 +11,7 @@
       required
       minlength="5"
     />
-    <div *ngIf="email.touched && !email.valid">
+    <alert *ngIf="email.touched && !email.valid" type="danger">
       <div *ngIf="email.errors.required">Adres e-mail jest wymagany!</div>
       <div *ngIf="email.errors.minlength">
         Wprowadzony adres e-mail jest zbyt krótki!
@@ -19,7 +19,7 @@
       <div *ngIf="email.errors.email">
         Wprowadzony adres email nie jest prawidłowy!
       </div>
-    </div>
+    </alert>
   </div>
   <div>
     <label for="subject">Temat: </label>
@@ -33,7 +33,7 @@
       minlength="5"
       maxlength="30"
     />
-    <div *ngIf="subject.touched && !subject.valid">
+    <alert *ngIf="subject.touched && !subject.valid" type="danger">
       <div *ngIf="subject.errors.required">Temat jest wymagany!</div>
       <div *ngIf="subject.errors.minlength">
         Wprowadzony temat jest zbyt krótki!
@@ -41,7 +41,7 @@
       <div *ngIf="subject.errors.maxlength">
         Wprowadzony temat jest zbyt długi!
       </div>
-    </div>
+    </alert>
   </div>
 
   <div>
@@ -57,12 +57,12 @@
       required
       minlength="15"
     ></textarea>
-    <div *ngIf="message.touched && !message.valid">
+    <alert *ngIf="message.touched && !message.valid" type="danger">
       <div *ngIf="message.errors.required">Treść wiadomości jest wymagana!</div>
       <div *ngIf="message.errors.minlength">
         Wprowadzona wiadomość jest zbyt krótka!
       </div>
-    </div>
+    </alert>
   </div>
 
   <button
