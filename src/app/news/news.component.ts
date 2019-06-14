@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NewsService } from "../services/news/news.service";
 import { TimeService } from "../services/time/time.service";
+import { PageChangedService } from "../services/page_changed/page-changed.service";
 import { PageChangedEvent } from "ngx-bootstrap/pagination";
 
 @Component({
@@ -15,7 +16,8 @@ export class NewsComponent implements OnInit {
 
   constructor(
     private newsService: NewsService,
-    private timeService: TimeService
+    private timeService: TimeService,
+    private pageChangedService: PageChangedService
   ) {
     this.news = [];
   }
@@ -38,8 +40,6 @@ export class NewsComponent implements OnInit {
   }
 
   private newsPageChanged(event: PageChangedEvent): void {
-    const startItem = (event.page - 1) * event.itemsPerPage;
-    const endItem = event.page * event.itemsPerPage;
-    this.currentNews = this.news.slice(startItem, endItem);
+    this.currentNews = this.pageChangedService.pageChanged(event, this.news);
   }
 }

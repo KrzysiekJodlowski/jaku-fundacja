@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { GalleryService } from "../services/gallery/gallery.service";
+import { PageChangedService } from "../services/page_changed/page-changed.service";
 import { PageChangedEvent } from "ngx-bootstrap/pagination";
 
 @Component({
@@ -12,7 +13,10 @@ export class GalleryComponent implements OnInit {
   private galleries: Object[];
   private currentGalleries: Object[];
 
-  constructor(private galleryService: GalleryService) {
+  constructor(
+    private galleryService: GalleryService,
+    private pageChangedService: PageChangedService
+  ) {
     this.galleries = [];
   }
 
@@ -26,8 +30,9 @@ export class GalleryComponent implements OnInit {
   }
 
   private galleryPageChanged(event: PageChangedEvent): void {
-    const startItem = (event.page - 1) * event.itemsPerPage;
-    const endItem = event.page * event.itemsPerPage;
-    this.currentGalleries = this.galleries.slice(startItem, endItem);
+    this.currentGalleries = this.pageChangedService.pageChanged(
+      event,
+      this.galleries
+    );
   }
 }
