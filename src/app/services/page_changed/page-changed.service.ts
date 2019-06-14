@@ -5,13 +5,9 @@ import { PageChangedEvent } from "ngx-bootstrap/pagination";
   providedIn: "root"
 })
 export class PageChangedService {
-  public pageChanged(
-    event: PageChangedEvent,
-    items: Object[],
-    currentItems: Object[]
-  ): void {
+  public pageChanged(event: PageChangedEvent, items: Object[]): Object[] {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
-    currentItems = items.slice(startItem, endItem);
+    return items.slice(startItem, endItem);
   }
 }
