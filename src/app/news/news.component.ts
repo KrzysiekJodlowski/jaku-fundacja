@@ -37,7 +37,7 @@ export class NewsComponent implements OnInit {
     });
   }
 
-  private pageChanged(event: PageChangedEvent): void {
+  private newsPageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
     this.currentNews = this.news.slice(startItem, endItem);

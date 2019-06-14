@@ -25,7 +25,7 @@ export class GalleryComponent implements OnInit {
     });
   }
 
-  private pageChange(event: PageChangedEvent): void {
+  private galleryPageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
     this.currentGalleries = this.galleries.slice(startItem, endItem);
