@@ -25,7 +25,7 @@ export class NewsComponent implements OnInit {
       Object.values(news).forEach(info => {
         this.addInfo(info);
       });
-      this.currentNews = this.news.slice(0, 10);
+      this.currentNews = this.news.slice(0, 3);
     });
   }
 
