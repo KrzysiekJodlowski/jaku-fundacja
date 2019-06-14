@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { NewsService } from "../services/news/news.service";
 import { TimeService } from "../services/time/time.service";
+import { PageChangedService } from "../services/page_changed/page-changed.service";
+import { PageChangedEvent } from "ngx-bootstrap/pagination";
 
 @Component({
   selector: "app-news",
@@ -10,10 +12,12 @@ import { TimeService } from "../services/time/time.service";
 })
 export class NewsComponent implements OnInit {
   private news: Object[];
+  private currentNews: Object[];
 
   constructor(
     private newsService: NewsService,
-    private timeService: TimeService
+    private timeService: TimeService,
+    private pageChangedService: PageChangedService
   ) {
     this.news = [];
   }
@@ -23,6 +27,7 @@ export class NewsComponent implements OnInit {
       Object.values(news).forEach(info => {
         this.addInfo(info);
       });
+      this.currentNews = this.news.slice(0, 3);
     });
   }
 
@@ -32,5 +37,9 @@ export class NewsComponent implements OnInit {
       title: info.title,
       content: info.content
     });
+  }
+
+  private newsPageChanged(event: PageChangedEvent): void {
+    this.currentNews = this.pageChangedService.pageChanged(event, this.news);
   }
 }

@@ -1,2 +1,14 @@
-<app-subgallery *ngFor="let gallery of galleries" [gallery]="gallery">
-</app-subgallery>
+<div class="p-5">
+  <div class="content-wrapper p5">
+    <div class="content-item mb-5" *ngFor="let gallery of currentGalleries">
+      <app-subgallery [gallery]="gallery"></app-subgallery>
+      <hr />
+    </div>
+  </div>
+  <pagination
+    class="justify-content-center"
+    [totalItems]="galleries.length"
+    [itemsPerPage]="2"
+    (pageChanged)="galleryPageChanged($event)"
+  ></pagination>
+</div>
