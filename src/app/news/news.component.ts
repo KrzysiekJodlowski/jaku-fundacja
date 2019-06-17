@@ -8,7 +8,7 @@ import { PageChangedEvent } from "ngx-bootstrap/pagination";
   selector: "app-news",
   templateUrl: "./news.component.html",
   styleUrls: ["./news.component.scss"],
-  providers: [NewsService]
+  providers: [NewsService, TimeService]
 })
 export class NewsComponent implements OnInit {
   private news: Object[];
