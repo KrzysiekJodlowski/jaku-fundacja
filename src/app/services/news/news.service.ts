@@ -1,43 +1,17 @@
 import { Injectable } from "@angular/core";
-import { TimeService } from "../time/time.service";
-import { AngularFireDatabase } from "@angular/fire/database";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class NewsService {
-  private news: any[];
-  constructor(
-    private timeService: TimeService,
-    private fireDb: AngularFireDatabase
-  ) {
-    this.news = [];
-    this.loadNewsFromDb();
-  }
+  constructor(private http: HttpClient) {}
 
-  private loadNewsFromDb() {
-    this.fireDb
-      .list("news")
-      .snapshotChanges()
-      .subscribe(dates =>
-        dates.forEach(date =>
-          date.payload.forEach(info => {
-            this.addInfo(date, info);
-            return false;
-          })
-        )
-      );
-  }
-
-  private addInfo(date: any, info: any) {
-    this.news.push({
-      date: this.timeService.formatDate(date.key),
-      title: info.key,
-      content: info.val()
+  public getNewsObjectsFromDb() {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get("https://us-central1-fir-7d0a4.cloudfunctions.net/getNews")
+        .subscribe(news => resolve(news));
     });
-  }
-
-  getNews() {
-    return this.news;
   }
 }

@@ -1,8 +1,15 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { CarouselModule } from "ngx-bootstrap/carousel";
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { AlertModule } from "ngx-bootstrap/alert";
+import { PaginationModule } from "ngx-bootstrap/pagination";
+
+// imports below will be used in admin panel
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { environment } from "src/environments/environment";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -22,7 +29,9 @@ import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
 import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
-import { environment } from "src/environments/environment";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { RegulationsComponent } from "./regulations/regulations.component";
 
 @NgModule({
   declarations: [
@@ -40,14 +49,21 @@ import { environment } from "src/environments/environment";
     ContactformComponent,
     NewspreviewComponent,
     AboutpreviewComponent,
-    GallerypreviewComponent
+    GallerypreviewComponent,
+    RegulationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FormsModule,
+    HttpClientModule,
+    CarouselModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [TimeService, NewsService],
   bootstrap: [AppComponent]

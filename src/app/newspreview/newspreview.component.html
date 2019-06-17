@@ -1,3 +1,11 @@
-<p>
-  newspreview works!
-</p>
+<carousel>
+  <slide *ngFor="let info of news | slice: 0:3">
+    <div class="text-center bg-success text-white py-5">
+      <h2 class="pb-3">{{ info.title }}</h2>
+      <div class="lead">
+        <p class="news-preview text-truncate">{{ info.content }}</p>
+        <a routerLink="/news">..czytaj więcej</a>
+      </div>
+    </div>
+  </slide>
+</carousel>
