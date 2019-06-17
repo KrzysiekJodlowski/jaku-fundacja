@@ -1,4 +1,4 @@
-form {
+#contactForm {
   padding-bottom: 5%;
 
   input:focus,
@@ -21,7 +21,7 @@ form {
 }
 
 @media (max-width: 992px) {
-  form {
+  #contactForm {
     max-width: 50%;
   }
 }
