@@ -3,8 +3,10 @@
     <div class="text-center bg-success text-white py-5">
       <h2 class="pb-3">{{ info.title }}</h2>
       <div class="lead">
-        <p class="news-preview text-truncate">{{ info.content }}</p>
-        <a routerLink="/news">..czytaj więcej</a>
+        <p class="news-preview text-justify">
+          {{ info.content }}
+        </p>
+        <h5 routerLink="/news">..czytaj więcej</h5>
       </div>
     </div>
   </slide>

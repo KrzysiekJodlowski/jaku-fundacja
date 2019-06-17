@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { GalleryService } from "../services/gallery/gallery.service";
+import { CarouselModule } from "ngx-bootstrap/carousel";
 
 @Component({
   selector: "app-gallerypreview",
@@ -7,16 +8,16 @@ import { GalleryService } from "../services/gallery/gallery.service";
   styleUrls: ["./gallerypreview.component.scss"]
 })
 export class GallerypreviewComponent implements OnInit {
-  private galleries: Object[];
+  private pictures: string[];
 
   constructor(private galleryService: GalleryService) {
-    this.galleries = [];
+    this.pictures = [];
   }
 
   ngOnInit() {
     this.galleryService.getImageObjectsFromDb().then(galleries => {
       Object.entries(galleries).forEach(gallery => {
-        this.galleries.push(gallery);
+        this.pictures.push(Object.values(gallery[1])[0].toString());
       });
     });
   }
