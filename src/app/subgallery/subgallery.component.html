@@ -4,7 +4,7 @@
     class="col align-self-center"
     *ngFor="let picture of imageUrls; let i = index"
   >
-    <img src="{{ picture }}" alt="picture" />
+    <img class="w-100" src="{{ picture }}" alt="picture" />
     <div class="carousel-caption d-none d-block">
       <h3>{{ imageTitles[i] }}</h3>
     </div>
