@@ -6,6 +6,7 @@ import { HomeComponent } from "./home/home.component";
 import { NewsComponent } from "./news/news.component";
 import { AboutComponent } from "./about/about.component";
 import { RegulationsComponent } from "./regulations/regulations.component";
+import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: "gallery", component: GalleryComponent },
   { path: "contact", component: ContactComponent },
   { path: "about", component: AboutComponent },
-  { path: "regulations", component: RegulationsComponent }
+  { path: "regulations", component: RegulationsComponent },
+  { path: "admin/admin_panel", component: AdminPanelComponent }
 ];
 
 @NgModule({

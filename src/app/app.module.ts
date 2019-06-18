@@ -32,6 +32,7 @@ import { TimeService } from "../app/services/time/time.service";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RegulationsComponent } from "./regulations/regulations.component";
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RegulationsComponent } from "./regulations/regulations.component";
     NewspreviewComponent,
     AboutpreviewComponent,
     GallerypreviewComponent,
-    RegulationsComponent
+    RegulationsComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
