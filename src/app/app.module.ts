@@ -9,6 +9,7 @@ import { PaginationModule } from "ngx-bootstrap/pagination";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "src/environments/environment";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -32,7 +33,8 @@ import { TimeService } from "../app/services/time/time.service";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RegulationsComponent } from "./regulations/regulations.component";
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     AboutpreviewComponent,
     GallerypreviewComponent,
     RegulationsComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
     FormsModule,
     HttpClientModule,
     CarouselModule.forRoot(),
