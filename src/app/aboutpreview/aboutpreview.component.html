@@ -1,3 +1,13 @@
-<p>
-  aboutpreview works!
-</p>
+<carousel>
+  <slide *ngFor="let person of about">
+    <div class="text-center bg-success text-white py-5">
+      <h2 class="pb-3">{{ person.name }}</h2>
+      <div class="lead">
+        <p class="news-preview text-justify">
+          {{ person.description }}
+        </p>
+        <h5 id="linkToNews" routerLink="/news">..czytaj więcej</h5>
+      </div>
+    </div>
+  </slide>
+</carousel>
