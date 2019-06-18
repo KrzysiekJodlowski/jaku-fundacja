@@ -7,6 +7,7 @@ import { NewsComponent } from "./news/news.component";
 import { AboutComponent } from "./about/about.component";
 import { RegulationsComponent } from "./regulations/regulations.component";
 import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
+import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
