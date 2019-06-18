@@ -27,8 +27,6 @@ import { ContactformComponent } from "./contactform/contactform.component";
 import { NewspreviewComponent } from "./newspreview/newspreview.component";
 import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
-import { NewsService } from "./services/news/news.service";
-import { TimeService } from "../app/services/time/time.service";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RegulationsComponent } from "./regulations/regulations.component";
@@ -65,7 +63,6 @@ import { RegulationsComponent } from "./regulations/regulations.component";
     AlertModule.forRoot(),
     PaginationModule.forRoot()
   ],
-  providers: [TimeService, NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
