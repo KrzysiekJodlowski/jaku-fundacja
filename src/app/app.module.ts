@@ -20,8 +20,6 @@ import { NewsComponent } from "./news/news.component";
 import { GalleryComponent } from "./gallery/gallery.component";
 import { ContactComponent } from "./contact/contact.component";
 import { AboutComponent } from "./about/about.component";
-import { PeopleComponent } from "./people/people.component";
-import { EventComponent } from "./event/event.component";
 import { SubgalleryComponent } from "./subgallery/subgallery.component";
 import { ContactformComponent } from "./contactform/contactform.component";
 import { NewspreviewComponent } from "./newspreview/newspreview.component";
@@ -41,8 +39,6 @@ import { RegulationsComponent } from "./regulations/regulations.component";
     GalleryComponent,
     ContactComponent,
     AboutComponent,
-    PeopleComponent,
-    EventComponent,
     SubgalleryComponent,
     ContactformComponent,
     NewspreviewComponent,
