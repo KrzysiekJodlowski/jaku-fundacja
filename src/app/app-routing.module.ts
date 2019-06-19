@@ -5,7 +5,7 @@ import { GalleryComponent } from "./client/gallery/gallery.component";
 import { HomeComponent } from "./client/home/home.component";
 import { NewsComponent } from "./client/news/news.component";
 import { AboutComponent } from "./client/about/about.component";
-import { RegulationsComponent } from "./client/regulations/regulations.component";
+import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },

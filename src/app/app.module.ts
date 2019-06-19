@@ -20,14 +20,14 @@ import { NewsComponent } from "./client/news/news.component";
 import { GalleryComponent } from "./client/gallery/gallery.component";
 import { ContactComponent } from "./client/contact/contact.component";
 import { AboutComponent } from "./client/about/about.component";
-import { SubgalleryComponent } from "./client/subgallery/subgallery.component";
-import { ContactformComponent } from "./client/contactform/contactform.component";
-import { NewspreviewComponent } from "./client/newspreview/newspreview.component";
-import { AboutpreviewComponent } from "./client/aboutpreview/aboutpreview.component";
-import { GallerypreviewComponent } from "./client/gallerypreview/gallerypreview.component";
+import { SubgalleryComponent } from "./client/gallery/subgallery/subgallery.component";
+import { ContactformComponent } from "./client/contact/contactform/contactform.component";
+import { NewspreviewComponent } from "./client/home/newspreview/newspreview.component";
+import { AboutpreviewComponent } from "./client/home/aboutpreview/aboutpreview.component";
+import { GallerypreviewComponent } from "./client/home/gallerypreview/gallerypreview.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { RegulationsComponent } from "./client/regulations/regulations.component";
+import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
 
 @NgModule({
   declarations: [

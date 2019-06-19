@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { NewsService } from "../../services/news/news.service";
-import { TimeService } from "../../services/time/time.service";
+import { NewsService } from "../../../services/news/news.service";
+import { TimeService } from "../../../services/time/time.service";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 
 @Component({
