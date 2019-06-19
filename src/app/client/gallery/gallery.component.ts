@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { GalleryService } from "../services/gallery/gallery.service";
-import { PageChangedService } from "../services/page_changed/page-changed.service";
+import { GalleryService } from "../../services/gallery/gallery.service";
+import { PageChangedService } from "../../services/page_changed/page-changed.service";
 import { PageChangedEvent } from "ngx-bootstrap/pagination";
 
 @Component({

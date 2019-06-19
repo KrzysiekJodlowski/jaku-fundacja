@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { NewsService } from "../services/news/news.service";
-import { TimeService } from "../services/time/time.service";
-import { PageChangedService } from "../services/page_changed/page-changed.service";
+import { NewsService } from "../../services/news/news.service";
+import { TimeService } from "../../services/time/time.service";
+import { PageChangedService } from "../../services/page_changed/page-changed.service";
 import { PageChangedEvent } from "ngx-bootstrap/pagination";
 
 @Component({

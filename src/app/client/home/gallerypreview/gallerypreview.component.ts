@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { GalleryService } from "../services/gallery/gallery.service";
+import { GalleryService } from "../../../services/gallery/gallery.service";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 
 @Component({

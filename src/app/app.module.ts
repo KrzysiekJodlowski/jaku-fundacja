@@ -13,23 +13,21 @@ import { environment } from "src/environments/environment";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { FooterComponent } from "./footer/footer.component";
-import { HomeComponent } from "./home/home.component";
-import { NewsComponent } from "./news/news.component";
-import { GalleryComponent } from "./gallery/gallery.component";
-import { ContactComponent } from "./contact/contact.component";
-import { AboutComponent } from "./about/about.component";
-import { PeopleComponent } from "./people/people.component";
-import { EventComponent } from "./event/event.component";
-import { SubgalleryComponent } from "./subgallery/subgallery.component";
-import { ContactformComponent } from "./contactform/contactform.component";
-import { NewspreviewComponent } from "./newspreview/newspreview.component";
-import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
-import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
+import { NavbarComponent } from "./client/navbar/navbar.component";
+import { FooterComponent } from "./client/footer/footer.component";
+import { HomeComponent } from "./client/home/home.component";
+import { NewsComponent } from "./client/news/news.component";
+import { GalleryComponent } from "./client/gallery/gallery.component";
+import { ContactComponent } from "./client/contact/contact.component";
+import { AboutComponent } from "./client/about/about.component";
+import { SubgalleryComponent } from "./client/gallery/subgallery/subgallery.component";
+import { ContactformComponent } from "./client/contact/contactform/contactform.component";
+import { NewspreviewComponent } from "./client/home/newspreview/newspreview.component";
+import { AboutpreviewComponent } from "./client/home/aboutpreview/aboutpreview.component";
+import { GallerypreviewComponent } from "./client/home/gallerypreview/gallerypreview.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { RegulationsComponent } from "./regulations/regulations.component";
+import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
 
 @NgModule({
   declarations: [
@@ -41,8 +39,6 @@ import { RegulationsComponent } from "./regulations/regulations.component";
     GalleryComponent,
     ContactComponent,
     AboutComponent,
-    PeopleComponent,
-    EventComponent,
     SubgalleryComponent,
     ContactformComponent,
     NewspreviewComponent,
