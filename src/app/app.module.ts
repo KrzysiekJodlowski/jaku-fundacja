@@ -30,11 +30,13 @@ import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
 import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RegulationsComponent } from "./regulations/regulations.component";
 import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from "./login/login.component";
+import { AuthServiceService } from "./services/auth-service/auth-service.service";
+import { AuthGuardGuard } from "./auth-guard.guard";
 
 @NgModule({
   declarations: [
@@ -65,13 +67,14 @@ import { LoginComponent } from './login/login.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     PaginationModule.forRoot()
   ],
-  providers: [TimeService, NewsService],
+  providers: [TimeService, NewsService, AuthServiceService, AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
