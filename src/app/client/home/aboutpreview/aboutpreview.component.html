@@ -1,0 +1,18 @@
+<carousel>
+  <slide *ngFor="let person of about">
+    <div class="text-center bg-success text-white py-5">
+      <div class="lead container">
+        <div class="row">
+          <img class="col-3 pl-5" src="{{ person.image }}" alt="person" />
+          <div class="col-9">
+            <h2 class="row pl-5 pb-3">{{ person.name }}</h2>
+            <p class="row about-preview text-justify">
+              {{ person.description }}
+            </p>
+          </div>
+        </div>
+        <h5 id="linkToAbout" routerLink="/news">..czytaj więcej</h5>
+      </div>
+    </div>
+  </slide>
+</carousel>

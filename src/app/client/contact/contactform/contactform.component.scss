@@ -1,0 +1,27 @@
+#contactForm {
+  padding-bottom: 5%;
+
+  input:focus,
+  textarea:focus {
+    border: 3px solid green;
+  }
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+  }
+  alert {
+    font-size: 0.8em;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+}
+
+@media (max-width: 992px) {
+  #contactForm {
+    max-width: 50%;
+  }
+}
