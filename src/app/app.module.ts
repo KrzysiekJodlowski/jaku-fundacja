@@ -41,6 +41,7 @@ import { AdminFooterComponent } from './admin-panel/admin-footer/admin-footer.co
 import { GalleryEditorComponent } from './admin-panel/gallery-editor/gallery-editor.component';
 import { NewsEditorComponent } from './admin-panel/news-editor/news-editor.component';
 import { AboutEditorComponent } from './admin-panel/about-editor/about-editor.component';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AboutEditorComponent } from './admin-panel/about-editor/about-editor.co
     AdminFooterComponent,
     GalleryEditorComponent,
     NewsEditorComponent,
-    AboutEditorComponent
+    AboutEditorComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
