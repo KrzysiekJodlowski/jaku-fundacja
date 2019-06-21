@@ -6,6 +6,9 @@ import { HomeComponent } from "./client/home/home.component";
 import { NewsComponent } from "./client/news/news.component";
 import { AboutComponent } from "./client/about/about.component";
 import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
+import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
+import { LoginComponent } from "./login/login.component";
+import { AuthGuardGuard } from "./auth-guard.guard";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -13,7 +16,17 @@ const routes: Routes = [
   { path: "gallery", component: GalleryComponent },
   { path: "contact", component: ContactComponent },
   { path: "about", component: AboutComponent },
-  { path: "regulations", component: RegulationsComponent }
+  { path: "regulations", component: RegulationsComponent },
+  { path: "admin", redirectTo: "admin/login", pathMatch: "full" },
+  {
+    path: "admin/login",
+    component: LoginComponent
+  },
+  {
+    path: "admin/admin_panel",
+    component: AdminPanelComponent,
+    canActivate: [AuthGuardGuard]
+  }
 ];
 
 @NgModule({
