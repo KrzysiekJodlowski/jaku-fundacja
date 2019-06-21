@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     console.log(value);
     this.authService.doEmailLogin(value).then(
       res => {
-        this.router.navigate(["admin/admin_panel"]);
+        this.router.navigate(["admin/logged_in"]);
       },
       err => {
         console.log(err);

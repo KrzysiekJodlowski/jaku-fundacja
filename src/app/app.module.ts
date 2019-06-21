@@ -35,13 +35,13 @@ import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
 import { LoginComponent } from "./admin-panel/login/login.component";
 import { AuthServiceService } from "./services/auth-service/auth-service.service";
 import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
-import { PanelComponent } from './admin-panel/panel/panel.component';
-import { AdminNavbarComponent } from './admin-panel/admin-navbar/admin-navbar.component';
-import { AdminFooterComponent } from './admin-panel/admin-footer/admin-footer.component';
-import { GalleryEditorComponent } from './admin-panel/gallery-editor/gallery-editor.component';
-import { NewsEditorComponent } from './admin-panel/news-editor/news-editor.component';
-import { AboutEditorComponent } from './admin-panel/about-editor/about-editor.component';
-import { ClientComponent } from './client/client.component';
+import { AdminNavbarComponent } from "./admin-panel/admin-home/admin-navbar/admin-navbar.component";
+import { AdminFooterComponent } from "./admin-panel/admin-home/admin-footer/admin-footer.component";
+import { GalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/gallery-editor.component";
+import { NewsEditorComponent } from "./admin-panel/admin-home/news-editor/news-editor.component";
+import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/about-editor.component";
+import { ClientComponent } from "./client/client.component";
+import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
 
 @NgModule({
   declarations: [
@@ -61,13 +61,13 @@ import { ClientComponent } from './client/client.component';
     RegulationsComponent,
     AdminPanelComponent,
     LoginComponent,
-    PanelComponent,
     AdminNavbarComponent,
     AdminFooterComponent,
     GalleryEditorComponent,
     NewsEditorComponent,
     AboutEditorComponent,
-    ClientComponent
+    ClientComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
