@@ -9,6 +9,7 @@ import { PaginationModule } from "ngx-bootstrap/pagination";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "src/environments/environment";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -25,9 +26,22 @@ import { ContactformComponent } from "./client/contact/contactform/contactform.c
 import { NewspreviewComponent } from "./client/home/newspreview/newspreview.component";
 import { AboutpreviewComponent } from "./client/home/aboutpreview/aboutpreview.component";
 import { GallerypreviewComponent } from "./client/home/gallerypreview/gallerypreview.component";
-import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
+import { NewsService } from "./services/news/news.service";
+import { TimeService } from "../app/services/time/time.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
+import { LoginComponent } from "./admin-panel/login/login.component";
+import { AuthServiceService } from "./services/auth-service/auth-service.service";
+import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
+import { AdminNavbarComponent } from "./admin-panel/admin-home/admin-navbar/admin-navbar.component";
+import { AdminFooterComponent } from "./admin-panel/admin-home/admin-footer/admin-footer.component";
+import { GalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/gallery-editor.component";
+import { NewsEditorComponent } from "./admin-panel/admin-home/news-editor/news-editor.component";
+import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/about-editor.component";
+import { ClientComponent } from "./client/client.component";
+import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +58,16 @@ import { RegulationsComponent } from "./client/footer/regulations/regulations.co
     NewspreviewComponent,
     AboutpreviewComponent,
     GallerypreviewComponent,
-    RegulationsComponent
+    RegulationsComponent,
+    AdminPanelComponent,
+    LoginComponent,
+    AdminNavbarComponent,
+    AdminFooterComponent,
+    GalleryEditorComponent,
+    NewsEditorComponent,
+    AboutEditorComponent,
+    ClientComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -52,13 +75,16 @@ import { RegulationsComponent } from "./client/footer/regulations/regulations.co
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     PaginationModule.forRoot()
   ],
+  providers: [TimeService, NewsService, AuthServiceService, AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
