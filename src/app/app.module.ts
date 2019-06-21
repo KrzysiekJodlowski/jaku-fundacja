@@ -32,9 +32,15 @@ import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./admin-panel/login/login.component";
 import { AuthServiceService } from "./services/auth-service/auth-service.service";
-import { AuthGuardGuard } from "./auth-guard.guard";
+import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
+import { PanelComponent } from './admin-panel/panel/panel.component';
+import { AdminNavbarComponent } from './admin-panel/admin-navbar/admin-navbar.component';
+import { AdminFooterComponent } from './admin-panel/admin-footer/admin-footer.component';
+import { GalleryEditorComponent } from './admin-panel/gallery-editor/gallery-editor.component';
+import { NewsEditorComponent } from './admin-panel/news-editor/news-editor.component';
+import { AboutEditorComponent } from './admin-panel/about-editor/about-editor.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,13 @@ import { AuthGuardGuard } from "./auth-guard.guard";
     GallerypreviewComponent,
     RegulationsComponent,
     AdminPanelComponent,
-    LoginComponent
+    LoginComponent,
+    PanelComponent,
+    AdminNavbarComponent,
+    AdminFooterComponent,
+    GalleryEditorComponent,
+    NewsEditorComponent,
+    AboutEditorComponent
   ],
   imports: [
     BrowserModule,
