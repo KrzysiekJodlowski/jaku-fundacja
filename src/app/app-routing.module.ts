@@ -7,8 +7,8 @@ import { NewsComponent } from "./client/news/news.component";
 import { AboutComponent } from "./client/about/about.component";
 import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
 import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
-import { LoginComponent } from "./login/login.component";
-import { AuthGuardGuard } from "./auth-guard.guard";
+import { LoginComponent } from "./admin-panel/login/login.component";
+import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
