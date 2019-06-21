@@ -8,6 +8,7 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthServiceService } from "../auth-service/auth-service.service";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -26,14 +27,15 @@ export class AuthGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.authenticated) {
-      console.log("access granted!");
-      return true;
-    }
+    return this.authService.authState$.pipe(
+      map(state => {
+        if (state !== null) {
+          return true;
+        }
 
-    console.log("access denied!");
-    this.router.navigate(["admin/login"]);
-
-    return false;
+        this.router.navigate(["admin/login"]);
+        return false;
+      })
+    );
   }
 }
