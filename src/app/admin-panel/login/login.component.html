@@ -19,9 +19,12 @@
             class="form-control"
             formControlName="password"
           />
-          <alert *ngIf="errorMessage.length != 0" class="error" type="danger">{{
-            errorMessage
-          }}</alert>
+          <alert
+            *ngIf="errorMessage.length != 0"
+            class="error w-100 mt-2"
+            type="danger"
+            >{{ errorMessage }}</alert
+          >
         </div>
         <div class="row justify-content-center">
           <button
