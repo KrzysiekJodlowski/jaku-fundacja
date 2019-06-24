@@ -38,6 +38,7 @@ import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
 import { AdminNavbarComponent } from "./admin-panel/admin-home/admin-navbar/admin-navbar.component";
 import { AdminFooterComponent } from "./admin-panel/admin-home/admin-footer/admin-footer.component";
 import { GalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/gallery-editor.component";
+import { SubgalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/subgallery-editor/subgallery-editor.component";
 import { NewsEditorComponent } from "./admin-panel/admin-home/news-editor/news-editor.component";
 import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/about-editor.component";
 import { ClientComponent } from "./client/client.component";
@@ -65,6 +66,7 @@ import { ModalModule } from "ngx-bootstrap/modal";
     AdminNavbarComponent,
     AdminFooterComponent,
     GalleryEditorComponent,
+    SubgalleryEditorComponent,
     NewsEditorComponent,
     AboutEditorComponent,
     ClientComponent,
