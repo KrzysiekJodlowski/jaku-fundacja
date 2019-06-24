@@ -14,29 +14,34 @@ import { environment } from "src/environments/environment";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { FooterComponent } from "./footer/footer.component";
-import { HomeComponent } from "./home/home.component";
-import { NewsComponent } from "./news/news.component";
-import { GalleryComponent } from "./gallery/gallery.component";
-import { ContactComponent } from "./contact/contact.component";
-import { AboutComponent } from "./about/about.component";
-import { PeopleComponent } from "./people/people.component";
-import { EventComponent } from "./event/event.component";
-import { SubgalleryComponent } from "./subgallery/subgallery.component";
-import { ContactformComponent } from "./contactform/contactform.component";
-import { NewspreviewComponent } from "./newspreview/newspreview.component";
-import { AboutpreviewComponent } from "./aboutpreview/aboutpreview.component";
-import { GallerypreviewComponent } from "./gallerypreview/gallerypreview.component";
+import { NavbarComponent } from "./client/navbar/navbar.component";
+import { FooterComponent } from "./client/footer/footer.component";
+import { HomeComponent } from "./client/home/home.component";
+import { NewsComponent } from "./client/news/news.component";
+import { GalleryComponent } from "./client/gallery/gallery.component";
+import { ContactComponent } from "./client/contact/contact.component";
+import { AboutComponent } from "./client/about/about.component";
+import { SubgalleryComponent } from "./client/gallery/subgallery/subgallery.component";
+import { ContactformComponent } from "./client/contact/contactform/contactform.component";
+import { NewspreviewComponent } from "./client/home/newspreview/newspreview.component";
+import { AboutpreviewComponent } from "./client/home/aboutpreview/aboutpreview.component";
+import { GallerypreviewComponent } from "./client/home/gallerypreview/gallerypreview.component";
+import { HttpClientModule } from "@angular/common/http";
+import { RegulationsComponent } from "./client/footer/regulations/regulations.component";
 import { NewsService } from "./services/news/news.service";
 import { TimeService } from "../app/services/time/time.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { RegulationsComponent } from "./regulations/regulations.component";
 import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./admin-panel/login/login.component";
 import { AuthServiceService } from "./services/auth-service/auth-service.service";
-import { AuthGuardGuard } from "./auth-guard.guard";
+import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
+import { AdminNavbarComponent } from "./admin-panel/admin-home/admin-navbar/admin-navbar.component";
+import { AdminFooterComponent } from "./admin-panel/admin-home/admin-footer/admin-footer.component";
+import { GalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/gallery-editor.component";
+import { NewsEditorComponent } from "./admin-panel/admin-home/news-editor/news-editor.component";
+import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/about-editor.component";
+import { ClientComponent } from "./client/client.component";
+import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
 
 @NgModule({
   declarations: [
@@ -48,8 +53,6 @@ import { AuthGuardGuard } from "./auth-guard.guard";
     GalleryComponent,
     ContactComponent,
     AboutComponent,
-    PeopleComponent,
-    EventComponent,
     SubgalleryComponent,
     ContactformComponent,
     NewspreviewComponent,
@@ -57,7 +60,14 @@ import { AuthGuardGuard } from "./auth-guard.guard";
     GallerypreviewComponent,
     RegulationsComponent,
     AdminPanelComponent,
-    LoginComponent
+    LoginComponent,
+    AdminNavbarComponent,
+    AdminFooterComponent,
+    GalleryEditorComponent,
+    NewsEditorComponent,
+    AboutEditorComponent,
+    ClientComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,

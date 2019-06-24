@@ -1,0 +1,8 @@
+<carousel>
+  <slide *ngFor="let image of pictures | slice: 0:3">
+    <img class="gallery-preview" src="{{ image }}" alt="picture" />
+    <div class="carousel-caption d-none d-block">
+      <h5 id="linkToGallery" routerLink="/gallery">..zobacz więcej</h5>
+    </div>
+  </slide>
+</carousel>

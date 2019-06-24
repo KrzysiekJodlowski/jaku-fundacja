@@ -1,11 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthServiceService {
+  readonly authState$: Observable<firebase.User | null> = this.afAuth.authState;
+
   constructor(public afAuth: AngularFireAuth) {}
 
   doEmailLogin(value) {
@@ -23,7 +26,10 @@ export class AuthServiceService {
   }
 
   get authenticated(): boolean {
-    let user = firebase.auth().currentUser;
-    return user !== null;
+    return this.authState$ !== null;
+  }
+
+  logOut() {
+    this.afAuth.auth.signOut();
   }
 }
