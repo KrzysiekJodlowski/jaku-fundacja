@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, TemplateRef } from "@angular/core";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
-  selector: 'app-admin-footer',
-  templateUrl: './admin-footer.component.html',
-  styleUrls: ['./admin-footer.component.scss']
+  selector: "app-admin-footer",
+  templateUrl: "./admin-footer.component.html",
+  styleUrls: ["./admin-footer.component.scss"]
 })
-export class AdminFooterComponent implements OnInit {
+export class AdminFooterComponent {
+  modalRef: BsModalRef;
+  config = {
+    animated: true
+  };
 
-  constructor() { }
+  constructor(private modalService: BsModalService) {}
 
-  ngOnInit() {
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.config);
   }
-
 }
