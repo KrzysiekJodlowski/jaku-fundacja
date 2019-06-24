@@ -42,6 +42,7 @@ import { NewsEditorComponent } from "./admin-panel/admin-home/news-editor/news-e
 import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/about-editor.component";
 import { ClientComponent } from "./client/client.component";
 import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
+import { ModalModule } from "ngx-bootstrap/modal";
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.componen
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [TimeService, NewsService, AuthServiceService, AuthGuardGuard],
   bootstrap: [AppComponent]
