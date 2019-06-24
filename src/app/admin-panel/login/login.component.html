@@ -19,7 +19,9 @@
             class="form-control"
             formControlName="password"
           />
-          <label class="error">{{ errorMessage }}</label>
+          <alert *ngIf="errorMessage.length != 0" class="error" type="danger">{{
+            errorMessage
+          }}</alert>
         </div>
         <div class="row justify-content-center">
           <button
