@@ -1,3 +1,4 @@
-<p>
-  gallery-editor works!
-</p>
+<h3>Edytor galerii</h3>
+<div *ngFor="let gallery of currentGalleries">
+  <app-subgallery-editor [gallery]="gallery"></app-subgallery-editor>
+</div>
