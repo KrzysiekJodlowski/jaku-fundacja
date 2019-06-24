@@ -1,3 +1,8 @@
-<p>
-  news-editor works!
-</p>
+<ul class="mb-5" *ngFor="let info of news">
+  <li>
+    <h5 class="text-secondary">{{ info.date }}</h5>
+    <h2>{{ info.title }}</h2>
+    <p class="my-4">{{ info.content }}</p>
+    <hr />
+  </li>
+</ul>
