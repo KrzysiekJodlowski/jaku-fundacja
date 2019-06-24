@@ -1,3 +1,9 @@
 #loginContainer {
   margin-top: -20%;
 }
+
+@media (min-width: 992px) {
+  #loginContainer {
+    margin-top: -10%;
+  }
+}
