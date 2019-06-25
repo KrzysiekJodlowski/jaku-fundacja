@@ -10,6 +10,7 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 })
 export class NewsEditorComponent implements OnInit {
   private news: Object[];
+  private newsIndex: string[];
   private quitWindowValue: string = "";
   modalRef: BsModalRef;
   config = {
@@ -22,6 +23,7 @@ export class NewsEditorComponent implements OnInit {
     private modalService: BsModalService
   ) {
     this.news = [];
+    this.newsIndex = [];
   }
 
   ngOnInit() {
@@ -29,6 +31,10 @@ export class NewsEditorComponent implements OnInit {
       Object.values(news).forEach(info => {
         this.addInfo(info);
       });
+      Object.keys(news).forEach(indexKey => {
+        this.newsIndex.push(indexKey);
+      });
+      console.log(this.newsIndex);
     });
   }
 
