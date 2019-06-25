@@ -32,4 +32,8 @@ export class NewsEditorComponent implements OnInit {
       content: info.content
     });
   }
+
+  private askIfWantsToQuit(event: any) {
+    console.log(event);
+  }
 }
