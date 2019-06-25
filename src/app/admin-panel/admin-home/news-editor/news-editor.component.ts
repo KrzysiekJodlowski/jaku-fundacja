@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { NewsService } from "../../../services/news/news.service";
 import { TimeService } from "../../../services/time/time.service";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: "app-news-editor",
@@ -9,10 +10,16 @@ import { TimeService } from "../../../services/time/time.service";
 })
 export class NewsEditorComponent implements OnInit {
   private news: Object[];
+  private quitWindowValue: string = "";
+  modalRef: BsModalRef;
+  config = {
+    animated: true
+  };
 
   constructor(
     private newsService: NewsService,
-    private timeService: TimeService
+    private timeService: TimeService,
+    private modalService: BsModalService
   ) {
     this.news = [];
   }
@@ -33,7 +40,12 @@ export class NewsEditorComponent implements OnInit {
     });
   }
 
-  private askIfWantsToQuit(event: any) {
-    console.log(event);
+  private askIfWantsToQuit(template: TemplateRef<any>, event: any) {
+    this.quitWindowValue = event.toString();
+    this.modalRef = this.modalService.show(template, this.config);
   }
+
+  // private askIfWantsToQuit(event: any) {
+  //   console.log(event);
+  // }
 }
