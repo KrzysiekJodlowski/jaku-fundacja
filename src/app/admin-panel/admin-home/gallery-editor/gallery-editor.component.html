@@ -1,4 +1,14 @@
 <h3>Edytor galerii</h3>
+<div class="card">
+  <label for="subgalleryName">Nazwa galerii: </label>
+  <input type="text" id="subgalleryName" required #name />
+  <label for="pictureTitle">Nazwa obrazka: </label>
+  <input type="text" id="pictureTitle" required #title />
+  <input type="file" (change)="uploadFile($event, name.value, title.value)" />
+  <div>{{ uploadPercent | async }}</div>
+  <a [href]="downloadURL | async">{{ downloadUrl | async }}</a>
+</div>
+
 <div *ngFor="let gallery of currentGalleries">
   <app-subgallery-editor [gallery]="gallery"></app-subgallery-editor>
 </div>

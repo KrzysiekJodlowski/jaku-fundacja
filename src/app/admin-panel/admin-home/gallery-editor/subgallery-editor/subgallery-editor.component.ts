@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { GalleryService } from "src/app/services/gallery/gallery.service";
 
 @Component({
   selector: "app-subgallery-editor",
@@ -11,7 +12,7 @@ export class SubgalleryEditorComponent implements OnInit {
   private imageTitles: string[];
   private imageUrls: any[];
 
-  constructor() {
+  constructor(private galleryService: GalleryService) {
     this.imageTitles = [];
     this.imageUrls = [];
   }
@@ -33,7 +34,14 @@ export class SubgalleryEditorComponent implements OnInit {
     }
   }
 
-  deleteImage(url: string) {
-    console.log(url);
+  deleteImage(urlToDelete: string, imageTitle: string) {
+    console.log(urlToDelete);
+    this.imageUrls = this.imageUrls.filter(url => url !== urlToDelete);
+    this.galleryService.removePictureFromDb(
+      urlToDelete,
+      this.galleryTitle,
+      imageTitle
+    );
+    window.location.reload();
   }
 }
