@@ -1,4 +1,4 @@
-<div class="container mt-5" *ngFor="let info of news">
+<div class="container mt-5" *ngFor="let info of news; let i = index">
   <div class="row justify-content-around">
     <span class="col col-10 card">
       <h5 class="card-title text-secondary mt-3">{{ info.date }}</h5>
@@ -8,7 +8,7 @@
         ><button class="btn btn-primary w-25 mb-3">EDYTUJ</button>
         <button
           class="btn btn-danger w-25 mb-3"
-          (click)="askIfWantsToQuit(template, info.title)"
+          (click)="askIfWantsToQuit(template, info.title, i)"
         >
           USUŃ
         </button></span
@@ -25,7 +25,8 @@
       </div>
       <hr />
       <div class="row justify-content-around">
-        <button type="button" class="btn btn-primary">TAK</button
+        <button type="button" class="btn btn-primary" (click)="removeNews()">
+          TAK</button
         ><button
           type="button"
           class="btn btn-primary"

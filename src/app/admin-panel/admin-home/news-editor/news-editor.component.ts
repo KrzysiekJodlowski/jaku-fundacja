@@ -11,7 +11,8 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 export class NewsEditorComponent implements OnInit {
   private news: Object[];
   private newsIndex: string[];
-  private quitWindowValue: string = "";
+  private quitWindowValue: string = undefined;
+  private newsToRemoveIndex: number = undefined;
   modalRef: BsModalRef;
   config = {
     animated: true
@@ -34,7 +35,6 @@ export class NewsEditorComponent implements OnInit {
       Object.keys(news).forEach(indexKey => {
         this.newsIndex.push(indexKey);
       });
-      console.log(this.newsIndex);
     });
   }
 
@@ -46,12 +46,24 @@ export class NewsEditorComponent implements OnInit {
     });
   }
 
-  private askIfWantsToQuit(template: TemplateRef<any>, event: any) {
+  private askIfWantsToQuit(
+    template: TemplateRef<any>,
+    event: any,
+    index: number
+  ) {
     this.quitWindowValue = event.toString();
+    this.newsToRemoveIndex = index;
     this.modalRef = this.modalService.show(template, this.config);
   }
 
-  // private askIfWantsToQuit(event: any) {
-  //   console.log(event);
-  // }
+  private removeNews() {
+    this.modalRef.hide();
+
+    const newsTag = this.newsIndex[this.newsToRemoveIndex];
+
+    this.news.splice(this.newsToRemoveIndex, 1);
+    this.newsIndex.splice(this.newsToRemoveIndex, 1);
+
+    this.newsService.removeNewsFromDb(newsTag);
+  }
 }
