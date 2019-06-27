@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ElementRef } from "@angular/core";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { TimeService } from "../../../../services/time/time.service";
 
 @Component({
   selector: "app-edit-window",
@@ -7,9 +8,9 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
   styleUrls: ["./edit-window.component.scss"]
 })
 export class EditWindowComponent {
-  private date: number;
-  private title: string;
-  private content: string;
+  private infoDate: string;
+  private infoTitle: string;
+  private infoContent: string;
   // @Input() saveNews: any;
   @ViewChild("template") template: ElementRef;
 
@@ -18,12 +19,15 @@ export class EditWindowComponent {
     animated: true
   };
 
-  constructor(private modalService: BsModalService) {}
+  constructor(
+    private modalService: BsModalService,
+    private timeService: TimeService
+  ) {}
 
-  public open(date: number, title: string, content: string) {
-    this.date = date;
-    this.title = title;
-    this.content = content;
+  public open(date: string, title: string, content: string) {
+    this.infoDate = this.timeService.formatDateAsInputValue(date);
+    this.infoTitle = title;
+    this.infoContent = content;
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 

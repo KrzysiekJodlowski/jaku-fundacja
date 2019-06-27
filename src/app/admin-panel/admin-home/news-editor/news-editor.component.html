@@ -14,7 +14,9 @@
           <span class="row justify-content-around align-items-stop"
             ><button
               class="btn btn-primary w-25 mb-3"
-              (click)="showEditWindow(info.date, info.title, info.content, i)"
+              (click)="
+                showEditWindow(newsDates[i], info.title, info.content, i)
+              "
             >
               EDYTUJ
             </button>

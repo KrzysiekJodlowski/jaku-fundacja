@@ -12,6 +12,7 @@ import { EditWindowComponent } from "./edit-window/edit-window.component";
 export class NewsEditorComponent implements OnInit {
   private news: Object[];
   private newsIndex: string[];
+  private newsDates: string[];
   private deleteWindowValue: string = undefined;
   private newsToRemoveIndex: number = undefined;
 
@@ -27,12 +28,14 @@ export class NewsEditorComponent implements OnInit {
   ) {
     this.news = [];
     this.newsIndex = [];
+    this.newsDates = [];
   }
 
   ngOnInit() {
     this.newsService.getNewsObjectsFromDb().then(news => {
       Object.values(news).forEach(info => {
         this.addInfo(info);
+        this.newsDates.push(info.date);
       });
       Object.keys(news).forEach(indexKey => {
         this.newsIndex.push(indexKey);
@@ -62,7 +65,7 @@ export class NewsEditorComponent implements OnInit {
   };
 
   private showEditWindow(
-    date: number,
+    date: string,
     title: string,
     content: string,
     index: number
