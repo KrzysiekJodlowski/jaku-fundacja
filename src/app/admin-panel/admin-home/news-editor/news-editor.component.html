@@ -1,40 +1,42 @@
-<div class="container mt-5" *ngFor="let info of news; let i = index">
-  <div class="row justify-content-around">
-    <span class="col col-10 card">
-      <h5 class="card-title text-secondary mt-3">{{ info.date }}</h5>
-      <h2>{{ info.title }}</h2>
-      <p class="info-card text-truncate">{{ info.content }}</p>
-      <span class="row justify-content-around align-items-stop"
-        ><button class="btn btn-primary w-25 mb-3">EDYTUJ</button>
-        <button
-          class="btn btn-danger w-25 mb-3"
-          (click)="askIfWantsToQuit(template, info.title, i)"
+<ng-container>
+  <div class="container mt-5" *ngFor="let info of news; let i = index">
+    <div class="row justify-content-around">
+      <span class="col col-10 card">
+        <h5 class="card-title text-secondary mt-3">{{ info.date }}</h5>
+        <h2>{{ info.title }}</h2>
+        <p class="info-card text-truncate">{{ info.content }}</p>
+        <span class="row justify-content-around align-items-stop"
+          ><button class="btn btn-primary w-25 mb-3">EDYTUJ</button>
+          <button
+            class="btn btn-danger w-25 mb-3"
+            (click)="askIfWantsToQuit(template, info.title, i)"
+          >
+            USUŃ
+          </button></span
         >
-          USUŃ
-        </button></span
-      >
-    </span>
+      </span>
+    </div>
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">OSTRZEŻENIE</h4>
+      </div>
+      <div class="modal-body container">
+        <div class="row justify-content-center mb-3 font-weight-bold">
+          Na pewno chcesz usunąć "{{ quitWindowValue }}"?
+        </div>
+        <hr />
+        <div class="row justify-content-around">
+          <button type="button" class="btn btn-primary" (click)="removeNews()">
+            TAK</button
+          ><button
+            type="button"
+            class="btn btn-primary"
+            (click)="modalRef.hide()"
+          >
+            ANULUJ
+          </button>
+        </div>
+      </div>
+    </ng-template>
   </div>
-  <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">OSTRZEŻENIE</h4>
-    </div>
-    <div class="modal-body container">
-      <div class="row justify-content-center mb-3 font-weight-bold">
-        Na pewno chcesz usunąć "{{ quitWindowValue }}"?
-      </div>
-      <hr />
-      <div class="row justify-content-around">
-        <button type="button" class="btn btn-primary" (click)="removeNews()">
-          TAK</button
-        ><button
-          type="button"
-          class="btn btn-primary"
-          (click)="modalRef.hide()"
-        >
-          ANULUJ
-        </button>
-      </div>
-    </div>
-  </ng-template>
-</div>
+</ng-container>
