@@ -67,6 +67,6 @@ export class NewsEditorComponent implements OnInit {
     content: string,
     index: number
   ) {
-    this.editWindow.open();
+    this.editWindow.open(date, title, content);
   }
 }

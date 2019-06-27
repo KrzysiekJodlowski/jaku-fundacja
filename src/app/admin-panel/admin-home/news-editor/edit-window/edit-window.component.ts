@@ -7,8 +7,10 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
   styleUrls: ["./edit-window.component.scss"]
 })
 export class EditWindowComponent {
-  // @Input() deleteWindowValue: string;
-  // @Input() removeNews: any;
+  private date: number;
+  private title: string;
+  private content: string;
+  // @Input() saveNews: any;
   @ViewChild("template") template: ElementRef;
 
   modalRef: BsModalRef;
@@ -18,7 +20,10 @@ export class EditWindowComponent {
 
   constructor(private modalService: BsModalService) {}
 
-  public open() {
+  public open(date: number, title: string, content: string) {
+    this.date = date;
+    this.title = title;
+    this.content = content;
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 

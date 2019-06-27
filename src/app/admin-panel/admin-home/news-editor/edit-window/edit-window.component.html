@@ -3,8 +3,42 @@
     <h4 class="modal-title pull-left">EDYCJA AKTUALNOŚCI</h4>
   </div>
   <div class="modal-body container">
-    <div class="row justify-content-center mb-3 font-weight-bold">
-      Opcje edycji
+    <div class="row justify-content-start m-3 font-weight-bold">
+      <form id="editForm">
+        <div class="form-group">
+          <label for="infoDate">Data</label>
+          <input
+            type="date"
+            class="form-control"
+            id="infoDate"
+            name="infoDate"
+            value="{{ date }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="infoTitle">Tytuł</label>
+          <input
+            type="text"
+            class="form-control"
+            id="infoTitle"
+            name="infoTitle"
+            value="{{ title }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="infoContent">Treść</label>
+          <textarea
+            rows="10"
+            cols="50"
+            type="text"
+            class="form-control"
+            id="infoContent"
+            name="infoContent"
+            form="editForm"
+            >{{ content }}</textarea
+          >
+        </div>
+      </form>
     </div>
     <hr />
     <div class="row justify-content-around">
