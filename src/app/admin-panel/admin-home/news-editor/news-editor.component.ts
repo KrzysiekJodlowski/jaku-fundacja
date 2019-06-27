@@ -1,7 +1,7 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { NewsService } from "../../../services/news/news.service";
 import { TimeService } from "../../../services/time/time.service";
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { DeleteWindowComponent } from "./delete-window/delete-window.component";
 
 @Component({
   selector: "app-news-editor",
@@ -11,17 +11,15 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 export class NewsEditorComponent implements OnInit {
   private news: Object[];
   private newsIndex: string[];
-  private quitWindowValue: string = undefined;
+  private deleteWindowValue: string = undefined;
   private newsToRemoveIndex: number = undefined;
-  modalRef: BsModalRef;
-  config = {
-    animated: true
-  };
+
+  @ViewChild(DeleteWindowComponent)
+  modalHtml: DeleteWindowComponent;
 
   constructor(
     private newsService: NewsService,
-    private timeService: TimeService,
-    private modalService: BsModalService
+    private timeService: TimeService
   ) {
     this.news = [];
     this.newsIndex = [];
@@ -46,24 +44,16 @@ export class NewsEditorComponent implements OnInit {
     });
   }
 
-  private askIfWantsToQuit(
-    template: TemplateRef<any>,
-    event: any,
-    index: number
-  ) {
-    this.quitWindowValue = event.toString();
+  private askIfWantsToDelete(event: any, index: number) {
+    this.deleteWindowValue = event.toString();
     this.newsToRemoveIndex = index;
-    this.modalRef = this.modalService.show(template, this.config);
+    this.modalHtml.open();
   }
 
-  private removeNews() {
-    this.modalRef.hide();
-
+  private removeNews = () => {
     const newsTag = this.newsIndex[this.newsToRemoveIndex];
-
     this.news.splice(this.newsToRemoveIndex, 1);
     this.newsIndex.splice(this.newsToRemoveIndex, 1);
-
     this.newsService.removeNewsFromDb(newsTag);
-  }
+  };
 }

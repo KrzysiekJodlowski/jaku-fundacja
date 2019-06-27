@@ -15,39 +15,17 @@
             ><button class="btn btn-primary w-25 mb-3">EDYTUJ</button>
             <button
               class="btn btn-danger w-25 mb-3"
-              (click)="askIfWantsToQuit(template, info.title, i)"
+              (click)="askIfWantsToDelete(info.title, i)"
             >
               USUŃ
             </button></span
           >
         </span>
       </div>
-      <ng-template #template>
-        <div class="modal-header">
-          <h4 class="modal-title pull-left">OSTRZEŻENIE</h4>
-        </div>
-        <div class="modal-body container">
-          <div class="row justify-content-center mb-3 font-weight-bold">
-            Na pewno chcesz usunąć "{{ quitWindowValue }}"?
-          </div>
-          <hr />
-          <div class="row justify-content-around">
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="removeNews()"
-            >
-              TAK</button
-            ><button
-              type="button"
-              class="btn btn-primary"
-              (click)="modalRef.hide()"
-            >
-              ANULUJ
-            </button>
-          </div>
-        </div>
-      </ng-template>
+      <app-delete-window
+        [deleteWindowValue]="deleteWindowValue"
+        [removeNews]="removeNews"
+      ></app-delete-window>
     </div>
   </div>
 </ng-container>
