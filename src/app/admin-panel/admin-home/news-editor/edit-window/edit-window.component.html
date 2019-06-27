@@ -1,3 +1,18 @@
-<p>
-  edit-window works!
-</p>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">EDYCJA AKTUALNOŚCI</h4>
+  </div>
+  <div class="modal-body container">
+    <div class="row justify-content-center mb-3 font-weight-bold">
+      Opcje edycji
+    </div>
+    <hr />
+    <div class="row justify-content-around">
+      <button type="button" class="btn btn-primary">
+        ZAPISZ</button
+      ><button type="button" class="btn btn-primary" (click)="modalRef.hide()">
+        ANULUJ
+      </button>
+    </div>
+  </div>
+</ng-template>

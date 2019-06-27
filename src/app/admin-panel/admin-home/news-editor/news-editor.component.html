@@ -12,7 +12,12 @@
           <h2>{{ info.title }}</h2>
           <p class="info-card text-truncate">{{ info.content }}</p>
           <span class="row justify-content-around align-items-stop"
-            ><button class="btn btn-primary w-25 mb-3">EDYTUJ</button>
+            ><button
+              class="btn btn-primary w-25 mb-3"
+              (click)="showEditWindow(info.date, info.title, info.content, i)"
+            >
+              EDYTUJ
+            </button>
             <button
               class="btn btn-danger w-25 mb-3"
               (click)="askIfWantsToDelete(info.title, i)"
@@ -26,6 +31,7 @@
         [deleteWindowValue]="deleteWindowValue"
         [removeNews]="removeNews"
       ></app-delete-window>
+      <app-edit-window></app-edit-window>
     </div>
   </div>
 </ng-container>

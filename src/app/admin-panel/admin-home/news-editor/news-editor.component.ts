@@ -60,4 +60,13 @@ export class NewsEditorComponent implements OnInit {
     this.newsIndex.splice(this.newsToRemoveIndex, 1);
     this.newsService.removeNewsFromDb(newsTag);
   };
+
+  private showEditWindow(
+    date: number,
+    title: string,
+    content: string,
+    index: number
+  ) {
+    this.editWindow.open();
+  }
 }
