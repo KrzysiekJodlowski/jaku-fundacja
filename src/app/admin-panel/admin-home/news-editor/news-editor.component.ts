@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { NewsService } from "../../../services/news/news.service";
 import { TimeService } from "../../../services/time/time.service";
 import { DeleteWindowComponent } from "./delete-window/delete-window.component";
+import { EditWindowComponent } from "./edit-window/edit-window.component";
 
 @Component({
   selector: "app-news-editor",
@@ -15,7 +16,10 @@ export class NewsEditorComponent implements OnInit {
   private newsToRemoveIndex: number = undefined;
 
   @ViewChild(DeleteWindowComponent)
-  modalHtml: DeleteWindowComponent;
+  deleteWindow: DeleteWindowComponent;
+
+  @ViewChild(EditWindowComponent)
+  editWindow: EditWindowComponent;
 
   constructor(
     private newsService: NewsService,
@@ -47,7 +51,7 @@ export class NewsEditorComponent implements OnInit {
   private askIfWantsToDelete(event: any, index: number) {
     this.deleteWindowValue = event.toString();
     this.newsToRemoveIndex = index;
-    this.modalHtml.open();
+    this.deleteWindow.open();
   }
 
   private removeNews = () => {
