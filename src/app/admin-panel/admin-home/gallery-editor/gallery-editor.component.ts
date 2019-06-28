@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 })
 export class GalleryEditorComponent implements OnInit {
   private galleries: Object[];
-  private currentGalleries: Object[];
+
   uploadPercent: Observable<number>;
   downloadUrl: Observable<string>;
 
@@ -28,7 +28,6 @@ export class GalleryEditorComponent implements OnInit {
           this.galleries.push(gallery);
         });
       }
-      this.currentGalleries = this.galleries.slice(0, 2);
     });
   }
 
@@ -50,6 +49,9 @@ export class GalleryEditorComponent implements OnInit {
       })
       .catch(err => {
         window.alert(err);
+      })
+      .finally(() => {
+        this.obtainImagesObjectsFromDatabase();
       });
   }
 }
