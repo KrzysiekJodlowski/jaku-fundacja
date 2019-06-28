@@ -75,22 +75,30 @@ export class GalleryService {
         })
         .finally(() => {
           const fileRef = this.fbStorage.ref(filePath);
-
           const task = this.fbStorage.upload(filePath, file);
-
           uploadPercent = task.percentageChanges();
 
-          task.then(() => {
-            downloadURL = fileRef.getDownloadURL();
-            downloadURL.toPromise().then(url => {
-              if (url !== null || url != undefined) {
-                resolve(url);
-              } else {
-                reject("Uploading file failed!");
-              }
-            });
-          });
+          this.getDownloadURL(task, downloadURL, fileRef, resolve, reject);
         });
+    });
+  }
+
+  private getDownloadURL(
+    task,
+    downloadURL: Observable<string>,
+    fileRef,
+    resolve: (value?: unknown) => void,
+    reject: (reason?: any) => void
+  ) {
+    task.then(() => {
+      downloadURL = fileRef.getDownloadURL();
+      downloadURL.toPromise().then(url => {
+        if (url !== null || url != undefined) {
+          resolve(url);
+        } else {
+          reject("Uploading file failed!");
+        }
+      });
     });
   }
 
