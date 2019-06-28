@@ -33,12 +33,23 @@ export class GalleryEditorComponent implements OnInit {
   }
 
   uploadFile(event: any, galleryTitle: string, pictureTitle: string) {
-    this.galleryService.uploadImage(
-      event,
-      galleryTitle,
-      pictureTitle,
-      this.uploadPercent,
-      this.downloadUrl
-    );
+    this.galleryService
+      .uploadImage(
+        event,
+        galleryTitle,
+        pictureTitle,
+        this.uploadPercent,
+        this.downloadUrl
+      )
+      .then((url: string) => {
+        this.galleryService.addImageDataToDatabase(
+          galleryTitle,
+          pictureTitle,
+          url
+        );
+      })
+      .catch(err => {
+        window.alert(err);
+      });
   }
 }

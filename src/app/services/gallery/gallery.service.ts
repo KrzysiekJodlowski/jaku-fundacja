@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -60,16 +59,56 @@ export class GalleryService {
     uploadPercent: Observable<number>,
     downloadURL: Observable<string>
   ) {
-    const file = event.target.files[0];
-    const filePath = file.name;
-    const fileRef = this.fbStorage.ref(filePath);
-    const task = this.fbStorage.upload(filePath, file);
+    return new Promise((resolve, reject) => {
+      const file = event.target.files[0];
+      let filePath = file.name;
 
-    uploadPercent = task.percentageChanges();
+      this.fbStorage
+        .ref(file.name)
+        .getDownloadURL()
+        .toPromise()
+        .then(() => {
+          filePath = this.makeRandomName(file.name.length, file.name);
+        })
+        .catch(err => {
+          filePath = file.name;
+        })
+        .finally(() => {
+          const fileRef = this.fbStorage.ref(filePath);
 
-    task
-      .snapshotChanges()
-      .pipe(finalize(() => (downloadURL = fileRef.getDownloadURL())))
-      .subscribe();
+          const task = this.fbStorage.upload(filePath, file);
+
+          uploadPercent = task.percentageChanges();
+
+          task.then(() => {
+            downloadURL = fileRef.getDownloadURL();
+            downloadURL.toPromise().then(url => {
+              if (url !== null || url != undefined) {
+                resolve(url);
+              } else {
+                reject("Uploading file failed!");
+              }
+            });
+          });
+        });
+    });
+  }
+
+  private makeRandomName(lengthOfCode: number, possible: string) {
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
+
+  public addImageDataToDatabase(
+    galleryTitle: string,
+    pictureTitle: string,
+    downloadURL: string
+  ) {
+    this.fbDatabase.database
+      .ref(`gallery/${galleryTitle}/${pictureTitle}`)
+      .set(downloadURL);
   }
 }
