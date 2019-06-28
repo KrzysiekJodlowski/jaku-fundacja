@@ -9,6 +9,6 @@
   <a [href]="downloadURL | async">{{ downloadUrl | async }}</a>
 </div>
 
-<div *ngFor="let gallery of currentGalleries">
+<div *ngFor="let gallery of galleries">
   <app-subgallery-editor [gallery]="gallery"></app-subgallery-editor>
 </div>
