@@ -31,5 +31,10 @@ export class EditWindowComponent {
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
-  private saveNews() {}
+  private saveNews(editForm: any) {
+    console.log(editForm.value.infoDate);
+    console.log(editForm.value.infoTitle);
+    console.log(editForm.value.infoContent);
+    this.modalRef.hide();
+  }
 }

@@ -4,49 +4,55 @@
   </div>
   <div class="modal-body container">
     <div class="row justify-content-start m-3 font-weight-bold">
-      <form id="editForm">
+      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveNews(editForm)">
         <div class="form-group">
           <label for="infoDate">Data</label>
           <input
+            ngModel
             type="date"
             class="form-control"
             id="infoDate"
             name="infoDate"
-            value="{{ infoDate }}"
+            [(ngModel)]="infoDate"
           />
         </div>
         <div class="form-group">
           <label for="infoTitle">Tytuł</label>
           <input
+            ngModel
             type="text"
             class="form-control"
             id="infoTitle"
             name="infoTitle"
-            value="{{ infoTitle }}"
+            [(ngModel)]="infoTitle"
           />
         </div>
         <div class="form-group">
           <label for="infoContent">Treść</label>
           <textarea
-            rows="15"
-            cols="80"
+            ngModel
             type="text"
             class="form-control"
             id="infoContent"
             name="infoContent"
-            form="editForm"
-            >{{ infoContent }}</textarea
+            cols="80"
+            rows="15"
+            [(ngModel)]="infoContent"
+          ></textarea>
+        </div>
+        <hr />
+        <div class="row justify-content-around">
+          <button type="submit" class="btn btn-primary">
+            ZAPISZ</button
+          ><button
+            type="button"
+            class="btn btn-primary"
+            (click)="modalRef.hide()"
           >
+            ANULUJ
+          </button>
         </div>
       </form>
-    </div>
-    <hr />
-    <div class="row justify-content-around">
-      <button type="button" class="btn btn-primary">
-        ZAPISZ</button
-      ><button type="button" class="btn btn-primary" (click)="modalRef.hide()">
-        ANULUJ
-      </button>
     </div>
   </div>
 </ng-template>
