@@ -4,7 +4,7 @@
   </div>
   <div class="modal-body container">
     <div class="row justify-content-start m-3 font-weight-bold">
-      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveNews(editForm)">
+      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveInfo()">
         <div class="form-group">
           <label for="infoDate">Data</label>
           <input
@@ -13,7 +13,7 @@
             class="form-control"
             id="infoDate"
             name="infoDate"
-            [(ngModel)]="infoDate"
+            [(ngModel)]="infoDateCopy"
           />
         </div>
         <div class="form-group">
@@ -24,7 +24,7 @@
             class="form-control"
             id="infoTitle"
             name="infoTitle"
-            [(ngModel)]="infoTitle"
+            [(ngModel)]="infoTitleCopy"
           />
         </div>
         <div class="form-group">
@@ -37,7 +37,7 @@
             name="infoContent"
             cols="80"
             rows="15"
-            [(ngModel)]="infoContent"
+            [(ngModel)]="infoContentCopy"
           ></textarea>
         </div>
         <hr />

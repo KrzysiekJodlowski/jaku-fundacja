@@ -64,12 +64,16 @@ export class NewsEditorComponent implements OnInit {
     this.newsService.removeNewsFromDb(newsTag);
   };
 
+  private saveNews = (updatedInfo: Object, updatedInfoIndex: number) => {
+    console.log(updatedInfo + " with id " + updatedInfoIndex + " saved");
+  };
+
   private showEditWindow(
     date: string,
     title: string,
     content: string,
     index: number
   ) {
-    this.editWindow.open(date, title, content);
+    this.editWindow.open(date, title, content, index);
   }
 }
