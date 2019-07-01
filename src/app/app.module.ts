@@ -44,6 +44,7 @@ import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/abou
 import { ClientComponent } from "./client/client.component";
 import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
 import { ModalModule } from "ngx-bootstrap/modal";
+import { ProgressbarModule } from "ngx-bootstrap/progressbar";
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { ModalModule } from "ngx-bootstrap/modal";
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     PaginationModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ProgressbarModule.forRoot()
   ],
   providers: [TimeService, NewsService, AuthServiceService, AuthGuardGuard],
   bootstrap: [AppComponent]
