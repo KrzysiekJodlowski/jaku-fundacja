@@ -10,9 +10,7 @@ import { EditWindowComponent } from "./edit-window/edit-window.component";
   styleUrls: ["./news-editor.component.scss"]
 })
 export class NewsEditorComponent implements OnInit {
-  private news: Object[];
-  private newsIndex: string[];
-  private newsDates: string[];
+  private news: any[][];
   private deleteWindowValue: string = undefined;
   private newsToRemoveIndex: number = undefined;
 
@@ -27,27 +25,13 @@ export class NewsEditorComponent implements OnInit {
     private timeService: TimeService
   ) {
     this.news = [];
-    this.newsIndex = [];
-    this.newsDates = [];
   }
 
   ngOnInit() {
     this.newsService.getNewsObjectsFromDb().then(news => {
-      Object.values(news).forEach(info => {
-        this.addInfo(info);
-        this.newsDates.push(info.date);
-      });
-      Object.keys(news).forEach(indexKey => {
-        this.newsIndex.push(indexKey);
-      });
-    });
-  }
-
-  private addInfo(info: any) {
-    this.news.push({
-      date: this.timeService.formatDate(info.date),
-      title: info.title,
-      content: info.content
+      for (let info of news) {
+        this.news.push(info);
+      }
     });
   }
 
@@ -58,29 +42,27 @@ export class NewsEditorComponent implements OnInit {
   }
 
   private removeNews = () => {
-    const newsTag = this.newsIndex[this.newsToRemoveIndex];
+    const newsTag = this.news[this.newsToRemoveIndex][0];
     this.news.splice(this.newsToRemoveIndex, 1);
-    this.newsIndex.splice(this.newsToRemoveIndex, 1);
     this.newsService.removeNewsFromDb(newsTag);
   };
 
   private saveNews = (info: Object, infoIndex: number) => {
-    infoIndex > 0 ? this.updateNews(info, infoIndex) : this.saveNewInfo(info);
+    infoIndex >= 0 ? this.updateNews(info, infoIndex) : this.saveNewInfo(info);
   };
 
   private updateNews(updatedInfo: Object, updatedInfoIndex: number) {
-    const updatedInfoKey = this.newsIndex[updatedInfoIndex];
+    const updatedInfoKey = this.news[updatedInfoIndex][0];
+
     for (let property of Object.keys(updatedInfo)) {
-      this.news[updatedInfoIndex][property] = updatedInfo[property];
+      this.news[updatedInfoIndex][1][property] = updatedInfo[property];
     }
     this.newsService.updateNews(updatedInfoKey, updatedInfo);
   }
 
   private saveNewInfo(newInfo: Object) {
-    this.news.unshift(newInfo);
-    this.newsDates.unshift(newInfo["date"]);
     this.newsService.saveNews(newInfo).then(data => {
-      this.newsIndex.unshift(data.path.pieces_[1]);
+      this.news.unshift([data.path.pieces_[1], newInfo]);
     });
   }
 
