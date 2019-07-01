@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild, ElementRef } from "@angular/core";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { TimeService } from "../../../../services/time/time.service";
 
 @Component({
   selector: "app-edit-window",
@@ -23,10 +22,7 @@ export class EditWindowComponent {
     animated: true
   };
 
-  constructor(
-    private modalService: BsModalService,
-    private timeService: TimeService
-  ) {}
+  constructor(private modalService: BsModalService) {}
 
   public open(date: string, title: string, content: string, index: number) {
     this.initializeInfoValues(date, title, content);
@@ -56,16 +52,13 @@ export class EditWindowComponent {
     let updatedInfo = new Object();
 
     this.infoDateCopy.localeCompare(this.infoDate) !== 0
-      ? ((this.infoDate = this.infoDateCopy),
-        (updatedInfo = { ...updatedInfo, date: this.infoDate }))
+      ? (updatedInfo = { ...updatedInfo, date: this.infoDateCopy })
       : null;
     this.infoTitleCopy.localeCompare(this.infoTitle) !== 0
-      ? ((this.infoTitle = this.infoTitleCopy),
-        (updatedInfo = { ...updatedInfo, title: this.infoTitle }))
+      ? (updatedInfo = { ...updatedInfo, title: this.infoTitleCopy })
       : null;
     this.infoContentCopy.localeCompare(this.infoContent) !== 0
-      ? ((this.infoContent = this.infoContentCopy),
-        (updatedInfo = { ...updatedInfo, content: this.infoContent }))
+      ? (updatedInfo = { ...updatedInfo, content: this.infoContentCopy })
       : null;
 
     return updatedInfo;
