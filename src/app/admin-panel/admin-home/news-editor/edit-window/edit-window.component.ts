@@ -44,35 +44,30 @@ export class EditWindowComponent {
   }
 
   private saveInfo() {
-    let somethingHasChanged: boolean = false;
-    somethingHasChanged = this.checkIfInputHasChanged(somethingHasChanged);
-
-    const updateDInfo = this.getUpdatedInfo();
-    somethingHasChanged ? this.saveNews(updateDInfo, this.infoIndex) : null;
+    let updatedInfo = this.getChanges();
+    Object.keys(updatedInfo).length > 0
+      ? this.saveNews(updatedInfo, this.infoIndex)
+      : null;
 
     this.modalRef.hide();
   }
 
-  private checkIfInputHasChanged(somethingHasChanged: boolean) {
+  private getChanges() {
+    let updatedInfo = new Object();
+
     this.infoDateCopy.localeCompare(this.infoDate) !== 0
-      ? ((this.infoDate = this.infoDateCopy), (somethingHasChanged = true))
+      ? ((this.infoDate = this.infoDateCopy),
+        (updatedInfo = { ...updatedInfo, date: this.infoDate }))
       : null;
     this.infoTitleCopy.localeCompare(this.infoTitle) !== 0
-      ? ((this.infoTitle = this.infoTitleCopy), (somethingHasChanged = true))
+      ? ((this.infoTitle = this.infoTitleCopy),
+        (updatedInfo = { ...updatedInfo, date: this.infoTitle }))
       : null;
     this.infoContentCopy.localeCompare(this.infoContent) !== 0
       ? ((this.infoContent = this.infoContentCopy),
-        (somethingHasChanged = true))
+        (updatedInfo = { ...updatedInfo, date: this.infoContent }))
       : null;
 
-    return somethingHasChanged;
-  }
-
-  private getUpdatedInfo() {
-    return {
-      content: this.infoContent,
-      date: this.infoDate,
-      title: this.infoTitle
-    };
+    return updatedInfo;
   }
 }
