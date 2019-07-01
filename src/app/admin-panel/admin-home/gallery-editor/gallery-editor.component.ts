@@ -9,15 +9,14 @@ import { Observable } from "rxjs";
 })
 export class GalleryEditorComponent implements OnInit {
   private galleries: Object[];
-
-  uploadPercent: Observable<number>;
-  downloadUrl: Observable<string>;
+  private isUploadFinished: boolean;
 
   constructor(private galleryService: GalleryService) {
     this.galleries = [];
   }
 
   ngOnInit() {
+    this.isUploadFinished = false;
     this.obtainImagesObjectsFromDatabase();
   }
 
@@ -33,14 +32,9 @@ export class GalleryEditorComponent implements OnInit {
 
   uploadFile(event: any, galleryTitle: string, pictureTitle: string) {
     this.galleryService
-      .uploadImage(
-        event,
-        galleryTitle,
-        pictureTitle,
-        this.uploadPercent,
-        this.downloadUrl
-      )
+      .uploadImage(event, galleryTitle, pictureTitle)
       .then((url: string) => {
+        this.isUploadFinished = true;
         this.galleryService.addImageDataToDatabase(
           galleryTitle,
           pictureTitle,
