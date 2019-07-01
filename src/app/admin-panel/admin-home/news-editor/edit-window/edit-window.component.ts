@@ -35,7 +35,7 @@ export class EditWindowComponent {
   }
 
   private initializeInfoValues(date: string, title: string, content: string) {
-    this.infoDate = this.timeService.formatDateAsInputValue(date);
+    this.infoDate = date;
     this.infoDateCopy = (" " + this.infoDate).slice(1);
     this.infoTitle = title;
     this.infoTitleCopy = (" " + this.infoTitle).slice(1);
@@ -61,11 +61,11 @@ export class EditWindowComponent {
       : null;
     this.infoTitleCopy.localeCompare(this.infoTitle) !== 0
       ? ((this.infoTitle = this.infoTitleCopy),
-        (updatedInfo = { ...updatedInfo, date: this.infoTitle }))
+        (updatedInfo = { ...updatedInfo, title: this.infoTitle }))
       : null;
     this.infoContentCopy.localeCompare(this.infoContent) !== 0
       ? ((this.infoContent = this.infoContentCopy),
-        (updatedInfo = { ...updatedInfo, date: this.infoContent }))
+        (updatedInfo = { ...updatedInfo, content: this.infoContent }))
       : null;
 
     return updatedInfo;

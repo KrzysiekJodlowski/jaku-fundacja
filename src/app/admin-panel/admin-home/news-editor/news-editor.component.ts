@@ -65,7 +65,8 @@ export class NewsEditorComponent implements OnInit {
   };
 
   private saveNews = (updatedInfo: Object, updatedInfoIndex: number) => {
-    console.log(updatedInfo + " with id " + updatedInfoIndex + " saved");
+    const updatedInfoKey = this.newsIndex[updatedInfoIndex];
+    this.newsService.updateNews(updatedInfoKey, updatedInfo);
   };
 
   private showEditWindow(

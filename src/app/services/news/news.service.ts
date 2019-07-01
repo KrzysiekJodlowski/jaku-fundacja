@@ -23,4 +23,9 @@ export class NewsService {
     const newsReference = this.dataBase.object(`news/${newsTag}`);
     newsReference.remove();
   }
+
+  public updateNews(infoKey: string, updatedInfo: Object) {
+    const itemsRef = this.dataBase.list("news");
+    itemsRef.update(infoKey, updatedInfo);
+  }
 }
