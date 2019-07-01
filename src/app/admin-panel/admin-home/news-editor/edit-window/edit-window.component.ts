@@ -51,15 +51,21 @@ export class EditWindowComponent {
   private getChanges() {
     let updatedInfo = new Object();
 
-    this.infoDateCopy.localeCompare(this.infoDate) !== 0
-      ? (updatedInfo = { ...updatedInfo, date: this.infoDateCopy })
-      : null;
-    this.infoTitleCopy.localeCompare(this.infoTitle) !== 0
-      ? (updatedInfo = { ...updatedInfo, title: this.infoTitleCopy })
-      : null;
-    this.infoContentCopy.localeCompare(this.infoContent) !== 0
-      ? (updatedInfo = { ...updatedInfo, content: this.infoContentCopy })
-      : null;
+    this.infoIndex > 0
+      ? (this.infoDateCopy.localeCompare(this.infoDate) !== 0
+          ? (updatedInfo = { ...updatedInfo, date: this.infoDateCopy })
+          : null,
+        this.infoTitleCopy.localeCompare(this.infoTitle) !== 0
+          ? (updatedInfo = { ...updatedInfo, title: this.infoTitleCopy })
+          : null,
+        this.infoContentCopy.localeCompare(this.infoContent) !== 0
+          ? (updatedInfo = { ...updatedInfo, content: this.infoContentCopy })
+          : null)
+      : (updatedInfo = {
+          date: this.infoDateCopy,
+          title: this.infoTitleCopy,
+          content: this.infoContentCopy
+        });
 
     return updatedInfo;
   }

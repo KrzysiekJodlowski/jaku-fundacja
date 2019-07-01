@@ -28,4 +28,17 @@ export class NewsService {
     const itemsRef = this.dataBase.list("news");
     itemsRef.update(infoKey, updatedInfo);
   }
+
+  public saveNews(info: Object): any {
+    const itemsRef = this.dataBase.list("news");
+
+    return new Promise((resolve, reject) => {
+      itemsRef
+        .push(info)
+        .then(data => resolve(data))
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
 }

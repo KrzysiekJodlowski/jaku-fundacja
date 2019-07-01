@@ -64,19 +64,31 @@ export class NewsEditorComponent implements OnInit {
     this.newsService.removeNewsFromDb(newsTag);
   };
 
-  private saveNews = (updatedInfo: Object, updatedInfoIndex: number) => {
+  private saveNews = (info: Object, infoIndex: number) => {
+    infoIndex > 0 ? this.updateNews(info, infoIndex) : this.saveNewInfo(info);
+  };
+
+  private updateNews(updatedInfo: Object, updatedInfoIndex: number) {
     const updatedInfoKey = this.newsIndex[updatedInfoIndex];
     for (let property of Object.keys(updatedInfo)) {
       this.news[updatedInfoIndex][property] = updatedInfo[property];
     }
     this.newsService.updateNews(updatedInfoKey, updatedInfo);
-  };
+  }
+
+  private saveNewInfo(newInfo: Object) {
+    this.news.unshift(newInfo);
+    this.newsDates.unshift(newInfo["date"]);
+    this.newsService.saveNews(newInfo).then(data => {
+      this.newsIndex.unshift(data.path.pieces_[1]);
+    });
+  }
 
   private showEditWindow(
-    date: string,
-    title: string,
-    content: string,
-    index: number
+    date = this.timeService.formatDateAsInputValue(new Date()),
+    title = "",
+    content = "",
+    index = -1
   ) {
     this.editWindow.open(date, title, content, index);
   }
