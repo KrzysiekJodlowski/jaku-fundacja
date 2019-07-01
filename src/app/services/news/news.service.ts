@@ -25,11 +25,12 @@ export class NewsService {
 
   private loadNews(dbNews: Object): Promise<any[][]> {
     return new Promise((resolve, reject) => {
-      let sortednews: any[][] = [];
+      let sortedNews: any[][] = [];
       Object.entries(dbNews).forEach(news => {
-        sortednews.push([Object.values(news)[0], Object.values(news)[1]]);
+        sortedNews.push([Object.values(news)[0], Object.values(news)[1]]);
       });
-      resolve(sortednews);
+      sortedNews = this.sortNewsByDates(sortedNews);
+      resolve(sortedNews);
     });
   }
 
@@ -56,17 +57,15 @@ export class NewsService {
     });
   }
 
-  public sortNewsByDates(news: Object[]): Object[] {
-    let sortedNews: Object[] = [];
-    let sortedNewsKeys: string[] = [];
-
+  public sortNewsByDates(news: any[][]): any[][] {
     news.sort(this.compareNewsDates);
+    news.reverse();
     return news;
   }
 
   private compareNewsDates(news1: Object, news2: Object): number {
-    if (new Date(news1["date"]) > new Date(news2["date"])) return 1;
-    if (new Date(news1["date"]) < new Date(news2["date"])) return -1;
+    if (new Date(news1[1]["date"]) > new Date(news2[1]["date"])) return 1;
+    if (new Date(news1[1]["date"]) < new Date(news2[1]["date"])) return -1;
     return 0;
   }
 }
