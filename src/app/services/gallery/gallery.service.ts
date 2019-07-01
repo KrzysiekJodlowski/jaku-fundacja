@@ -8,6 +8,9 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class GalleryService {
+  private _downloadURL: Observable<string>;
+  private _uploadPercent: Observable<number>;
+
   constructor(
     private http: HttpClient,
     private fbStorage: AngularFireStorage,
@@ -52,13 +55,7 @@ export class GalleryService {
       });
   }
 
-  public uploadImage(
-    event: any,
-    galleryTitle: string,
-    pictureTitle: string,
-    uploadPercent: Observable<number>,
-    downloadURL: Observable<string>
-  ) {
+  public uploadImage(event: any, galleryTitle: string, pictureTitle: string) {
     return new Promise((resolve, reject) => {
       const file = event.target.files[0];
       let filePath = file.name;
@@ -76,9 +73,15 @@ export class GalleryService {
         .finally(() => {
           const fileRef = this.fbStorage.ref(filePath);
           const task = this.fbStorage.upload(filePath, file);
-          uploadPercent = task.percentageChanges();
+          this._uploadPercent = task.percentageChanges();
 
-          this.getDownloadURL(task, downloadURL, fileRef, resolve, reject);
+          this.getDownloadURL(
+            task,
+            this._downloadURL,
+            fileRef,
+            resolve,
+            reject
+          );
         });
     });
   }
@@ -118,5 +121,13 @@ export class GalleryService {
     this.fbDatabase.database
       .ref(`gallery/${galleryTitle}/${pictureTitle}`)
       .set(downloadURL);
+  }
+
+  public get downloadUrl() {
+    return this._downloadURL;
+  }
+
+  public get uploadPercent() {
+    return this._uploadPercent;
   }
 }
