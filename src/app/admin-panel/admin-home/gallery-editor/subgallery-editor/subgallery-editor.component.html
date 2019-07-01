@@ -1,18 +1,61 @@
-<div>
+<div class="subgallery">
   <h2 class="mb-5">{{ galleryTitle }}</h2>
+  <div class="card">
+    <span>Dodaj nowy obrazek do galerii</span>
+    <label for="pictureTitle">Nazwa obrazka: </label>
+    <input type="text" id="pictureTitle" required #title />
+    <label for="input_file">
+      Kliknij by wybrać plik
+      <img
+        src="../../../../../assets/img/icons/polaroid.svg"
+        alt="polaroid_icon"
+    /></label>
+    <input
+      id="input_file"
+      class="d-none"
+      type="file"
+      accept="image/png, image/jpeg"
+      (change)="uploadFile($event, title.value)"
+    />
+    <div
+      class="mb-2"
+      *ngIf="galleryService.uploadPercent !== undefined || isUploadFinished"
+    >
+      <progressbar
+        max="100"
+        [value]="
+          isUploadFinished ? 100 : (galleryService.uploadPercent | async)
+        "
+        type="success"
+        [striped]="!isUploadFinished"
+        [animate]="true"
+        ><i
+          >{{
+            isUploadFinished
+              ? 100
+              : (galleryService.uploadPercent | async | number: "1.0-0")
+          }}%</i
+        ></progressbar
+      >
+    </div>
+    <alert *ngIf="isUploadFinished" type="success"
+      >Plik dodany do galerii: {{ galleryTitle }}</alert
+    >
+  </div>
+
   <div
     class="col align-self-center"
     *ngFor="let picture of imageUrls; let i = index"
   >
     <img class="w-25" src="{{ picture }}" alt="picture" />
-    <div class="">
-      <span>{{ imageTitles[i] }}</span>
-    </div>
     <img
       src="../../../../../assets/img/icons/circle_delete.svg"
       alt="delete_icon"
       id="delete_icon"
       (click)="deleteImage(picture, imageTitles[i])"
     />
+    <div class="">
+      <span>{{ imageTitles[i] }}</span>
+    </div>
   </div>
 </div>
