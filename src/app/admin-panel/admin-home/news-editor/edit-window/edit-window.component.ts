@@ -29,18 +29,31 @@ export class EditWindowComponent {
   ) {}
 
   public open(date: string, title: string, content: string, index: number) {
+    this.initializeInfoValues(date, title, content);
+    this.infoIndex = index;
+    this.modalRef = this.modalService.show(this.template, this.config);
+  }
+
+  private initializeInfoValues(date: string, title: string, content: string) {
     this.infoDate = this.timeService.formatDateAsInputValue(date);
     this.infoDateCopy = (" " + this.infoDate).slice(1);
     this.infoTitle = title;
     this.infoTitleCopy = (" " + this.infoTitle).slice(1);
     this.infoContent = content;
     this.infoContentCopy = (" " + this.infoContent).slice(1);
-    this.infoIndex = index;
-    this.modalRef = this.modalService.show(this.template, this.config);
   }
 
   private saveInfo() {
     let somethingHasChanged: boolean = false;
+    somethingHasChanged = this.checkIfInputHasChanged(somethingHasChanged);
+
+    const updateDInfo = this.getUpdatedInfo();
+    somethingHasChanged ? this.saveNews(updateDInfo, this.infoIndex) : null;
+
+    this.modalRef.hide();
+  }
+
+  private checkIfInputHasChanged(somethingHasChanged: boolean) {
     this.infoDateCopy.localeCompare(this.infoDate) !== 0
       ? ((this.infoDate = this.infoDateCopy), (somethingHasChanged = true))
       : null;
@@ -51,13 +64,15 @@ export class EditWindowComponent {
       ? ((this.infoContent = this.infoContentCopy),
         (somethingHasChanged = true))
       : null;
-    const updateDInfo = {
+
+    return somethingHasChanged;
+  }
+
+  private getUpdatedInfo() {
+    return {
       content: this.infoContent,
       date: this.infoDate,
       title: this.infoTitle
     };
-    somethingHasChanged ? this.saveNews(updateDInfo, this.infoIndex) : null;
-
-    this.modalRef.hide();
   }
 }
