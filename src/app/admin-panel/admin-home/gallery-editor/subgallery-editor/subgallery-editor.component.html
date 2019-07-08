@@ -19,26 +19,28 @@
     />
     <div
       class="mb-2"
-      *ngIf="galleryService.uploadPercent !== undefined || isUploadFinished"
+      *ngIf="isSubgalleryUploadStarted || isSubgalleryUploadFinished"
     >
       <progressbar
         max="100"
         [value]="
-          isUploadFinished ? 100 : (galleryService.uploadPercent | async)
+          isSubgalleryUploadFinished
+            ? 100
+            : (galleryService.uploadPercent | async)
         "
         type="success"
-        [striped]="!isUploadFinished"
+        [striped]="!isSubgalleryUploadFinished"
         [animate]="true"
         ><i
           >{{
-            isUploadFinished
+            isSubgalleryUploadFinished
               ? 100
               : (galleryService.uploadPercent | async | number: "1.0-0")
           }}%</i
         ></progressbar
       >
     </div>
-    <alert *ngIf="isUploadFinished" type="success"
+    <alert *ngIf="isSubgalleryUploadFinished" type="success"
       >Plik dodany do galerii: {{ galleryTitle }}</alert
     >
   </div>

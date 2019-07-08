@@ -11,7 +11,8 @@ export class SubgalleryEditorComponent implements OnInit {
   private galleryTitle: string;
   private imageTitles: string[];
   private imageUrls: any[];
-  private isUploadFinished: boolean;
+  private isSubgalleryUploadStarted: boolean;
+  private isSubgalleryUploadFinished: boolean;
 
   constructor(private galleryService: GalleryService) {
     this.imageTitles = [];
@@ -19,7 +20,8 @@ export class SubgalleryEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isUploadFinished = false;
+    this.isSubgalleryUploadFinished = false;
+    this.isSubgalleryUploadStarted = false;
     Object.values(this.gallery).forEach(galleryParameter => {
       if (typeof galleryParameter === "object") {
         this.addImages(galleryParameter);
@@ -48,10 +50,12 @@ export class SubgalleryEditorComponent implements OnInit {
   }
 
   uploadFile(event: any, pictureTitle: string) {
+    this.isSubgalleryUploadStarted = true;
     this.galleryService
       .uploadImage(event, this.galleryTitle, pictureTitle)
       .then((url: string) => {
-        this.isUploadFinished = true;
+        this.isSubgalleryUploadFinished = true;
+        this.isSubgalleryUploadStarted = false;
         this.galleryService.addImageDataToDatabase(
           this.galleryTitle,
           pictureTitle,

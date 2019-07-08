@@ -11,26 +11,25 @@
     accept="image/png, image/jpeg"
     (change)="uploadFile($event, name.value, title.value)"
   />
-  <div
-    class="mb-2"
-    *ngIf="galleryService.uploadPercent !== undefined || isUploadFinished"
-  >
+  <div class="mb-2" *ngIf="isGalleryUploadStarted || isGalleryUploadFinished">
     <progressbar
       max="100"
-      [value]="isUploadFinished ? 100 : (galleryService.uploadPercent | async)"
+      [value]="
+        isGalleryUploadFinished ? 100 : (galleryService.uploadPercent | async)
+      "
       type="success"
-      [striped]="!isUploadFinished"
+      [striped]="!isGalleryUploadFinished"
       [animate]="true"
       ><i
         >{{
-          isUploadFinished
+          isGalleryUploadFinished
             ? 100
             : (galleryService.uploadPercent | async | number: "1.0-0")
         }}%</i
       ></progressbar
     >
   </div>
-  <alert *ngIf="isUploadFinished" type="success"
+  <alert *ngIf="isGalleryUploadFinished" type="success"
     >Wysyłanie pliku zakończone sukcesem!</alert
   >
 </div>

@@ -9,14 +9,16 @@ import { Observable } from "rxjs";
 })
 export class GalleryEditorComponent implements OnInit {
   private galleries: Object[];
-  private isUploadFinished: boolean;
+  private isGalleryUploadFinished: boolean;
+  private isGalleryUploadStarted: boolean;
 
   constructor(private galleryService: GalleryService) {
     this.galleries = [];
   }
 
   ngOnInit() {
-    this.isUploadFinished = false;
+    this.isGalleryUploadFinished = false;
+    this.isGalleryUploadStarted = false;
     this.obtainImagesObjectsFromDatabase();
   }
 
@@ -31,10 +33,11 @@ export class GalleryEditorComponent implements OnInit {
   }
 
   uploadFile(event: any, galleryTitle: string, pictureTitle: string) {
+    this.isGalleryUploadStarted = true;
     this.galleryService
       .uploadImage(event, galleryTitle, pictureTitle)
       .then((url: string) => {
-        this.isUploadFinished = true;
+        this.isGalleryUploadFinished = true;
         this.galleryService.addImageDataToDatabase(
           galleryTitle,
           pictureTitle,
@@ -45,6 +48,7 @@ export class GalleryEditorComponent implements OnInit {
         window.alert(err);
       })
       .finally(() => {
+        this.isGalleryUploadStarted = false;
         this.obtainImagesObjectsFromDatabase();
       });
   }
