@@ -9,7 +9,7 @@
   </div>
   <div class="modal-body container">
     <div class="row justify-content-start m-3 font-weight-bold">
-      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveInfo()">
+      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveInfo($event)">
         <div class="form-group">
           <label for="infoDate">Data</label>
           <input
@@ -34,6 +34,14 @@
             minlength="3"
             placeholder="Tutaj wpisz tytuł"
           />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.infoTitle.valid"
+            type="danger"
+          >
+            <div>
+              Tytuł aktualności musi mieć długość minimum 3 liter!
+            </div>
+          </alert>
         </div>
         <div class="form-group">
           <label for="infoContent">Treść</label>
@@ -50,6 +58,14 @@
             minlength="10"
             placeholder="Tutaj wpisz treść"
           ></textarea>
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.infoContent.valid"
+            type="danger"
+          >
+            <div>
+              Treść aktualności musi mieć długość minimum 10 liter!
+            </div>
+          </alert>
         </div>
         <hr />
         <div class="row justify-content-around">

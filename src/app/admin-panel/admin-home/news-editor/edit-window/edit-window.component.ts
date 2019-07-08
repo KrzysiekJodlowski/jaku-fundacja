@@ -39,7 +39,7 @@ export class EditWindowComponent {
     this.infoContentCopy = (" " + this.infoContent).slice(1);
   }
 
-  private saveInfo() {
+  private saveInfo(form: any) {
     let updatedInfo = this.getChanges();
     Object.keys(updatedInfo).length > 0
       ? this.saveNews(updatedInfo, this.infoIndex)
