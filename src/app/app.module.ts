@@ -43,6 +43,8 @@ import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/abou
 import { ClientComponent } from "./client/client.component";
 import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
 import { ModalModule } from "ngx-bootstrap/modal";
+import { EditWindowComponent } from './admin-panel/admin-home/news-editor/edit-window/edit-window.component';
+import { DeleteWindowComponent } from './admin-panel/admin-home/news-editor/delete-window/delete-window.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { ModalModule } from "ngx-bootstrap/modal";
     NewsEditorComponent,
     AboutEditorComponent,
     ClientComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    EditWindowComponent,
+    DeleteWindowComponent
   ],
   imports: [
     BrowserModule,

@@ -24,18 +24,10 @@ export class NewsComponent implements OnInit {
 
   ngOnInit() {
     this.newsService.getNewsObjectsFromDb().then(news => {
-      Object.values(news).forEach(info => {
-        this.addInfo(info);
-      });
+      for (let info of news) {
+        this.news.push(info[1]);
+      }
       this.currentNews = this.news.slice(0, 3);
-    });
-  }
-
-  private addInfo(info: any) {
-    this.news.push({
-      date: this.timeService.formatDate(info.date),
-      title: info.title,
-      content: info.content
     });
   }
 
