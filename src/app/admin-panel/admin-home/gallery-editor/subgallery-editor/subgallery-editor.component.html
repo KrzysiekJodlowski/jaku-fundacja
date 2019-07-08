@@ -1,5 +1,5 @@
 <div class="subgallery">
-  <h2 class="mb-5">{{ galleryTitle }}</h2>
+  <h5 class="mb-5">{{ galleryTitle }}</h5>
   <div class="card">
     <span>Dodaj nowy obrazek do galerii</span>
     <label for="pictureTitle">Nazwa obrazka: </label>
@@ -7,6 +7,7 @@
     <label for="input_file">
       Kliknij by wybrać plik
       <img
+        class="upload_icon"
         src="../../../../../assets/img/icons/polaroid.svg"
         alt="polaroid_icon"
     /></label>
@@ -46,14 +47,14 @@
   </div>
 
   <div
-    class="col align-self-center"
+    class="col align-self-center container"
     *ngFor="let picture of imageUrls; let i = index"
   >
-    <img class="w-25" src="{{ picture }}" alt="picture" />
+    <img class="w-25 picture" src="{{ picture }}" alt="picture" />
     <img
+      class="delete_icon"
       src="../../../../../assets/img/icons/circle_delete.svg"
       alt="delete_icon"
-      id="delete_icon"
       (click)="deleteImage(picture, imageTitles[i])"
     />
     <div class="">

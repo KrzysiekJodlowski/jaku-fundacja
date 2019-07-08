@@ -1,4 +1,21 @@
 .subgallery {
   margin: 10px;
   background-color: coral;
+
+  .upload_icon:hover,
+  .delete_icon:hover {
+    cursor: pointer;
+  }
+
+  .container {
+    position: relative;
+    .picture {
+      position: relative;
+    }
+    .delete_icon {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+    }
+  }
 }
