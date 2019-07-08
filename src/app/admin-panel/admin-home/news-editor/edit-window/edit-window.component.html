@@ -1,6 +1,11 @@
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">"{{ infoTitle }}" - EDYCJA</h4>
+    <h4 class="modal-title pull-left">
+      <span *ngIf="infoTitle.length > 0; else elseBlock"
+        >"{{ infoTitle }}" - EDYCJA</span
+      >
+      <ng-template #elseBlock>NOWA AKTUALNOŚĆ</ng-template>
+    </h4>
   </div>
   <div class="modal-body container">
     <div class="row justify-content-start m-3 font-weight-bold">
@@ -25,6 +30,9 @@
             id="infoTitle"
             name="infoTitle"
             [(ngModel)]="infoTitleCopy"
+            required
+            minlength="3"
+            placeholder="Tutaj wpisz tytuł"
           />
         </div>
         <div class="form-group">
@@ -38,11 +46,18 @@
             cols="80"
             rows="15"
             [(ngModel)]="infoContentCopy"
+            required
+            minlength="10"
+            placeholder="Tutaj wpisz treść"
           ></textarea>
         </div>
         <hr />
         <div class="row justify-content-around">
-          <button type="submit" class="btn btn-primary">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!editForm.valid"
+          >
             ZAPISZ</button
           ><button
             type="button"
