@@ -1,12 +1,17 @@
-<h3>Edytor galerii</h3>
+<h1 class="p-2">Edytor galerii</h1>
 
-<div class="card">
+<div class="container" id="gallery_creator">
   <h3>Stwórz nową galerię:</h3>
-  <label for="subgalleryName">Nazwa galerii: </label>
-  <input type="text" id="subgalleryName" required #name />
-  <label for="pictureTitle">Nazwa obrazka: </label>
-  <input type="text" id="pictureTitle" required #title />
+  <div class="row p-1">
+    <label class="col-3" for="subgalleryName">Nazwa galerii: </label>
+    <input class="col-3" type="text" id="subgalleryName" required #name />
+  </div>
+  <div class="row p-1 ">
+    <label class="col-3" for="pictureTitle">Nazwa obrazka: </label>
+    <input class="col-3" type="text" id="pictureTitle" required #title />
+  </div>
   <input
+    class="p-2"
     type="file"
     accept="image/png, image/jpeg"
     (change)="uploadFile($event, name.value, title.value)"
@@ -32,8 +37,7 @@
   <alert *ngIf="isGalleryUploadFinished" type="success"
     >Wysyłanie pliku zakończone sukcesem!</alert
   >
-</div>
-
-<div *ngFor="let gallery of galleries">
-  <app-subgallery-editor [gallery]="gallery"></app-subgallery-editor>
+  <div *ngFor="let gallery of galleries">
+    <app-subgallery-editor [gallery]="gallery"></app-subgallery-editor>
+  </div>
 </div>
