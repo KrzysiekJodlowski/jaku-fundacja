@@ -18,10 +18,7 @@
       accept="image/png, image/jpeg"
       (change)="uploadFile($event, title.value)"
     />
-    <div
-      class="mb-2"
-      *ngIf="isSubgalleryUploadStarted || isSubgalleryUploadFinished"
-    >
+    <div class="mb-2" *ngIf="isSubgalleryUploadStarted">
       <progressbar
         max="100"
         [value]="
