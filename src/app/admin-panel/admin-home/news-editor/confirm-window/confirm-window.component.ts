@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
   styleUrls: ["./confirm-window.component.scss"]
 })
 export class ConfirmWindowComponent {
+  private confirmWindowStatement: string;
   @Input() showConfirmWindow: any;
   @ViewChild("template") template: ElementRef;
 
@@ -17,7 +18,8 @@ export class ConfirmWindowComponent {
 
   constructor(private modalService: BsModalService) {}
 
-  public show() {
+  public show(confirmWindowStatement: string) {
+    this.confirmWindowStatement = confirmWindowStatement;
     this.modalRef = this.modalService.show(this.template, this.config);
     setTimeout(() => {
       this.modalRef.hide();
