@@ -3,6 +3,7 @@ import { NewsService } from "../../../services/news/news.service";
 import { TimeService } from "../../../services/time/time.service";
 import { DeleteWindowComponent } from "./delete-window/delete-window.component";
 import { EditWindowComponent } from "./edit-window/edit-window.component";
+import { ConfirmWindowComponent } from "./confirm-window/confirm-window.component";
 
 @Component({
   selector: "app-news-editor",
@@ -19,6 +20,9 @@ export class NewsEditorComponent implements OnInit {
 
   @ViewChild(EditWindowComponent)
   editWindow: EditWindowComponent;
+
+  @ViewChild(ConfirmWindowComponent)
+  confirmWindow: ConfirmWindowComponent;
 
   constructor(
     private newsService: NewsService,
@@ -45,10 +49,12 @@ export class NewsEditorComponent implements OnInit {
     const newsTag = this.news[this.newsToRemoveIndex][0];
     this.news.splice(this.newsToRemoveIndex, 1);
     this.newsService.removeNewsFromDb(newsTag);
+    this.showConfirmWindow();
   };
 
   private saveNews = (info: Object, infoIndex: number) => {
     infoIndex >= 0 ? this.updateNews(info, infoIndex) : this.saveNewInfo(info);
+    this.showConfirmWindow();
   };
 
   private updateNews(updatedInfo: Object, updatedInfoIndex: number) {
@@ -74,4 +80,8 @@ export class NewsEditorComponent implements OnInit {
   ) {
     this.editWindow.open(date, title, content, index);
   }
+
+  private showConfirmWindow = () => {
+    this.confirmWindow.show();
+  };
 }
