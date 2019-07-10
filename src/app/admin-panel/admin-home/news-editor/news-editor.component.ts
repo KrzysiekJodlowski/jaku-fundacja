@@ -3,6 +3,7 @@ import { NewsService } from "../../../services/news/news.service";
 import { TimeService } from "../../../services/time/time.service";
 import { DeleteWindowComponent } from "./delete-window/delete-window.component";
 import { EditWindowComponent } from "./edit-window/edit-window.component";
+import { ConfirmWindowComponent } from "./confirm-window/confirm-window.component";
 
 @Component({
   selector: "app-news-editor",
@@ -19,6 +20,9 @@ export class NewsEditorComponent implements OnInit {
 
   @ViewChild(EditWindowComponent)
   editWindow: EditWindowComponent;
+
+  @ViewChild(ConfirmWindowComponent)
+  confirmWindow: ConfirmWindowComponent;
 
   constructor(
     private newsService: NewsService,
@@ -42,9 +46,11 @@ export class NewsEditorComponent implements OnInit {
   }
 
   private removeNews = () => {
+    const newsTitle = this.news[this.newsToRemoveIndex][1]["title"];
     const newsTag = this.news[this.newsToRemoveIndex][0];
     this.news.splice(this.newsToRemoveIndex, 1);
     this.newsService.removeNewsFromDb(newsTag);
+    this.showConfirmWindow(newsTitle, " usunięta");
   };
 
   private saveNews = (info: Object, infoIndex: number) => {
@@ -52,18 +58,21 @@ export class NewsEditorComponent implements OnInit {
   };
 
   private updateNews(updatedInfo: Object, updatedInfoIndex: number) {
+    const newsTitle = this.news[updatedInfoIndex][1]["title"];
     const updatedInfoKey = this.news[updatedInfoIndex][0];
 
     for (let property of Object.keys(updatedInfo)) {
       this.news[updatedInfoIndex][1][property] = updatedInfo[property];
     }
     this.newsService.updateNews(updatedInfoKey, updatedInfo);
+    this.showConfirmWindow(newsTitle, " zaktualizowana");
   }
 
   private saveNewInfo(newInfo: Object) {
     this.newsService.saveNews(newInfo).then(data => {
       this.news.unshift([data.path.pieces_[1], newInfo]);
     });
+    this.showConfirmWindow(newInfo["title"], " zapisana");
   }
 
   private showEditWindow(
@@ -74,4 +83,9 @@ export class NewsEditorComponent implements OnInit {
   ) {
     this.editWindow.open(date, title, content, index);
   }
+
+  private showConfirmWindow = (newsTitle: string, newsOperation: string) => {
+    const confirmStatement = `Aktualność o tytule "${newsTitle}" została ${newsOperation}!`;
+    this.confirmWindow.show(confirmStatement);
+  };
 }
