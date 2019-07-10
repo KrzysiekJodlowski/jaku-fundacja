@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -27,21 +28,39 @@ export class GalleryService {
     });
   }
 
+  // public getImagesFromSubgallery(subgalleryName: string) {
+  //   let object = this.fbDatabase
+  //     .list(`gallery/${subgalleryName}/`)
+  //     .snapshotChanges()
+  //     .pipe(
+  //       map(items => {
+  //         return items.map(a => {
+  //           const data = a.payload.val();
+  //           console.log(data);
+
+  //           const key = a.payload.key;
+  //           console.log(key);
+
+  //           return { key, data };
+  //         });
+  //       })
+  //     );
+  //   console.log(object);
+  // }
+
   public removePictureFromDb(
     url: string,
     subgalleryName: string,
     imageTitle: string
   ) {
-    let pictureStorageRef = this.fbStorage.storage.refFromURL(url);
-    pictureStorageRef
-      .delete()
-      .then(function() {
-        console.log("Successfully removed from storage!");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    this.removePictureFromStorage(url);
+    this.removePictureDataFromFirebase(subgalleryName, imageTitle);
+  }
 
+  private removePictureDataFromFirebase(
+    subgalleryName: string,
+    imageTitle: string
+  ) {
     let pictureDatabaseRef = this.fbDatabase.object(
       `gallery/${subgalleryName}/${imageTitle}`
     );
@@ -55,35 +74,52 @@ export class GalleryService {
       });
   }
 
+  private removePictureFromStorage(url: string) {
+    let pictureStorageRef = this.fbStorage.storage.refFromURL(url);
+    pictureStorageRef
+      .delete()
+      .then(function() {
+        console.log("Successfully removed from storage!");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   public uploadImage(event: any, galleryTitle: string, pictureTitle: string) {
     return new Promise((resolve, reject) => {
       const file = event.target.files[0];
-      let filePath = file.name;
+      this.resolveFilePath(file).then(filePath => {
+        this.sendImageToStorage(filePath, file, resolve, reject);
+      });
+    });
+  }
 
+  private resolveFilePath(file: any) {
+    return new Promise(resolve => {
       this.fbStorage
         .ref(file.name)
         .getDownloadURL()
         .toPromise()
         .then(() => {
-          filePath = this.makeRandomName(file.name.length, file.name);
+          resolve(this.makeRandomName(file.name.length, file.name));
         })
         .catch(err => {
-          filePath = file.name;
-        })
-        .finally(() => {
-          const fileRef = this.fbStorage.ref(filePath);
-          const task = this.fbStorage.upload(filePath, file);
-          this._uploadPercent = task.percentageChanges();
-
-          this.getDownloadURL(
-            task,
-            this._downloadURL,
-            fileRef,
-            resolve,
-            reject
-          );
+          resolve(file.name);
         });
     });
+  }
+
+  private sendImageToStorage(
+    filePath: any,
+    file: any,
+    resolve: (value?: unknown) => void,
+    reject: (reason?: any) => void
+  ) {
+    const fileRef = this.fbStorage.ref(filePath);
+    const task = this.fbStorage.upload(filePath, file);
+    this._uploadPercent = task.percentageChanges();
+    this.getDownloadURL(task, this._downloadURL, fileRef, resolve, reject);
   }
 
   private getDownloadURL(
@@ -117,10 +153,13 @@ export class GalleryService {
     galleryTitle: string,
     pictureTitle: string,
     downloadURL: string
-  ) {
-    this.fbDatabase.database
-      .ref(`gallery/${galleryTitle}/${pictureTitle}`)
-      .set(downloadURL);
+  ): Promise<any> {
+    return new Promise(resolve => {
+      this.fbDatabase.database
+        .ref(`gallery/${galleryTitle}/${pictureTitle}`)
+        .set(downloadURL);
+      resolve({ pictureTitle: pictureTitle, downloadURL: downloadURL });
+    });
   }
 
   public get downloadUrl() {
