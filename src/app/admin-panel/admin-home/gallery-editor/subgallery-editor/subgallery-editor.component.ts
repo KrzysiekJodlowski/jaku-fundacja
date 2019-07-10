@@ -20,6 +20,10 @@ export class SubgalleryEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initializeSubgallery();
+  }
+
+  private initializeSubgallery() {
     this.isSubgalleryUploadFinished = false;
     this.isSubgalleryUploadStarted = false;
     Object.values(this.gallery).forEach(galleryParameter => {
@@ -39,14 +43,13 @@ export class SubgalleryEditorComponent implements OnInit {
   }
 
   deleteImage(urlToDelete: string, imageTitle: string) {
-    console.log(urlToDelete);
     this.imageUrls = this.imageUrls.filter(url => url !== urlToDelete);
+    this.imageTitles = this.imageTitles.filter(title => title !== imageTitle);
     this.galleryService.removePictureFromDb(
       urlToDelete,
       this.galleryTitle,
       imageTitle
     );
-    window.location.reload();
   }
 
   uploadFile(event: any, pictureTitle: string) {
@@ -54,19 +57,19 @@ export class SubgalleryEditorComponent implements OnInit {
     this.galleryService
       .uploadImage(event, this.galleryTitle, pictureTitle)
       .then((url: string) => {
-        this.isSubgalleryUploadFinished = true;
-        this.isSubgalleryUploadStarted = false;
-        this.galleryService.addImageDataToDatabase(
-          this.galleryTitle,
-          pictureTitle,
-          url
-        );
+        this.galleryService
+          .addImageDataToDatabase(this.galleryTitle, pictureTitle, url)
+          .then(data => {
+            this.imageTitles.push(data.pictureTitle);
+            this.imageUrls.push(data.downloadURL);
+          });
       })
       .catch(err => {
         window.alert(err);
       })
       .finally(() => {
-        window.location.reload();
+        this.isSubgalleryUploadFinished = true;
+        this.isSubgalleryUploadStarted = false;
       });
   }
 }
