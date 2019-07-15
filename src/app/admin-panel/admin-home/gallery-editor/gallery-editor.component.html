@@ -14,9 +14,10 @@
     class="p-2"
     type="file"
     accept="image/png, image/jpeg"
-    (change)="uploadFile($event, name.value, title.value)"
+    (change)="createNewGallery($event, name.value, title.value)"
+    #file
   />
-  <div class="mb-2" *ngIf="isGalleryUploadStarted || isGalleryUploadFinished">
+  <div class="mb-2" *ngIf="isGalleryUploadStarted">
     <progressbar
       max="100"
       [value]="
@@ -38,6 +39,9 @@
     >Wysyłanie pliku zakończone sukcesem!</alert
   >
   <div *ngFor="let gallery of galleries">
-    <app-subgallery-editor [gallery]="gallery"></app-subgallery-editor>
+    <app-subgallery-editor
+      [gallery]="gallery"
+      (notify)="removeGallery($event)"
+    ></app-subgallery-editor>
   </div>
 </div>
