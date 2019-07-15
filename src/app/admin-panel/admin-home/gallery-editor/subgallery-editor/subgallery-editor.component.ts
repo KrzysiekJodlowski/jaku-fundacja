@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { GalleryService } from "src/app/services/gallery/gallery.service";
 
 @Component({
@@ -8,6 +8,7 @@ import { GalleryService } from "src/app/services/gallery/gallery.service";
 })
 export class SubgalleryEditorComponent implements OnInit {
   @Input() gallery: Object;
+  @Output() notify: EventEmitter<Object> = new EventEmitter<Object>();
   private galleryTitle: string;
   private imageTitles: string[];
   private imageUrls: any[];
@@ -50,6 +51,9 @@ export class SubgalleryEditorComponent implements OnInit {
       this.galleryTitle,
       imageTitle
     );
+    if (this.imageUrls.length === 0 && this.imageTitles.length === 0) {
+      this.notify.emit(this.gallery);
+    }
   }
 
   uploadFile(event: any, pictureTitle: string) {
