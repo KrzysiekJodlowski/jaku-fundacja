@@ -1,5 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { AboutService } from "../../../services/about/about.service";
+import { DeleteWindowComponent } from "./delete-window/delete-window.component";
+import { EditWindowComponent } from "./edit-window/edit-window.component";
+import { ConfirmWindowComponent } from "./confirm-window/confirm-window.component";
+// import { ConfirmWindowComponent }
 
 @Component({
   selector: "app-about-editor",
@@ -8,6 +12,15 @@ import { AboutService } from "../../../services/about/about.service";
 })
 export class AboutEditorComponent implements OnInit {
   private about: Object[];
+
+  @ViewChild(DeleteWindowComponent)
+  deleteWindow: DeleteWindowComponent;
+
+  @ViewChild(EditWindowComponent)
+  editWindow: EditWindowComponent;
+
+  @ViewChild(ConfirmWindowComponent)
+  confirmWindow: ConfirmWindowComponent;
 
   constructor(private aboutService: AboutService) {
     this.about = [];
