@@ -1,3 +1,18 @@
-<p>
-  about-editor works!
-</p>
+<section class="container p-5">
+  <h1 class="row pb-5">Zarząd fundacji</h1>
+  <article class="column" *ngFor="let person of about">
+    <h3>{{ person.name }}</h3>
+    <caption class="row pl-3">
+      {{
+        person.position
+      }}
+    </caption>
+    <span class="row">
+      <img src="{{ person.image }}" class="col-3" alt="person" />
+      <p class="col-9 text-justify">
+        {{ person.description }}
+      </p>
+    </span>
+    <hr />
+  </article>
+</section>
