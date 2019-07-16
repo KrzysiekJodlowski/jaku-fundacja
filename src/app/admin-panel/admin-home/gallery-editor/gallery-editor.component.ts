@@ -59,7 +59,8 @@ export class GalleryEditorComponent implements OnInit {
         window.alert(message);
       })
       .finally(() => {
-        this.isGalleryUploadStarted = false;
+        setTimeout(() => (this.isGalleryUploadStarted = false), 2000);
+
         this.resetInputs();
       });
   }
