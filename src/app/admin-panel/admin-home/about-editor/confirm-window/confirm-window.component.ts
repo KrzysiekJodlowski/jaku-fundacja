@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-confirm-window',
-  templateUrl: './confirm-window.component.html',
-  styleUrls: ['./confirm-window.component.scss']
+  selector: "about-confirm-window",
+  templateUrl: "./confirm-window.component.html",
+  styleUrls: ["./confirm-window.component.scss"]
 })
 export class ConfirmWindowComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

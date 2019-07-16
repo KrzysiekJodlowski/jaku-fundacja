@@ -48,6 +48,9 @@ import { ProgressbarModule } from "ngx-bootstrap/progressbar";
 import { EditWindowComponent } from "./admin-panel/admin-home/news-editor/edit-window/edit-window.component";
 import { DeleteWindowComponent } from "./admin-panel/admin-home/news-editor/delete-window/delete-window.component";
 import { ConfirmWindowComponent } from "./admin-panel/admin-home/news-editor/confirm-window/confirm-window.component";
+import { EditWindowComponent as AboutEditWindow } from "./admin-panel/admin-home/about-editor/edit-window/edit-window.component";
+import { DeleteWindowComponent as AboutDeleteWindow } from "./admin-panel/admin-home/about-editor/delete-window/delete-window.component";
+import { ConfirmWindowComponent as AboutConfirmWindow } from "./admin-panel/admin-home/about-editor/confirm-window/confirm-window.component";
 
 @NgModule({
   declarations: [
@@ -77,7 +80,10 @@ import { ConfirmWindowComponent } from "./admin-panel/admin-home/news-editor/con
     AdminHomeComponent,
     EditWindowComponent,
     DeleteWindowComponent,
-    ConfirmWindowComponent
+    ConfirmWindowComponent,
+    AboutEditWindow,
+    AboutDeleteWindow,
+    AboutConfirmWindow
   ],
   imports: [
     BrowserModule,

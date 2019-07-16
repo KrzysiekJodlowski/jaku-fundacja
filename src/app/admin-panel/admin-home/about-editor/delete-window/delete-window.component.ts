@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from "@angular/core";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
-  selector: 'app-delete-window',
-  templateUrl: './delete-window.component.html',
-  styleUrls: ['./delete-window.component.scss']
+  selector: "about-delete-window",
+  templateUrl: "./delete-window.component.html",
+  styleUrls: ["./delete-window.component.scss"]
 })
-export class DeleteWindowComponent implements OnInit {
+export class DeleteWindowComponent {
+  @ViewChild("template") template: ElementRef;
+  modalRef: BsModalRef;
+  config = {
+    animated: true
+  };
 
-  constructor() { }
+  constructor(private modalService: BsModalService) {}
 
-  ngOnInit() {
+  public open() {
+    this.modalRef = this.modalService.show(this.template, this.config);
   }
 
+  private removeOnePerson() {}
 }

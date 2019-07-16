@@ -3,7 +3,6 @@ import { AboutService } from "../../../services/about/about.service";
 import { DeleteWindowComponent } from "./delete-window/delete-window.component";
 import { EditWindowComponent } from "./edit-window/edit-window.component";
 import { ConfirmWindowComponent } from "./confirm-window/confirm-window.component";
-// import { ConfirmWindowComponent }
 
 @Component({
   selector: "app-about-editor",
@@ -32,5 +31,13 @@ export class AboutEditorComponent implements OnInit {
         this.about.push(person);
       });
     });
+  }
+
+  private showEditWindow() {
+    this.editWindow.open();
+  }
+
+  private showDeleteWindow() {
+    this.deleteWindow.open();
   }
 }

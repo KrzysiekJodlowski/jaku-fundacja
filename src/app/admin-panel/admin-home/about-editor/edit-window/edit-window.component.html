@@ -1,3 +1,84 @@
-<p>
-  edit-window works!
-</p>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">NOWA OSOBA</h4>
+  </div>
+  <div class="modal-body container">
+    <div class="row justify-content-start m-3 font-weight-bold">
+      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveInfo($event)">
+        <div class="form-group">
+          <label for="infoDate">Data</label>
+          <input
+            ngModel
+            type="date"
+            class="form-control"
+            id="infoDate"
+            name="infoDate"
+            [(ngModel)]="infoDateCopy"
+          />
+        </div>
+        <div class="form-group">
+          <label for="infoTitle">Tytuł</label>
+          <input
+            ngModel
+            type="text"
+            class="form-control"
+            id="infoTitle"
+            name="infoTitle"
+            [(ngModel)]="infoTitleCopy"
+            required
+            minlength="3"
+            placeholder="Tutaj wpisz tytuł"
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.infoTitle.valid"
+            type="danger"
+          >
+            <div>
+              Tytuł aktualności musi mieć długość minimum 3 liter!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="infoContent">Treść</label>
+          <textarea
+            ngModel
+            type="text"
+            class="form-control"
+            id="infoContent"
+            name="infoContent"
+            cols="80"
+            rows="15"
+            [(ngModel)]="infoContentCopy"
+            required
+            minlength="10"
+            placeholder="Tutaj wpisz treść"
+          ></textarea>
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.infoContent.valid"
+            type="danger"
+          >
+            <div>
+              Treść aktualności musi mieć długość minimum 10 liter!
+            </div>
+          </alert>
+        </div>
+        <hr />
+        <div class="row justify-content-around">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!editForm.valid"
+          >
+            ZAPISZ</button
+          ><button
+            type="button"
+            class="btn btn-primary"
+            (click)="modalRef.hide()"
+          >
+            ANULUJ
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

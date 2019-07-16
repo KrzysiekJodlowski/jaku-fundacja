@@ -1,7 +1,9 @@
 <section class="container p-5">
   <h1 class="row pb-5">Edycja sekcji "O nas"</h1>
   <div class="row justify-content-center mb-5">
-    <button class="btn btn-secondary btn-lg">DODAJ OSOBĘ</button>
+    <button class="btn btn-secondary btn-lg" (click)="showEditWindow()">
+      DODAJ OSOBĘ
+    </button>
   </div>
   <article class="card column p-5 mb-3" *ngFor="let person of about">
     <h3>{{ person.name }}</h3>
@@ -18,8 +20,13 @@
     </span>
     <hr />
     <span class="row justify-content-around"
-      ><button class="btn btn-primary w-25 mb-3">EDYTUJ OSOBĘ</button
-      ><button class="btn btn-danger w-25 mb-3">USUŃ</button></span
+      ><button class="btn btn-primary w-25 mb-3" (click)="showEditWindow()">
+        EDYTUJ OSOBĘ</button
+      ><button class="btn btn-danger w-25 mb-3" (click)="showDeleteWindow()">
+        USUŃ
+      </button></span
     >
   </article>
+  <about-edit-window></about-edit-window>
+  <about-delete-window></about-delete-window>
 </section>
