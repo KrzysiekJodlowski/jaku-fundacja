@@ -37,7 +37,11 @@ export class AboutEditorComponent implements OnInit {
     this.editWindow.open();
   }
 
-  private showDeleteWindow() {
-    this.deleteWindow.open();
+  private showDeleteWindow(person: Object) {
+    this.deleteWindow.open(person);
+  }
+
+  removePerson(person: Object) {
+    console.log(person);
   }
 }
