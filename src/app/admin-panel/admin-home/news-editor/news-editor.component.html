@@ -1,3 +1,44 @@
-<p>
-  news-editor works!
-</p>
+<ng-container class="container">
+  <div class="row justify-content-center mt-5">
+    <button class="btn btn-secondary btn-lg" (click)="showEditWindow()">
+      DODAJ AKTUALNOŚĆ
+    </button>
+  </div>
+  <div class="row mb-5">
+    <div class="container mt-5" *ngFor="let info of news; let i = index">
+      <div class="row justify-content-around">
+        <span class="col col-10 card">
+          <h5 class="card-title text-secondary mt-3">
+            {{ this.timeService.formatDate(info[1].date) }}
+          </h5>
+          <h2>{{ info[1].title }}</h2>
+          <p class="info-card text-truncate">{{ info[1].content }}</p>
+          <span class="row justify-content-around align-items-stop"
+            ><button
+              class="btn btn-primary w-25 mb-3"
+              (click)="
+                showEditWindow(info[1].date, info[1].title, info[1].content, i)
+              "
+            >
+              EDYTUJ
+            </button>
+            <button
+              class="btn btn-danger w-25 mb-3"
+              (click)="askIfWantsToDelete(info[1].title, i)"
+            >
+              USUŃ
+            </button></span
+          >
+        </span>
+      </div>
+      <app-delete-window
+        [deleteWindowValue]="deleteWindowValue"
+        [removeNews]="removeNews"
+      ></app-delete-window>
+      <app-edit-window [saveNews]="saveNews"></app-edit-window>
+      <app-confirm-window
+        [showConfirmWindow]="showConfirmWindow"
+      ></app-confirm-window>
+    </div>
+  </div>
+</ng-container>

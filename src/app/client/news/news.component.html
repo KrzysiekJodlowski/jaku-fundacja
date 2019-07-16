@@ -1,7 +1,9 @@
 <div class="p-5">
   <div class="content-wrapper p5">
     <div class="content-item mb-5" *ngFor="let info of currentNews">
-      <h5 class="text-secondary">{{ info.date }}</h5>
+      <h5 class="text-secondary">
+        {{ this.timeService.formatDate(info.date) }}
+      </h5>
       <h2>{{ info.title }}</h2>
       <p class="my-4">{{ info.content }}</p>
       <hr />
