@@ -29,7 +29,8 @@ export class AboutService {
           name: person,
           description: about[person]["description"],
           image: about[person]["image"],
-          rank: about[person]["rank"]
+          rank: about[person]["rank"],
+          position: about[person]["position"]
         });
       });
       resolve(newAbout);

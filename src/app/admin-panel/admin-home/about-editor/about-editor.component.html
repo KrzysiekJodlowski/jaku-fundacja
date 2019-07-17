@@ -6,12 +6,7 @@
     </button>
   </div>
   <article class="card column p-5 mb-3" *ngFor="let person of about">
-    <h3>{{ person.name }}</h3>
-    <caption class="row pl-3">
-      {{
-        person.position
-      }}
-    </caption>
+    <h3 class="row mb-5">{{ person.name }} - {{ person.position }}</h3>
     <span class="row">
       <img src="{{ person.image }}" class="col-3" alt="person" />
       <p class="col-9 text-justify">
