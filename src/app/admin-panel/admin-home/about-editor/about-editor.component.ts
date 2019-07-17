@@ -42,6 +42,17 @@ export class AboutEditorComponent implements OnInit {
   }
 
   removePerson(person: Object) {
-    console.log(person);
+    this.aboutService
+      .removePersonData(person)
+      .then(() => {
+        this.about = this.about.filter(personData => personData !== person);
+        this.confirmWindow.show(
+          `Użytkownik ${person["name"]} został usunięty.`,
+          true
+        );
+      })
+      .catch(err => {
+        this.confirmWindow.show(err, false);
+      });
   }
 }
