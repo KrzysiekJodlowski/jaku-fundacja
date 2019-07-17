@@ -31,5 +31,6 @@ export class DeleteWindowComponent {
 
   private removeOnePerson() {
     this.notify.emit(this._personToRemove);
+    this.modalRef.hide();
   }
 }
