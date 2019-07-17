@@ -12,22 +12,37 @@ export class AboutService {
       this.http
         .get("https://us-central1-fir-7d0a4.cloudfunctions.net/getAbout")
         .subscribe(about => {
-          this.getRankedPeople(about).then(newAbout => resolve(newAbout));
+          this.getRankedPeople(about).then(newAbout =>
+            this.sortPeopleByRank(newAbout).then(sortedAbout => {
+              resolve(sortedAbout);
+            })
+          );
         });
     });
   }
 
   private getRankedPeople(about: Object) {
     return new Promise(resolve => {
-      let newAbout: Object = new Object();
+      let newAbout: Object[] = [];
       Object.keys(about).forEach(person => {
-        newAbout[about[person]["rank"]] = {
+        newAbout.push({
           name: person,
           description: about[person]["description"],
-          image: about[person]["image"]
-        };
+          image: about[person]["image"],
+          rank: about[person]["rank"]
+        });
       });
       resolve(newAbout);
+    });
+  }
+
+  private sortPeopleByRank(newAbout: any): Promise<Object[]> {
+    return new Promise((resolve, reject) => {
+      resolve(
+        newAbout.sort((a, b) => {
+          return a["rank"] - b["rank"];
+        })
+      );
     });
   }
 }
