@@ -1,6 +1,11 @@
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">NOWA OSOBA</h4>
+    <h4 class="modal-title pull-left">
+      <span *ngIf="personName.length > 0; else elseBlock"
+        >"{{ personName }}" - EDYCJA</span
+      >
+      <ng-template #elseBlock>NOWA OSOBA</ng-template>
+    </h4>
   </div>
   <div class="modal-body container">
     <div class="row justify-content-start m-3 font-weight-bold">
