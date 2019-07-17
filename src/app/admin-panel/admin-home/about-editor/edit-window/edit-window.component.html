@@ -11,59 +11,106 @@
     <div class="row justify-content-start m-3 font-weight-bold">
       <form id="editForm" #editForm="ngForm" (ngSubmit)="saveInfo($event)">
         <div class="form-group">
-          <label for="infoDate">Data</label>
-          <input
-            ngModel
-            type="date"
-            class="form-control"
-            id="infoDate"
-            name="infoDate"
-            [(ngModel)]="infoDateCopy"
-          />
-        </div>
-        <div class="form-group">
-          <label for="infoTitle">Tytuł</label>
+          <label for="personName">Imię i nazwisko</label>
           <input
             ngModel
             type="text"
             class="form-control"
-            id="infoTitle"
-            name="infoTitle"
-            [(ngModel)]="infoTitleCopy"
+            id="personName"
+            name="personName"
+            [(ngModel)]="personName"
             required
-            minlength="3"
-            placeholder="Tutaj wpisz tytuł"
+            pattern="\p{L}* \p{L}*"
           />
           <alert
-            *ngIf="editForm.touched && !editForm.controls.infoTitle.valid"
+            *ngIf="editForm.touched && !editForm.controls.personPosition.valid"
             type="danger"
           >
             <div>
-              Tytuł aktualności musi mieć długość minimum 3 liter!
+              Podanie imienia i nazwiska jest obowiązkowe!
             </div>
           </alert>
         </div>
         <div class="form-group">
-          <label for="infoContent">Treść</label>
+          <label for="personPosition">Stanowisko</label>
+          <input
+            ngModel
+            type="text"
+            class="form-control"
+            id="personPosition"
+            name="personPosition"
+            [(ngModel)]="personPosition"
+            required
+            minlength="3"
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personPosition.valid"
+            type="danger"
+          >
+            <div>
+              Podanie stanowiska jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personRank">Ranga (1-2-3, domyślnie 2)</label>
+          <input
+            ngModel
+            type="range"
+            min="1"
+            max="3"
+            class="form-control"
+            id="personRank"
+            name="personRank"
+            [(ngModel)]="personRank"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="personImage">Zdjęcie</label>
+          <input
+            ngModel
+            type="file"
+            class="form-control"
+            id="personImage"
+            name="personImage"
+            [(ngModel)]="personImage"
+            accept="image/png, image/jpeg"
+            (change)="uploadFile($event, title.value)"
+            required
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personImage.valid"
+            type="danger"
+          >
+            <div>
+              Dodanie zdjęcia jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personDescription">Opis</label>
           <textarea
             ngModel
             type="text"
             class="form-control"
-            id="infoContent"
-            name="infoContent"
+            id="personDescription"
+            name="personDescription"
             cols="80"
-            rows="15"
-            [(ngModel)]="infoContentCopy"
+            rows="10"
+            [(ngModel)]="personDescription"
             required
             minlength="10"
             placeholder="Tutaj wpisz treść"
           ></textarea>
           <alert
-            *ngIf="editForm.touched && !editForm.controls.infoContent.valid"
+            *ngIf="
+              editForm.touched && !editForm.controls.personDescription.valid
+            "
             type="danger"
           >
             <div>
-              Treść aktualności musi mieć długość minimum 10 liter!
+              Treść opisu musi mieć długość minimum 10 liter!
             </div>
           </alert>
         </div>
