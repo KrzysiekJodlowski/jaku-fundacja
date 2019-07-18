@@ -1,5 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild
+} from "@angular/core";
 import { GalleryService } from "src/app/services/gallery/gallery.service";
+import { DeleteWindowComponent } from "../delete-window/delete-window.component";
 
 @Component({
   selector: "app-subgallery-editor",
@@ -14,6 +22,7 @@ export class SubgalleryEditorComponent implements OnInit {
   private imageUrls: any[];
   private isSubgalleryUploadStarted: boolean;
   private isSubgalleryUploadFinished: boolean;
+  @ViewChild(DeleteWindowComponent) deleteWindow: DeleteWindowComponent;
 
   constructor(private galleryService: GalleryService) {
     this.imageTitles = [];
@@ -75,5 +84,9 @@ export class SubgalleryEditorComponent implements OnInit {
         this.isSubgalleryUploadFinished = true;
         this.isSubgalleryUploadStarted = false;
       });
+  }
+
+  openDeleteWindow(urlToDelete: string, titleToDelete: string) {
+    this.deleteWindow.open(urlToDelete, titleToDelete);
   }
 }
