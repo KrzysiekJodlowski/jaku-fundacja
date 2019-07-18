@@ -20,11 +20,15 @@
         (click)="showEditWindow(person)"
       >
         EDYTUJ OSOBĘ</button
-      ><button class="btn btn-danger w-25 mb-3" (click)="showDeleteWindow()">
+      ><button
+        class="btn btn-danger w-25 mb-3"
+        (click)="showDeleteWindow(person)"
+      >
         USUŃ
       </button></span
     >
   </article>
   <about-edit-window></about-edit-window>
-  <about-delete-window></about-delete-window>
+  <about-delete-window (notify)="removePerson($event)"></about-delete-window>
+  <about-confirm-window></about-confirm-window>
 </section>

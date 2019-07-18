@@ -45,7 +45,22 @@ export class AboutEditorComponent implements OnInit {
     this.editWindow.open(person);
   }
 
-  private showDeleteWindow() {
-    this.deleteWindow.open();
+  private showDeleteWindow(person: Object) {
+    this.deleteWindow.open(person);
+  }
+
+  removePerson(person: Object) {
+    this.aboutService
+      .removePersonData(person)
+      .then(() => {
+        this.about = this.about.filter(personData => personData !== person);
+        this.confirmWindow.show(
+          `Użytkownik ${person["name"]} został usunięty.`,
+          true
+        );
+      })
+      .catch(err => {
+        this.confirmWindow.show(err, false);
+      });
   }
 }

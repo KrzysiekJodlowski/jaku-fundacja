@@ -1,4 +1,11 @@
-import { Component, Input, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  EventEmitter,
+  Output
+} from "@angular/core";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
@@ -12,12 +19,18 @@ export class DeleteWindowComponent {
   config = {
     animated: true
   };
+  private _personToRemove: Object;
+  @Output() notify: EventEmitter<Object> = new EventEmitter<Object>();
 
   constructor(private modalService: BsModalService) {}
 
-  public open() {
+  public open(personToRemove: Object) {
+    this._personToRemove = personToRemove;
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
-  private removeOnePerson() {}
+  private removeOnePerson() {
+    this.notify.emit(this._personToRemove);
+    this.modalRef.hide();
+  }
 }
