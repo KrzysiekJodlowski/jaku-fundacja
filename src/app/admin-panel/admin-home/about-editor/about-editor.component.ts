@@ -33,9 +33,16 @@ export class AboutEditorComponent implements OnInit {
     });
   }
 
-  private showEditWindow(personName?: string) {
-    if (personName === undefined) personName = "";
-    this.editWindow.open(personName);
+  private showEditWindow(person?: Object) {
+    if (person === undefined)
+      person = {
+        name: "",
+        description: "",
+        image: "",
+        rank: 2,
+        position: ""
+      };
+    this.editWindow.open(person);
   }
 
   private showDeleteWindow() {

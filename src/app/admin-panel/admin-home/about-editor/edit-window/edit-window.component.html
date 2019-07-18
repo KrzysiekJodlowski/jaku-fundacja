@@ -1,8 +1,8 @@
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">
-      <span *ngIf="personName.length > 0; else elseBlock"
-        >"{{ personName }}" - EDYCJA</span
+      <span *ngIf="person.name.length > 0; else elseBlock; elseBlock2"
+        >"{{ personCopy.name }}" - EDYCJA</span
       >
       <ng-template #elseBlock>NOWA OSOBA</ng-template>
     </h4>
@@ -18,7 +18,7 @@
             class="form-control"
             id="personName"
             name="personName"
-            [(ngModel)]="personName"
+            [(ngModel)]="personCopy.name"
             required
             pattern="\p{L}* \p{L}*"
           />
@@ -39,7 +39,7 @@
             class="form-control"
             id="personPosition"
             name="personPosition"
-            [(ngModel)]="personPosition"
+            [(ngModel)]="personCopy.position"
             required
             minlength="3"
           />
@@ -53,7 +53,10 @@
           </alert>
         </div>
         <div class="form-group">
-          <label for="personRank">Ranga (1-2-3, domyślnie 2)</label>
+          <label for="personRank"
+            >Ranga (1-2-3<ng-template #elseBlock2>, domyślnie 2</ng-template
+            >)</label
+          >
           <input
             ngModel
             type="range"
@@ -62,7 +65,7 @@
             class="form-control"
             id="personRank"
             name="personRank"
-            [(ngModel)]="personRank"
+            [(ngModel)]="personCopy.rank"
             required
           />
         </div>
@@ -74,7 +77,7 @@
             class="form-control"
             id="personImage"
             name="personImage"
-            [(ngModel)]="personImage"
+            [(ngModel)]="personCopy.image"
             accept="image/png, image/jpeg"
             (change)="uploadFile($event, title.value)"
             required
@@ -98,7 +101,7 @@
             name="personDescription"
             cols="80"
             rows="10"
-            [(ngModel)]="personDescription"
+            [(ngModel)]="personCopy.description"
             required
             minlength="10"
             placeholder="Tutaj wpisz treść"

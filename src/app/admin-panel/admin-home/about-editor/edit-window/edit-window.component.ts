@@ -12,12 +12,14 @@ export class EditWindowComponent {
   private config = {
     animated: true
   };
-  private personName: string;
+  private person: Object;
+  private personCopy: Object = {};
 
   constructor(private modalService: BsModalService) {}
 
-  public open(personName: string) {
-    this.personName = personName;
+  public open(person: Object) {
+    this.person = person;
+    Object.assign(this.personCopy, person);
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 }
