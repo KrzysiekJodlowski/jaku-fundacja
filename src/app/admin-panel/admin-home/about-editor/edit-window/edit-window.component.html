@@ -1,0 +1,139 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      <span *ngIf="person.name.length > 0; else elseBlock; elseBlock2"
+        >"{{ personCopy.name }}" - EDYCJA</span
+      >
+      <ng-template #elseBlock>NOWA OSOBA</ng-template>
+    </h4>
+  </div>
+  <div class="modal-body container">
+    <div class="row justify-content-start m-3 font-weight-bold">
+      <form id="editForm" #editForm="ngForm" (ngSubmit)="saveInfo($event)">
+        <div class="form-group">
+          <label for="personName">Imię i nazwisko</label>
+          <input
+            ngModel
+            type="text"
+            class="form-control"
+            id="personName"
+            name="personName"
+            [(ngModel)]="personCopy.name"
+            required
+            pattern="\p{L}* \p{L}*"
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personPosition.valid"
+            type="danger"
+          >
+            <div>
+              Podanie imienia i nazwiska jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personPosition">Stanowisko</label>
+          <input
+            ngModel
+            type="text"
+            class="form-control"
+            id="personPosition"
+            name="personPosition"
+            [(ngModel)]="personCopy.position"
+            required
+            minlength="3"
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personPosition.valid"
+            type="danger"
+          >
+            <div>
+              Podanie stanowiska jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personRank"
+            >Ranga (1-2-3<ng-template #elseBlock2>, domyślnie 2</ng-template
+            >)</label
+          >
+          <input
+            ngModel
+            type="range"
+            min="1"
+            max="3"
+            class="form-control"
+            id="personRank"
+            name="personRank"
+            [(ngModel)]="personCopy.rank"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="personImage">Zdjęcie</label>
+          <input
+            ngModel
+            type="file"
+            class="form-control"
+            id="personImage"
+            name="personImage"
+            [(ngModel)]="personCopy.image"
+            accept="image/png, image/jpeg"
+            (change)="uploadFile($event, title.value)"
+            required
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personImage.valid"
+            type="danger"
+          >
+            <div>
+              Dodanie zdjęcia jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personDescription">Opis</label>
+          <textarea
+            ngModel
+            type="text"
+            class="form-control"
+            id="personDescription"
+            name="personDescription"
+            cols="80"
+            rows="10"
+            [(ngModel)]="personCopy.description"
+            required
+            minlength="10"
+            placeholder="Tutaj wpisz treść"
+          ></textarea>
+          <alert
+            *ngIf="
+              editForm.touched && !editForm.controls.personDescription.valid
+            "
+            type="danger"
+          >
+            <div>
+              Treść opisu musi mieć długość minimum 10 liter!
+            </div>
+          </alert>
+        </div>
+        <hr />
+        <div class="row justify-content-around">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!editForm.valid"
+          >
+            ZAPISZ</button
+          ><button
+            type="button"
+            class="btn btn-primary"
+            (click)="modalRef.hide()"
+          >
+            ANULUJ
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

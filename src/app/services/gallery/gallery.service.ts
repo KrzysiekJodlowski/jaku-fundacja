@@ -74,16 +74,20 @@ export class GalleryService {
       });
   }
 
-  private removePictureFromStorage(url: string) {
-    let pictureStorageRef = this.fbStorage.storage.refFromURL(url);
-    pictureStorageRef
-      .delete()
-      .then(function() {
-        console.log("Successfully removed from storage!");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  public removePictureFromStorage(url: string) {
+    return new Promise((resolve, reject) => {
+      this.fbStorage.storage
+        .refFromURL(url)
+        .delete()
+        .then(function() {
+          console.log("Successfully removed from storage!");
+          resolve(true);
+        })
+        .catch(function(error) {
+          console.log(error);
+          reject(error);
+        });
+    });
   }
 
   public uploadImage(event: any, galleryTitle: string, pictureTitle: string) {

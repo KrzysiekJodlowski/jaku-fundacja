@@ -1,0 +1,19 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ success ? "POTWIERDZENIE" : "OSTRZEŻENIE" }}</h4>
+  </div>
+  <div class="modal-body container">
+    <div
+      *ngIf="success"
+      class="row justify-content-center mb-3 mx-3 font-weight-bold alert alert-success"
+    >
+      {{ confirmWindowStatement }}
+    </div>
+    <div
+      *ngIf="!success"
+      class="row justify-content-center mb-3 mx-3 font-weight-bold alert alert-danger"
+    >
+      {{ confirmWindowStatement }}
+    </div>
+  </div>
+</ng-template>
