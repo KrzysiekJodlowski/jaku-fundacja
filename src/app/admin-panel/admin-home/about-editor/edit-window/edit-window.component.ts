@@ -8,14 +8,18 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 })
 export class EditWindowComponent {
   @ViewChild("template") template: ElementRef;
-  modalRef: BsModalRef;
-  config = {
+  private modalRef: BsModalRef;
+  private config = {
     animated: true
   };
+  private person: Object;
+  private personCopy: Object = {};
 
   constructor(private modalService: BsModalService) {}
 
-  public open() {
+  public open(person: Object) {
+    this.person = person;
+    Object.assign(this.personCopy, person);
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 }
