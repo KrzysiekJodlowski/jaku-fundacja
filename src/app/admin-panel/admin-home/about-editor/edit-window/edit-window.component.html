@@ -1,7 +1,7 @@
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">
-      <span *ngIf="person.name.length > 0; else elseBlock; elseBlock2"
+      <span *ngIf="person.name.length > 0; else elseBlock"
         >"{{ personCopy.name }}" - EDYCJA</span
       >
       <ng-template #elseBlock>NOWA OSOBA</ng-template>
@@ -53,10 +53,7 @@
           </alert>
         </div>
         <div class="form-group">
-          <label for="personRank"
-            >Ranga (1-2-3<ng-template #elseBlock2>, domyślnie 2</ng-template
-            >)</label
-          >
+          <label for="personRank">Ranga (1-2-3)</label>
           <input
             ngModel
             type="range"
