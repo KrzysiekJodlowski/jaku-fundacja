@@ -47,7 +47,7 @@ export class GalleryService {
   //   console.log(object);
   // }
 
-  public removePictureFromDb(
+  public removePictureData(
     url: string,
     subgalleryName: string,
     imageTitle: string
@@ -55,7 +55,7 @@ export class GalleryService {
     return new Promise((resolve, reject) => {
       this.removePictureFromStorage(url)
         .then(() => {
-          this.removePictureDataFromFirebase(subgalleryName, imageTitle)
+          this.removePictureDataFromDatabase(subgalleryName, imageTitle)
             .then(() => resolve())
             .catch(err => {
               reject(err);
@@ -67,7 +67,7 @@ export class GalleryService {
     });
   }
 
-  private removePictureDataFromFirebase(
+  private removePictureDataFromDatabase(
     subgalleryName: string,
     imageTitle: string
   ) {
