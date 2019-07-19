@@ -31,7 +31,9 @@
       class="p-2"
       type="file"
       accept="image/png, image/jpeg"
-      (change)="createNewGallery($event, name.value, title.value)"
+      (change)="
+        createNewGallery($event, subgalleryName.value, pictureTitle.value)
+      "
       #file
       [disabled]="!subgalleryName.valid || !pictureTitle.valid"
     />
