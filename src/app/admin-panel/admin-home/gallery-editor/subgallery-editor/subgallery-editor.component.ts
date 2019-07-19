@@ -55,7 +55,7 @@ export class SubgalleryEditorComponent implements OnInit {
   deleteImage(urlToDelete: string, imageTitle: string) {
     this.imageUrls = this.imageUrls.filter(url => url !== urlToDelete);
     this.imageTitles = this.imageTitles.filter(title => title !== imageTitle);
-    this.galleryService.removePictureFromDb(
+    this.galleryService.removePictureData(
       urlToDelete,
       this.galleryTitle,
       imageTitle
