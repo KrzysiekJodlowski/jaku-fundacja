@@ -1,22 +1,42 @@
 <h1 class="p-2">Edytor galerii</h1>
 
-<div class="container" id="gallery_creator">
+<div class="container">
   <h3>Stwórz nową galerię:</h3>
-  <div class="row p-1">
-    <label class="col-3" for="subgalleryName">Nazwa galerii: </label>
-    <input class="col-3" type="text" id="subgalleryName" required #name />
-  </div>
-  <div class="row p-1 ">
-    <label class="col-3" for="pictureTitle">Nazwa obrazka: </label>
-    <input class="col-3" type="text" id="pictureTitle" required #title />
-  </div>
-  <input
-    class="p-2"
-    type="file"
-    accept="image/png, image/jpeg"
-    (change)="createNewGallery($event, name.value, title.value)"
-    #file
-  />
+  <form #galleryCreator="ngForm">
+    <div class="row p-1 form-group">
+      <label class="col-3" for="subgalleryName">Nazwa galerii: </label>
+      <input
+        ngModel
+        #subgalleryName="ngModel"
+        class="col-3"
+        type="text"
+        name="subgalleryName"
+        id="subgalleryName"
+        required
+      />
+    </div>
+    <div class="row p-1 ">
+      <label class="col-3" for="pictureTitle">Nazwa obrazka: </label>
+      <input
+        ngModel
+        #pictureTitle="ngModel"
+        class="col-3"
+        type="text"
+        name="pictureTitle"
+        id="pictureTitle"
+        required
+      />
+    </div>
+    <input
+      class="p-2"
+      type="file"
+      accept="image/png, image/jpeg"
+      (change)="createNewGallery($event, name.value, title.value)"
+      #file
+      [disabled]="!subgalleryName.valid || !pictureTitle.valid"
+    />
+  </form>
+
   <div class="mb-2" *ngIf="isGalleryUploadStarted">
     <progressbar
       max="100"
