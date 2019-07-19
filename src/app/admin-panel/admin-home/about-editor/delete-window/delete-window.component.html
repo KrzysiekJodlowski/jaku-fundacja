@@ -1,0 +1,18 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">OSTRZEŻENIE</h4>
+  </div>
+  <div class="modal-body container">
+    <div class="row justify-content-center mb-3 font-weight-bold">
+      Na pewno chcesz usunąć {{ _personToRemove.name }}?
+    </div>
+    <hr />
+    <div class="row justify-content-around">
+      <button type="button" class="btn btn-primary" (click)="removeOnePerson()">
+        TAK</button
+      ><button type="button" class="btn btn-primary" (click)="modalRef.hide()">
+        ANULUJ
+      </button>
+    </div>
+  </div>
+</ng-template>

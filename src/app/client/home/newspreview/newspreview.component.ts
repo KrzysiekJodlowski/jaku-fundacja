@@ -11,25 +11,15 @@ import { CarouselModule } from "ngx-bootstrap/carousel";
 })
 export class NewspreviewComponent implements OnInit {
   private news: Object[];
-  constructor(
-    private newsService: NewsService,
-    private timeService: TimeService
-  ) {
+  constructor(private newsService: NewsService) {
     this.news = [];
   }
 
   ngOnInit() {
     this.newsService.getNewsObjectsFromDb().then(news => {
-      Object.values(news).forEach(info => {
-        this.addInfo(info);
-      });
-    });
-  }
-  private addInfo(info: any) {
-    this.news.push({
-      date: this.timeService.formatDate(info.date),
-      title: info.title,
-      content: info.content
+      for (let info of news) {
+        this.news.push(info[1]);
+      }
     });
   }
 }

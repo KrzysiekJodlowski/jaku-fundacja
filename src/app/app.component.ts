@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
+import { AuthServiceService } from "./services/auth-service/auth-service.service";
 
 @Component({
   selector: "app-root",
@@ -7,4 +8,11 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "fundacjaJaku";
+
+  constructor(public authService: AuthServiceService) {}
+
+  @HostListener("window:unload", ["$event"])
+  onWindowClose(event: any): void {
+    this.authService.logOut();
+  }
 }

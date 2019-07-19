@@ -1,0 +1,66 @@
+<div class="container subgallery">
+  <h5 class="row px-3 pt-3">{{ galleryTitle }}</h5>
+  <div class="row card mx-3 p-2">
+    <span>Dodaj nowy obrazek do galerii</span>
+    <label for="pictureTitle">Nazwa obrazka: </label>
+    <input type="text" id="pictureTitle" required #title />
+    <label for="input_file">
+      Kliknij by wybrać plik
+      <img
+        class="upload_icon"
+        src="../../../../../assets/img/icons/polaroid.svg"
+        alt="polaroid_icon"
+    /></label>
+    <input
+      id="input_file"
+      class="d-none"
+      type="file"
+      accept="image/png, image/jpeg"
+      (change)="uploadFile($event, title.value)"
+    />
+    <div class="mb-2" *ngIf="isSubgalleryUploadStarted">
+      <progressbar
+        max="100"
+        [value]="
+          isSubgalleryUploadFinished
+            ? 100
+            : (galleryService.uploadPercent | async)
+        "
+        type="success"
+        [striped]="!isSubgalleryUploadFinished"
+        [animate]="true"
+        ><i
+          >{{
+            isSubgalleryUploadFinished
+              ? 100
+              : (galleryService.uploadPercent | async | number: "1.0-0")
+          }}%</i
+        ></progressbar
+      >
+    </div>
+    <alert *ngIf="isSubgalleryUploadFinished" type="success"
+      >Plik dodany do galerii: {{ galleryTitle }}</alert
+    >
+  </div>
+
+  <div class="row align-items-start">
+    <div
+      class="subgallery_view col-3 m-3"
+      *ngFor="let picture of imageUrls; let i = index"
+    >
+      <img class="picture" src="{{ picture }}" alt="picture" />
+      <img
+        class="delete_icon"
+        src="../../../../../assets/img/icons/circle_delete.svg"
+        alt="delete_icon"
+        (click)="openDeleteWindow(picture, imageTitles[i])"
+      />
+      <div class="">
+        <span>{{ imageTitles[i] }}</span>
+      </div>
+    </div>
+  </div>
+  <gallery-editor-delete-window
+    (notify)="deleteImage($event['url'], $event['title'])"
+  ></gallery-editor-delete-window>
+</div>

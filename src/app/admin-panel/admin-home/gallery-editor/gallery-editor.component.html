@@ -1,3 +1,47 @@
-<p>
-  gallery-editor works!
-</p>
+<h1 class="p-2">Edytor galerii</h1>
+
+<div class="container" id="gallery_creator">
+  <h3>Stwórz nową galerię:</h3>
+  <div class="row p-1">
+    <label class="col-3" for="subgalleryName">Nazwa galerii: </label>
+    <input class="col-3" type="text" id="subgalleryName" required #name />
+  </div>
+  <div class="row p-1 ">
+    <label class="col-3" for="pictureTitle">Nazwa obrazka: </label>
+    <input class="col-3" type="text" id="pictureTitle" required #title />
+  </div>
+  <input
+    class="p-2"
+    type="file"
+    accept="image/png, image/jpeg"
+    (change)="createNewGallery($event, name.value, title.value)"
+    #file
+  />
+  <div class="mb-2" *ngIf="isGalleryUploadStarted">
+    <progressbar
+      max="100"
+      [value]="
+        isGalleryUploadFinished ? 100 : (galleryService.uploadPercent | async)
+      "
+      type="success"
+      [striped]="!isGalleryUploadFinished"
+      [animate]="true"
+      ><i
+        >{{
+          isGalleryUploadFinished
+            ? 100
+            : (galleryService.uploadPercent | async | number: "1.0-0")
+        }}%</i
+      ></progressbar
+    >
+  </div>
+  <alert *ngIf="isGalleryUploadFinished" type="success"
+    >Wysyłanie pliku zakończone sukcesem!</alert
+  >
+  <div *ngFor="let gallery of galleries">
+    <app-subgallery-editor
+      [gallery]="gallery"
+      (notify)="removeGallery($event)"
+    ></app-subgallery-editor>
+  </div>
+</div>
