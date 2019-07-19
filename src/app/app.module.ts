@@ -51,6 +51,7 @@ import { ConfirmWindowComponent } from "./admin-panel/admin-home/news-editor/con
 import { EditWindowComponent as AboutEditWindow } from "./admin-panel/admin-home/about-editor/edit-window/edit-window.component";
 import { DeleteWindowComponent as AboutDeleteWindow } from "./admin-panel/admin-home/about-editor/delete-window/delete-window.component";
 import { ConfirmWindowComponent as AboutConfirmWindow } from "./admin-panel/admin-home/about-editor/confirm-window/confirm-window.component";
+import { DeleteWindowComponent as GalleryEditorDeleteWindow } from "./admin-panel/admin-home/gallery-editor/delete-window/delete-window.component";
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ConfirmWindowComponent as AboutConfirmWindow } from "./admin-panel/admi
     ConfirmWindowComponent,
     AboutEditWindow,
     AboutDeleteWindow,
-    AboutConfirmWindow
+    AboutConfirmWindow,
+    GalleryEditorDeleteWindow
   ],
   imports: [
     BrowserModule,
