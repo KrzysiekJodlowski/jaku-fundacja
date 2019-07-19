@@ -98,6 +98,10 @@ export class SubgalleryEditorComponent implements OnInit {
       });
   }
 
+  checkIfTitleAlreadyExists(title: string): boolean {
+    return this.imageTitles.indexOf(title) !== -1;
+  }
+
   openDeleteWindow(urlToDelete: string, titleToDelete: string) {
     this.deleteWindow.open(urlToDelete, titleToDelete);
   }
