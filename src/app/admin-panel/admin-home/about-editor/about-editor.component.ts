@@ -63,4 +63,9 @@ export class AboutEditorComponent implements OnInit {
         this.confirmWindow.show(err, false);
       });
   }
+
+  private savePerson(personToSave: Object) {
+    console.log(personToSave["isNew"]);
+    console.log(personToSave["person"]);
+  }
 }
