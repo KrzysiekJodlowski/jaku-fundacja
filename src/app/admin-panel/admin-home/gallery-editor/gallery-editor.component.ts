@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, ElementRef } from "@angular/core";
 import { GalleryService } from "src/app/services/gallery/gallery.service";
 import { Observable } from "rxjs";
+import { ConfirmWindowComponent } from "../about-editor/confirm-window/confirm-window.component";
 
 @Component({
   selector: "app-gallery-editor",
@@ -16,6 +17,7 @@ export class GalleryEditorComponent implements OnInit {
   @ViewChild("subgalleryName", { read: ElementRef })
   galleryNameInput: ElementRef;
   @ViewChild("file", { read: ElementRef }) fileInput: ElementRef;
+  @ViewChild(ConfirmWindowComponent) confirmWindow: ConfirmWindowComponent;
 
   constructor(private galleryService: GalleryService) {
     this.galleries = [];
@@ -54,11 +56,11 @@ export class GalleryEditorComponent implements OnInit {
             this.addNewGalleryToGalleries(galleryTitle, pictureTitle, url);
           })
           .catch(err => {
-            window.alert(err);
+            this.confirmWindow.show(err, false);
           });
       })
       .catch(message => {
-        window.alert(message);
+        this.confirmWindow.show(message, false);
       })
       .finally(() => {
         setTimeout(() => (this.isGalleryUploadStarted = false), 2000);
