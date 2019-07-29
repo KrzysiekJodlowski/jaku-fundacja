@@ -11,8 +11,10 @@ export class GalleryEditorComponent implements OnInit {
   private galleries: Object[];
   private isGalleryUploadFinished: boolean;
   private isGalleryUploadStarted: boolean;
-  @ViewChild("title", { read: ElementRef }) pictureTitleInput: ElementRef;
-  @ViewChild("name", { read: ElementRef }) galleryNameInput: ElementRef;
+  @ViewChild("pictureTitle", { read: ElementRef })
+  pictureTitleInput: ElementRef;
+  @ViewChild("subgalleryName", { read: ElementRef })
+  galleryNameInput: ElementRef;
   @ViewChild("file", { read: ElementRef }) fileInput: ElementRef;
 
   constructor(private galleryService: GalleryService) {

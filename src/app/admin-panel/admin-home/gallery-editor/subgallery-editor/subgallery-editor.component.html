@@ -1,9 +1,16 @@
 <div class="container subgallery">
   <h5 class="row px-3 pt-3">{{ galleryTitle }}</h5>
-  <div class="row card mx-3 p-2">
+  <form #subgalleryEditor="ngForm" class="row card mx-3 p-2">
     <span>Dodaj nowy obrazek do galerii</span>
     <label for="pictureTitle">Nazwa obrazka: </label>
-    <input type="text" id="pictureTitle" required #title />
+    <input
+      ngModel
+      #title="ngModel"
+      type="text"
+      id="pictureTitle"
+      name="pictureTitle"
+      required
+    />
     <label for="input_file">
       Kliknij by wybrać plik
       <img
@@ -16,8 +23,15 @@
       class="d-none"
       type="file"
       accept="image/png, image/jpeg"
-      (change)="uploadFile($event, title.value)"
+      [disabled]="
+        !subgalleryEditor.valid || checkIfTitleAlreadyExists(title.value)
+      "
+      (change)="uploadFile($event, title.value); subgalleryEditor.reset()"
     />
+    <alert *ngIf="checkIfTitleAlreadyExists(title.value)" type="danger"
+      >Zdjęcie o takim tytule aktualnie istnieje! Spróbuj wpisać inny
+      tytuł.</alert
+    >
     <div class="mb-2" *ngIf="isSubgalleryUploadStarted">
       <progressbar
         max="100"
@@ -41,7 +55,7 @@
     <alert *ngIf="isSubgalleryUploadFinished" type="success"
       >Plik dodany do galerii: {{ galleryTitle }}</alert
     >
-  </div>
+  </form>
 
   <div class="row align-items-start">
     <div
@@ -63,4 +77,5 @@
   <gallery-editor-delete-window
     (notify)="deleteImage($event['url'], $event['title'])"
   ></gallery-editor-delete-window>
+  <about-confirm-window></about-confirm-window>
 </div>

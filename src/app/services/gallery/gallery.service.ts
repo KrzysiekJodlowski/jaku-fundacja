@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -48,30 +47,45 @@ export class GalleryService {
   //   console.log(object);
   // }
 
-  public removePictureFromDb(
+  public removePictureData(
     url: string,
     subgalleryName: string,
     imageTitle: string
   ) {
-    this.removePictureFromStorage(url);
-    this.removePictureDataFromFirebase(subgalleryName, imageTitle);
+    return new Promise((resolve, reject) => {
+      this.removePictureFromStorage(url)
+        .then(() => {
+          this.removePictureDataFromDatabase(subgalleryName, imageTitle)
+            .then(() => resolve())
+            .catch(err => {
+              reject(err);
+            });
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 
-  private removePictureDataFromFirebase(
+  private removePictureDataFromDatabase(
     subgalleryName: string,
     imageTitle: string
   ) {
-    let pictureDatabaseRef = this.fbDatabase.object(
-      `gallery/${subgalleryName}/${imageTitle}`
-    );
-    pictureDatabaseRef
-      .remove()
-      .then(function() {
-        console.log("Sucessfully removed from database!");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    return new Promise((resolve, reject) => {
+      let pictureDatabaseRef = this.fbDatabase.object(
+        `gallery/${subgalleryName}/${imageTitle}`
+      );
+      pictureDatabaseRef
+        .remove()
+        .then(function() {
+          console.log("Sucessfully removed from database!");
+          resolve();
+        })
+        .catch(function(error) {
+          console.log(error);
+          reject(error);
+        });
+    });
   }
 
   public removePictureFromStorage(url: string) {

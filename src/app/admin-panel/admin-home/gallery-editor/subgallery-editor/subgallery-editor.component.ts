@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { GalleryService } from "src/app/services/gallery/gallery.service";
 import { DeleteWindowComponent } from "../delete-window/delete-window.component";
+import { ConfirmWindowComponent } from "../../about-editor/confirm-window/confirm-window.component";
 
 @Component({
   selector: "app-subgallery-editor",
@@ -23,6 +24,7 @@ export class SubgalleryEditorComponent implements OnInit {
   private isSubgalleryUploadStarted: boolean;
   private isSubgalleryUploadFinished: boolean;
   @ViewChild(DeleteWindowComponent) deleteWindow: DeleteWindowComponent;
+  @ViewChild(ConfirmWindowComponent) confirmWindow: ConfirmWindowComponent;
 
   constructor(private galleryService: GalleryService) {
     this.imageTitles = [];
@@ -53,16 +55,26 @@ export class SubgalleryEditorComponent implements OnInit {
   }
 
   deleteImage(urlToDelete: string, imageTitle: string) {
-    this.imageUrls = this.imageUrls.filter(url => url !== urlToDelete);
-    this.imageTitles = this.imageTitles.filter(title => title !== imageTitle);
-    this.galleryService.removePictureFromDb(
-      urlToDelete,
-      this.galleryTitle,
-      imageTitle
-    );
+    this.removeUrlAndTitle(urlToDelete, imageTitle);
+    this.galleryService
+      .removePictureData(urlToDelete, this.galleryTitle, imageTitle)
+      .then(() =>
+        this.confirmWindow.show(`Pomyślnie usunięto ${imageTitle}!`, true)
+      )
+      .catch(err =>
+        this.confirmWindow.show(
+          `Coś poszło nie tak... ${err}! Skontaktuj się z administratorem lub spróbuj później.`,
+          false
+        )
+      );
     if (this.imageUrls.length === 0 && this.imageTitles.length === 0) {
       this.notify.emit(this.gallery);
     }
+  }
+
+  private removeUrlAndTitle(urlToDelete: string, imageTitle: string) {
+    this.imageUrls = this.imageUrls.filter(url => url !== urlToDelete);
+    this.imageTitles = this.imageTitles.filter(title => title !== imageTitle);
   }
 
   uploadFile(event: any, pictureTitle: string) {
@@ -84,6 +96,10 @@ export class SubgalleryEditorComponent implements OnInit {
         this.isSubgalleryUploadFinished = true;
         this.isSubgalleryUploadStarted = false;
       });
+  }
+
+  checkIfTitleAlreadyExists(title: string): boolean {
+    return this.imageTitles.indexOf(title) !== -1;
   }
 
   openDeleteWindow(urlToDelete: string, titleToDelete: string) {
