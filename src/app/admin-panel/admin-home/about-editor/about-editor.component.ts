@@ -65,6 +65,22 @@ export class AboutEditorComponent implements OnInit {
   }
 
   private savePerson(personToSave: Object) {
-    this.aboutService.savePerson(personToSave);
+    this.aboutService
+      .savePerson(personToSave)
+      .then(res => {
+        this.about.push(personToSave);
+        this.confirmWindow.show(
+          `Użytkownik ${personToSave["name"]} został zapisany.`,
+          true
+        );
+      })
+      .catch(err => {
+        this.confirmWindow.show(
+          `Nie udało się zapisać użytkownika ${
+            personToSave["name"]
+          } został zapisany. Spróbuj ponownie później lub skontaktuj się z administratorem.`,
+          false
+        );
+      });
   }
 }

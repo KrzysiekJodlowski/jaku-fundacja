@@ -79,12 +79,13 @@ export class AboutService {
   }
 
   public savePerson(person: Object) {
-    console.log(person);
-
-    this.fbDatabase.database
-      .ref(`about/${person["name"]}`)
-      .set(person)
-      .catch(e => console.log(e));
+    return new Promise((resolve, reject) => {
+      this.fbDatabase.database
+        .ref(`about/${person["name"]}`)
+        .set(person)
+        .then(res => resolve(res))
+        .catch(e => reject(e));
+    });
   }
 
   private sortPeopleByRank(newAbout: any): Promise<Object[]> {
