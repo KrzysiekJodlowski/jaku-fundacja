@@ -28,7 +28,7 @@
       </button></span
     >
   </article>
-  <about-edit-window></about-edit-window>
+  <about-edit-window (notifyMe)="savePerson($event)"></about-edit-window>
   <about-delete-window (notify)="removePerson($event)"></about-delete-window>
   <about-confirm-window></about-confirm-window>
 </section>
