@@ -38,10 +38,20 @@ import { AuthGuardGuard } from "./services/auth_guard/auth-guard.guard";
 import { AdminNavbarComponent } from "./admin-panel/admin-home/admin-navbar/admin-navbar.component";
 import { AdminFooterComponent } from "./admin-panel/admin-home/admin-footer/admin-footer.component";
 import { GalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/gallery-editor.component";
+import { SubgalleryEditorComponent } from "./admin-panel/admin-home/gallery-editor/subgallery-editor/subgallery-editor.component";
 import { NewsEditorComponent } from "./admin-panel/admin-home/news-editor/news-editor.component";
 import { AboutEditorComponent } from "./admin-panel/admin-home/about-editor/about-editor.component";
 import { ClientComponent } from "./client/client.component";
 import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.component";
+import { ModalModule } from "ngx-bootstrap/modal";
+import { ProgressbarModule } from "ngx-bootstrap/progressbar";
+import { EditWindowComponent } from "./admin-panel/admin-home/news-editor/edit-window/edit-window.component";
+import { DeleteWindowComponent } from "./admin-panel/admin-home/news-editor/delete-window/delete-window.component";
+import { ConfirmWindowComponent } from "./admin-panel/admin-home/news-editor/confirm-window/confirm-window.component";
+import { EditWindowComponent as AboutEditWindow } from "./admin-panel/admin-home/about-editor/edit-window/edit-window.component";
+import { DeleteWindowComponent as AboutDeleteWindow } from "./admin-panel/admin-home/about-editor/delete-window/delete-window.component";
+import { ConfirmWindowComponent as AboutConfirmWindow } from "./admin-panel/admin-home/about-editor/confirm-window/confirm-window.component";
+import { DeleteWindowComponent as GalleryEditorDeleteWindow } from "./admin-panel/admin-home/gallery-editor/delete-window/delete-window.component";
 
 @NgModule({
   declarations: [
@@ -64,10 +74,18 @@ import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.componen
     AdminNavbarComponent,
     AdminFooterComponent,
     GalleryEditorComponent,
+    SubgalleryEditorComponent,
     NewsEditorComponent,
     AboutEditorComponent,
     ClientComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    EditWindowComponent,
+    DeleteWindowComponent,
+    ConfirmWindowComponent,
+    AboutEditWindow,
+    AboutDeleteWindow,
+    AboutConfirmWindow,
+    GalleryEditorDeleteWindow
   ],
   imports: [
     BrowserModule,
@@ -82,7 +100,9 @@ import { AdminHomeComponent } from "./admin-panel/admin-home/admin-home.componen
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(),
+    ProgressbarModule.forRoot()
   ],
   providers: [TimeService, NewsService, AuthServiceService, AuthGuardGuard],
   bootstrap: [AppComponent]

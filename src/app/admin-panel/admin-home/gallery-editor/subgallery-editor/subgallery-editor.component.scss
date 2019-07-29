@@ -1,0 +1,28 @@
+.subgallery {
+  margin: 10px 0 10px 0;
+  background-color: rgba($color: #ffffff, $alpha: 0.5);
+  border-radius: 25px;
+
+  .upload_icon:hover,
+  .delete_icon:hover {
+    cursor: pointer;
+  }
+
+  .subgallery_view {
+    position: relative;
+    .picture {
+      position: relative;
+      width: 50%;
+    }
+    .delete_icon {
+      position: absolute;
+      width: 10%;
+      top: 10px;
+      left: 20px;
+    }
+  }
+}
+
+.container {
+  padding: 0 -15px 0 -15px !important;
+}

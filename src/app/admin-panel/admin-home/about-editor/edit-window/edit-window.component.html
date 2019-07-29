@@ -1,0 +1,154 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      <span *ngIf="person.name.length > 0; else elseBlock"
+        >{{ personCopy.name }} - EDYCJA</span
+      >
+      <ng-template #elseBlock>NOWA OSOBA</ng-template>
+    </h4>
+  </div>
+  <div class="modal-body container">
+    <div class="row justify-content-start m-3 font-weight-bold">
+      <form id="editForm" #editForm="ngForm" (ngSubmit)="clickSave()">
+        <div class="form-group">
+          <label for="personName">Imię i nazwisko</label>
+          <input
+            type="text"
+            class="form-control"
+            id="personName"
+            name="personName"
+            [(ngModel)]="personCopy.name"
+            #personName="ngModel"
+            required
+            pattern="[A-ZŁŚ][a-ząęółśżźćń]{1,} [A-ZŁŚ][a-ząęółśżźćń]{1,}"
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personName.valid"
+            type="danger"
+          >
+            <div>
+              Podanie imienia i nazwiska jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personPosition">Stanowisko</label>
+          <input
+            type="text"
+            class="form-control"
+            id="personPosition"
+            name="personPosition"
+            [(ngModel)]="personCopy.position"
+            #personPosition="ngModel"
+            required
+            minlength="3"
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personPosition.valid"
+            type="danger"
+          >
+            <div>
+              Podanie stanowiska jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <div class="form-group">
+          <label for="personRank">Ranga (1-2-3)</label>
+          <input
+            type="range"
+            min="1"
+            max="3"
+            class="form-control"
+            id="personRank"
+            name="personRank"
+            [(ngModel)]="personCopy.rank"
+            #personRank="ngModel"
+            required
+          />
+        </div>
+        <div
+          *ngIf="!personCopy.image.length > 0; else showPic"
+          class="form-group"
+        >
+          <label for="personImage">Zdjęcie</label>
+          <input
+            ngModel
+            #personImage="ngModel"
+            type="file"
+            class="form-control"
+            id="personImage"
+            name="personImage"
+            accept="image/png, image/jpeg, image/svg"
+            (change)="uploadFile($event)"
+            required
+          />
+          <alert
+            *ngIf="editForm.touched && !editForm.controls.personImage.valid"
+            type="danger"
+          >
+            <div>
+              Dodanie zdjęcia jest obowiązkowe!
+            </div>
+          </alert>
+        </div>
+        <ng-template #showPic class="container justify-content-center">
+          <div class="row justify-content-center">
+            <img
+              class="col picture"
+              src="{{ personCopy.image }}"
+              alt="person"
+            />
+            <img
+              class="col delete_icon"
+              src="../../../../../assets/img/icons/circle_delete.svg"
+              alt="delete_icon"
+              (click)="deleteImage()"
+            />
+          </div>
+        </ng-template>
+        <div class="form-group">
+          <label for="personDescription">Opis</label>
+          <textarea
+            type="text"
+            class="form-control"
+            id="personDescription"
+            name="personDescription"
+            cols="80"
+            rows="10"
+            [(ngModel)]="personCopy.description"
+            #personDescription="ngModel"
+            required
+            minlength="10"
+            placeholder="Tutaj wpisz treść"
+          ></textarea>
+          <alert
+            *ngIf="
+              editForm.touched && !editForm.controls.personDescription.valid
+            "
+            type="danger"
+          >
+            <div>
+              Treść opisu musi mieć długość minimum 10 liter!
+            </div>
+          </alert>
+        </div>
+        <hr />
+        <div class="row justify-content-around">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!editForm.valid"
+          >
+            ZAPISZ</button
+          ><button
+            type="button"
+            class="btn btn-primary"
+            (click)="modalRef.hide()"
+          >
+            ANULUJ
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
