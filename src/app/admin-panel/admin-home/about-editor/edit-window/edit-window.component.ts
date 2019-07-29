@@ -7,6 +7,7 @@ import {
   Output
 } from "@angular/core";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { GalleryService } from "src/app/services/gallery/gallery.service";
 
 @Component({
   selector: "about-edit-window",
@@ -23,7 +24,10 @@ export class EditWindowComponent {
   private personCopy: Object = {};
   @Output() notifyMe: EventEmitter<Object> = new EventEmitter<Object>();
 
-  constructor(private modalService: BsModalService) {}
+  constructor(
+    private galleryService: GalleryService,
+    private modalService: BsModalService
+  ) {}
 
   public open(person: Object) {
     this.person = person;
@@ -38,17 +42,22 @@ export class EditWindowComponent {
   private clickSave() {
     JSON.stringify(this.person) === JSON.stringify(this.personCopy)
       ? this.modalRef.hide()
-      : this.saveOrUpdatePerson();
+      : this.savePerson();
   }
 
-  private saveOrUpdatePerson() {
-    !(this.person["name"].length > 0)
-      ? this.savePerson(true)
-      : this.savePerson(false);
-  }
-
-  private savePerson(isNew: boolean) {
-    this.notifyMe.emit({ isNew: isNew, person: this.personCopy });
+  private savePerson() {
+    this.notifyMe.emit(this.personCopy);
     this.modalRef.hide();
+  }
+
+  private uploadFile(event: any, pictureTitle: string) {
+    this.galleryService
+      .uploadImage(event)
+      .then((url: string) => {
+        this.personCopy["image"] = url;
+      })
+      .catch(err => {
+        window.alert(err);
+      });
   }
 }

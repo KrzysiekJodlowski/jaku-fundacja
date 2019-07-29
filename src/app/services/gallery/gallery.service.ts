@@ -104,7 +104,7 @@ export class GalleryService {
     });
   }
 
-  public uploadImage(event: any, galleryTitle: string, pictureTitle: string) {
+  public uploadImage(event: any, galleryTitle?: string, pictureTitle?: string) {
     return new Promise((resolve, reject) => {
       const file = event.target.files[0];
       this.resolveFilePath(file).then(filePath => {

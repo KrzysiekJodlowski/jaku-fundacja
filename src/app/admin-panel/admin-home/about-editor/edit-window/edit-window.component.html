@@ -79,6 +79,7 @@
             id="personImage"
             name="personImage"
             accept="image/png, image/jpeg, image/svg"
+            (change)="uploadFile($event)"
             required
           />
           <alert

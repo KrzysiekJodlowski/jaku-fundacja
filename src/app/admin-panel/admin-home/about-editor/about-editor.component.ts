@@ -65,7 +65,6 @@ export class AboutEditorComponent implements OnInit {
   }
 
   private savePerson(personToSave: Object) {
-    console.log(personToSave["isNew"]);
-    console.log(personToSave["person"]);
+    this.aboutService.savePerson(personToSave);
   }
 }

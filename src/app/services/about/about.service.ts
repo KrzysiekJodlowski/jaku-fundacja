@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { GalleryService } from "../gallery/gallery.service";
 import { AngularFireDatabase } from "@angular/fire/database";
-import { reject } from "q";
 
 @Injectable({
   providedIn: "root"
@@ -77,6 +76,15 @@ export class AboutService {
           reject();
         });
     });
+  }
+
+  public savePerson(person: Object) {
+    console.log(person);
+
+    this.fbDatabase.database
+      .ref(`about/${person["name"]}`)
+      .set(person)
+      .catch(e => console.log(e));
   }
 
   private sortPeopleByRank(newAbout: any): Promise<Object[]> {
